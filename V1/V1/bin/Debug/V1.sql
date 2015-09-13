@@ -40,21 +40,28 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Modification de [dbo].[Chanson]...';
+PRINT N'Suppression de [dbo].[Version_Album_FK]...';
 
 
 GO
-ALTER TABLE [dbo].[Chanson]
-    ADD [GenreID] INT NULL;
+ALTER TABLE [dbo].[Version] DROP CONSTRAINT [Version_Album_FK];
 
 
 GO
-PRINT N'Création de [dbo].[Chanson_Genre_FK]...';
+PRINT N'Modification de [dbo].[Version]...';
 
 
 GO
-ALTER TABLE [dbo].[Chanson] WITH NOCHECK
-    ADD CONSTRAINT [Chanson_Genre_FK] FOREIGN KEY ([GenreID]) REFERENCES [dbo].[Genre] ([GenreID]);
+ALTER TABLE [dbo].[Version] ALTER COLUMN [AlbumID] INT NULL;
+
+
+GO
+PRINT N'Création de [dbo].[Version_Album_FK]...';
+
+
+GO
+ALTER TABLE [dbo].[Version] WITH NOCHECK
+    ADD CONSTRAINT [Version_Album_FK] FOREIGN KEY ([AlbumID]) REFERENCES [dbo].[Album] ([AlbumID]) ON DELETE CASCADE;
 
 
 GO
@@ -66,7 +73,7 @@ USE [$(DatabaseName)];
 
 
 GO
-ALTER TABLE [dbo].[Chanson] WITH CHECK CHECK CONSTRAINT [Chanson_Genre_FK];
+ALTER TABLE [dbo].[Version] WITH CHECK CHECK CONSTRAINT [Version_Album_FK];
 
 
 GO

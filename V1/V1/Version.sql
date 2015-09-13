@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Version] (
     [VersionID]    INT           IDENTITY (1, 1) NOT NULL,
     [ChansonID]    INT         NOT NULL,
-    [AlbumID]      INT         NOT NULL,
+    [AlbumID]      INT         NULL,
     [Commentaire]  NVARCHAR (50) NULL,
     [DateCreation] DATETIME      NULL,
     [Demo]         VARBINARY(MAX) NULL,

@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="V1Model.Artiste" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="V1Model.Biographie" Width="1.5" PointX="7.875" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="V1Model.Chanson" Width="1.5" PointX="4.625" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="V1Model.Compositeur" Width="1.5" PointX="2.625" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Compositeur" Width="1.5" PointX="2.75" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="V1Model.Genre" Width="1.5" PointX="2.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="V1Model.Instrument" Width="1.5" PointX="6.625" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="V1Model.Jouer" Width="1.5" PointX="6.625" PointY="4.375" IsExpanded="true" />
