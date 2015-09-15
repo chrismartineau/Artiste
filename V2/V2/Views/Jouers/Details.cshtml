@@ -1,0 +1,42 @@
+﻿@model V2.Models.Jouer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Jouer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Artiste.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artiste.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instrument.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instrument.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Version.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Version.Commentaire)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JouerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

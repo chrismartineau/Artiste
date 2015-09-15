@@ -1,0 +1,90 @@
+﻿@model V2.Models.Version
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Version</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Demo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Demo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NbEcoutes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NbEcoutes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prix)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Visible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Visible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Album.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Album.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chanson.Titre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chanson.Titre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VersionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

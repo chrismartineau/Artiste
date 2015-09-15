@@ -1,0 +1,45 @@
+﻿@model IEnumerable<V2.Models.ReleveTransaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Acheteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoutTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Acheteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoutTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ReleveTransactionID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ReleveTransactionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReleveTransactionID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<V2.Models.Jouer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Artiste.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instrument.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Version.Commentaire)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Artiste.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instrument.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Version.Commentaire)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.JouerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JouerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JouerID })
+        </td>
+    </tr>
+}
+
+</table>
