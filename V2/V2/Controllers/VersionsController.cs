@@ -17,7 +17,8 @@ namespace V2.Controllers
         // GET: Versions
         public ActionResult Index()
         {
-            var version = db.Version.Include(v => v.Album).Include(v => v.Chanson);
+            var version = db.Chanson.Include(v => v.Version).OrderBy(c => c.Titre);
+            // var version = db.Version.Include(v => v.Album).Include(v => v.Chanson).OrderBy(v => v.Chanson);
             return View(version.ToList());
         }
 
@@ -39,7 +40,7 @@ namespace V2.Controllers
         // GET: Versions/Create
         public ActionResult Create()
         {
-            ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Description");
+            ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Nom");
             ViewBag.ChansonID = new SelectList(db.Chanson, "ChansonID", "Titre");
             return View();
         }
@@ -60,7 +61,7 @@ namespace V2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Description", version.AlbumID);
+            ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Nom", version.AlbumID);
             ViewBag.ChansonID = new SelectList(db.Chanson, "ChansonID", "Titre", version.ChansonID);
             return View(version);
         }
@@ -139,6 +140,23 @@ namespace V2.Controllers
             }
             var versions = (from c in db.Version
                             where c.ChansonID == id
+                            select c);
+            return View(versions.ToList());
+        }
+
+        public ActionResult ListVersionAlbum(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Album album = db.Album.Find(id);
+            if (album == null)
+            {
+                return HttpNotFound();
+            }
+            var versions = (from c in db.Version
+                            where c.AlbumID == id
                             select c);
             return View(versions.ToList());
         }

@@ -1,51 +1,86 @@
 ﻿@model IEnumerable<V2.Models.Album>
+<head>
+    <title>Index</title>
+    @{
+        ViewBag.Title = "Index";
+    }
+    <style>
+        .container2 {
+            border: 1px solid #d3d3d3;
+        }
 
-@{
-    ViewBag.Title = "Index";
-}
+            .container2 div {
+            }
 
-<h2>Index</h2>
+            .container2 .header {
+                background-color: #d3d3d3;
+                padding: 2px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .container2 .content {
+                display: none;
+                padding: 5px;
+            }
+    </style>
+</head>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Prix)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nom)
-        </th>
-        <th></th>
-    </tr>
+@foreach (var album in Model)
+{
+    <h3>
+        Album : @Html.DisplayFor(c => album.Nom) &nbsp; 
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlbumID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID })
-        </td>
-    </tr>
+
+
+        <div style="font-size:medium; text-align:right">
+            @Html.ActionLink("Edit", "Edit", new { id = album.AlbumID }) |
+            @Html.ActionLink("Details", "Details", new { id = album.AlbumID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = album.AlbumID })
+        </div>
+    </h3>
+    <div class="container2">
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Version.First().Commentaire)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Version.First().Demo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Version.First().Prix)
+                </th>
+                <th>
+                    Chanson
+                </th>
+            </tr>
+            @foreach (var item in album.Version)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Commentaire)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Demo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prix)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+
 }
-
-</table>

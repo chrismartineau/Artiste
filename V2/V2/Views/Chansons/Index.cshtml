@@ -1,40 +1,87 @@
 ﻿@model IEnumerable<V2.Models.Chanson>
+<head>
+    <title>Index</title>
+    @{
+        ViewBag.Title = "Index";
+    }
+    <style>
+        .container2 {
+            border: 1px solid #d3d3d3;
+        }
 
-@{
-    ViewBag.Title = "Chansons";
-}
+            .container2 div {
+            }
 
-<h2>Toutes les chansons</h2>
+            .container2 .header {
+                background-color: #d3d3d3;
+                padding: 2px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .container2 .content {
+                display: none;
+                padding: 5px;
+            }
+    </style>
+</head>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Ajouter une nouvelle chanson", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Titre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre.Nom)
-        </th>
-        <th></th>
-    </tr>
+@foreach (var chanson in Model)
+{
+    <h3>
+        Chanson : @Html.DisplayFor(c => chanson.Titre) &nbsp; Genre : @Html.DisplayFor(c => chanson.Genre.Nom)
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre.Nom)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ChansonID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ChansonID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ChansonID })
-            </td>
-        </tr>
-    }
 
-</table>
+
+        <div style="font-size:medium; text-align:right">
+            @Html.ActionLink("Edit", "Edit", new { id = chanson.ChansonID }) |
+            @Html.ActionLink("Details", "Details", new { id = chanson.ChansonID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = chanson.ChansonID })
+        </div>
+    </h3>
+    <div class="container2">
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Version.First().Commentaire)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Version.First().Demo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Version.First().Prix)
+                </th>
+                <th>
+                    Album
+                </th>
+            </tr>
+            @foreach (var item in chanson.Version)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Commentaire)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Demo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prix)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Album.Nom)
+                    </td>
+                    
+                </tr>
+            }
+        </table>
+    </div>
+
+}

@@ -17,6 +17,10 @@ namespace V2.Controllers
         // GET: Albums
         public ActionResult Index()
         {
+            if (db.Album.ToList() == null)
+            {
+                return RedirectToAction("Create");
+            }
             return View(db.Album.ToList());
         }
 
@@ -27,12 +31,9 @@ namespace V2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Album.Find(id);
-            if (album == null)
-            {
-                return HttpNotFound();
-            }
-            return View(album);
+
+            int i2 = (int)id;
+            return RedirectToAction("ListVersionAlbum", "Versions", new { id = i2 });
         }
 
         // GET: Albums/Create
@@ -88,6 +89,14 @@ namespace V2.Controllers
                 return RedirectToAction("Index");
             }
             return View(album);
+        }
+
+        public ActionResult RemovePrice(int? id)
+        {
+            Album album = db.Album.Find(id);
+            album.Prix = null;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         // GET: Albums/Delete/5

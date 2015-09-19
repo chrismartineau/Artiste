@@ -17,6 +17,11 @@ namespace V2.Controllers
         // GET: Chansons
         public ActionResult Index()
         {
+            if (db.Chanson.ToList() == null)
+            {
+              
+                return RedirectToAction("Create");
+            }
             var chanson = db.Chanson.Include(c => c.Genre);
             return View(chanson.ToList());
         }

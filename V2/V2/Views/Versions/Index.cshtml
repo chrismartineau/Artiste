@@ -1,67 +1,84 @@
-﻿@model IEnumerable<V2.Models.Version>
-
+﻿@model IEnumerable<V2.Models.Chanson>
+<head>
+    <title>Index</title>
 @{
     ViewBag.Title = "Index";
 }
+    <style>
+        .container2 {
+            
+    border:1px solid #d3d3d3;
+}
+        .container2 div {
 
+}
+
+.container2 .header {
+    background-color:#d3d3d3;
+    padding: 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.container2 .content {
+    display: none;
+    padding : 5px;
+}
+    </style>
+</head>
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Commentaire)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Demo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Duree)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Prix)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Album.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Chanson.Titre)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+    @foreach (var chanson in Model)
     {
+       <h3>Chanson : @Html.DisplayFor(c => chanson.Titre) </h3>
+        <div class="container2">
+           
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Commentaire)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Demo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duree)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Prix)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Album.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Chanson.Titre)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Version.First().Commentaire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Version.First().Demo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Version.First().Prix)
+            </th>
+            <th>
+                Album
+            </th>
+            <th>Options</th>
         </tr>
-    }
+        @foreach (var item in chanson.Version)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Commentaire)
+                </td>
 
-</table>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Demo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prix)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Album.Nom)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
+                </td>
+            </tr>
+        }
+    </table>
+            </div>
+
+    }
+    
+

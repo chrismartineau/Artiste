@@ -6,12 +6,16 @@
 <div></div>
 
 
-    <h1>
-    @Html.DisplayFor(model => model.First().Chanson.Titre)
-    </h1>
-    <table class="table">
+<h1>
+    @Html.DisplayFor(model => model.First().Album.Nom)
+</h1>
+@if (Model.First().Album.Prix != null)
+{ 
+    <h3>@Html.DisplayFor(model => model.First().Album.Prix)$</h3>
+}
+<table class="table">
     <tr>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.Commentaire)
         </th>
@@ -22,18 +26,16 @@
         <th>
             @Html.DisplayNameFor(model => model.Prix)
         </th>
-       
+
 
         <th></th>
     </tr>
-    
+
     @foreach (var item in Model)
     {
         if (item.Visible == true || 1 == 1)
         {
             <tr>
-
-
                 <td>
                     @Html.DisplayFor(modelItem => item.Commentaire)
                 </td>
@@ -53,7 +55,6 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
                 </td>
             </tr>

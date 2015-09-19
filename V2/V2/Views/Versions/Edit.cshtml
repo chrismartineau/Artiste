@@ -1,9 +1,14 @@
 ﻿@model V2.Models.Version
+<head>
+    <title>Edit</title>
+    @{
+        ViewBag.Title = "Edit";
+    }
 
-@{
-    ViewBag.Title = "Edit";
-}
+    <script>
 
+    </script>
+</head>
 <h2>Edit</h2>
 
 
@@ -18,7 +23,7 @@
         @Html.HiddenFor(model => model.VersionID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ChansonID, "ChansonID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ChansonID, "Chanson", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ChansonID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ChansonID, "", new { @class = "text-danger" })
@@ -26,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AlbumID, "AlbumID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AlbumID, "Album", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("AlbumID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AlbumID, "", new { @class = "text-danger" })
@@ -38,14 +43,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Commentaire, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Commentaire, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateCreation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCreation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateCreation, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -62,14 +59,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Duree, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Duree, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NbEcoutes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NbEcoutes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NbEcoutes, "", new { @class = "text-danger" })
             </div>
         </div>
 

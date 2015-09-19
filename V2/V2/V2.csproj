@@ -364,6 +364,7 @@
     <Content Include="Views\Versions\Edit.cshtml" />
     <Content Include="Views\Versions\Index.cshtml" />
     <Content Include="Views\Versions\ListVersion.cshtml" />
+    <Content Include="Views\Versions\ListVersionAlbum.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
