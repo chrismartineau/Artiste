@@ -196,6 +196,7 @@
     <Compile Include="Models\Compositeur.cs">
       <DependentUpon>V2_Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DecimalModelBinder.cs" />
     <Compile Include="Models\Genre.cs">
       <DependentUpon>V2_Models.tt</DependentUpon>
     </Compile>
@@ -247,6 +248,7 @@
       <DependentUpon>V2_Models.edmx</DependentUpon>
       <LastGenOutput>V2_Models.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\V2_Models.edmx.sql" />
     <Content Include="Models\V2_Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>V2_Models.edmx</DependentUpon>

@@ -32,6 +32,14 @@
                 @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
             </div>
         </div>
+        @if (Model.Biographie.FirstOrDefault() == null)
+        {
+            @Html.ActionLink("Ajouter une biographie", "Create", "Biographies", new { id = Model.ArtisteID}, null)
+        }
+        @if (Model.Biographie.FirstOrDefault() != null)
+        {
+            @Html.ActionLink("Modifier la biographie", "Edit", "Biographies", new { id = Model.ArtisteID }, null)
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

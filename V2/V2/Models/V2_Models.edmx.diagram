@@ -20,13 +20,14 @@
         <AssociationConnector Association="V2_bdModel.FK_Achat_ReleveTransaction_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Achat_Version_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Version_Album_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="V2_bdModel.FK_Artiste_Biographie_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Jouer_Artiste_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Chanson_Genre_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Version_Chanson_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Jouer_Instrument_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Jouer_Version_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.ChansonCompositeur" ManuallyRouted="false" />
+        <AssociationConnector Association="V2_bdModel.FK_Biographie_Artiste" />
+        <AssociationConnector Association="V2_bdModel.FK_Artiste_Biographie_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -36,18 +36,18 @@
 
 
 
-        <div style="font-size:medium; text-align:right">
+        <p style="font-size:medium; text-align:right">
             @Html.ActionLink("Edit", "Edit", new { id = album.AlbumID }) |
             @Html.ActionLink("Details", "Details", new { id = album.AlbumID }) |
             @Html.ActionLink("Delete", "Delete", new { id = album.AlbumID })
-        </div>
+        </p>
     </h3>
     <div class="container2">
 
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.First().Version.First().Commentaire)
+                   
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.First().Version.First().Demo)

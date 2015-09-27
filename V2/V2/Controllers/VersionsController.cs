@@ -60,6 +60,7 @@ namespace V2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
 
             ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Nom", version.AlbumID);
             ViewBag.ChansonID = new SelectList(db.Chanson, "ChansonID", "Titre", version.ChansonID);
@@ -78,7 +79,7 @@ namespace V2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Description", version.AlbumID);
+            ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Nom", version.AlbumID);
             ViewBag.ChansonID = new SelectList(db.Chanson, "ChansonID", "Titre", version.ChansonID);
             return View(version);
         }

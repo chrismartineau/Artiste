@@ -16,15 +16,17 @@ namespace V2.Models
     {
         public Artiste()
         {
-            this.Biographie = new HashSet<Biographie>();
             this.Jouer = new HashSet<Jouer>();
+            this.Biographie = new HashSet<Biographie>();
         }
     
         public int ArtisteID { get; set; }
         public string Nom { get; set; }
         public string Role { get; set; }
+        public Nullable<int> BiographieID { get; set; }
     
-        public virtual ICollection<Biographie> Biographie { get; set; }
         public virtual ICollection<Jouer> Jouer { get; set; }
+        public virtual Biographie Biographie1 { get; set; }
+        public virtual ICollection<Biographie> Biographie { get; set; }
     }
 }

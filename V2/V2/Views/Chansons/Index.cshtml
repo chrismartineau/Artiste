@@ -47,40 +47,80 @@
 
         <table class="table">
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.First().Version.First().Commentaire)
+                <th class="tab-content  col-md-2">
+
                 </th>
-                <th>
+                <th class="tab-content  col-md-2">
                     @Html.DisplayNameFor(model => model.First().Version.First().Demo)
                 </th>
-                <th>
+                <th class="tab-content  col-md-2">
                     @Html.DisplayNameFor(model => model.First().Version.First().Prix)
                 </th>
-                <th>
+                <th class="tab-content  col-md-2">
                     Album
                 </th>
+                <th class="tab-content  col-md-2">Options</th>
+                <th class="tab-content  col-md-2">Artiste(s)</th>
             </tr>
             @foreach (var item in chanson.Version)
             {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Commentaire)
+                        @if (item.Commentaire == null || item.Commentaire == "")
+                        {
+                            <span>-----------</span>
+                        }
                     </td>
 
                     <td>
                         @Html.DisplayFor(modelItem => item.Demo)
+                        @if (item.Demo == null || item.Demo == "")
+                        {
+                            <span>-----------</span>
+                        }
                     </td>
 
                     <td>
                         @Html.DisplayFor(modelItem => item.Prix)
+                        @if (item.Prix == null || item.Prix == 0)
+                        {
+                            <span>-----------</span>
+                        }
                     </td>
 
                     <td>
                         @Html.DisplayFor(modelItem => item.Album.Nom)
+
                     </td>
-                    
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
+                    </td>
+                    <td>
+                        @if (item.Jouer.Count == 0)
+                        {
+                            <span>-----------</span>
+
+                        }
+                        @if (item.Jouer.Count <= 3 && item.Jouer.Count > 0)
+                        {
+                            foreach (var artiste in item.Jouer)
+                            {
+                                @Html.ActionLink(artiste.Artiste.Nom, "Details", "Artistes", new { id = artiste.Artiste.ArtisteID }, null)
+                                <span>(@artiste.Instrument.Nom) </span><br />
+                            }
+                        }
+                        @if (item.Jouer.Count > 3)
+                        {
+                            @Html.ActionLink("Voir tous les artistes", "Details", new { id = item.VersionID })
+                        }
+                    </td>
                 </tr>
+
             }
+
         </table>
     </div>
 

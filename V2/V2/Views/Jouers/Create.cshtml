@@ -20,6 +20,7 @@
             <div class="col-md-10">
                 @Html.DropDownList("ArtisteID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ArtisteID, "", new { @class = "text-danger" })
+                @Html.ActionLink("Ajouter un nouvel artiste", "Create", "Artistes")
             </div>
         </div>
 
@@ -28,16 +29,19 @@
             <div class="col-md-10">
                 @Html.DropDownList("InstrumentID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.InstrumentID, "", new { @class = "text-danger" })
+                @Html.ActionLink("Ajouter un nouvel instrument", "Create", "Instruments")
             </div>
         </div>
 
-        <div class="form-group">
+        @Html.Hidden("VersionId", null, htmlAttributes: new { @class = "form-control" })
+        @*<div class="form-group">
             @Html.LabelFor(model => model.VersionID, "VersionID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("VersionID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.VersionID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
+        
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

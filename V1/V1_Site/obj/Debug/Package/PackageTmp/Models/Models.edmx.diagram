@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e372cf69d1454d268a78d3114d9aff31" Name="Diagram1">
+        <EntityTypeShape EntityType="V1Model.Achat" Width="1.5" PointX="1.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Album" Width="1.5" PointX="1.125" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Artiste" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Biographie" Width="1.5" PointX="7.875" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Chanson" Width="1.5" PointX="4.625" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Compositeur" Width="1.5" PointX="2.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Genre" Width="1.5" PointX="2.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Instrument" Width="1.5" PointX="6.625" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Jouer" Width="1.5" PointX="6.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.ReleveTransaction" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="V1Model.Version" Width="1.5" PointX="3.875" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="V1Model.Achat_Album_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Achat_ReleveTransaction_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Achat_Version_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Version_Album_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Artiste_Biographie_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Jouer_Artiste_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Chanson_Genre_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Version_Chanson_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Jouer_Instrument_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.Jouer_Version_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="V1Model.ChansonCompositeur" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

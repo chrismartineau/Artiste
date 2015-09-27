@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="V2_bdModelStoreContainer" CdmEntityContainer="V2_bdEntities">
     <EntitySetMapping Name="Achat">
-      <EntityTypeMapping TypeName="V2_bdModel.Achat">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Achat)">
         <MappingFragment StoreEntitySet="Achat">
           <ScalarProperty Name="AchatID" ColumnName="AchatID" />
           <ScalarProperty Name="Cout" ColumnName="Cout" />
@@ -13,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Album">
-      <EntityTypeMapping TypeName="V2_bdModel.Album">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Album)">
         <MappingFragment StoreEntitySet="Album">
           <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
           <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
@@ -24,8 +24,9 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Artiste">
-      <EntityTypeMapping TypeName="V2_bdModel.Artiste">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Artiste)">
         <MappingFragment StoreEntitySet="Artiste">
+          <ScalarProperty Name="BiographieID" ColumnName="BiographieID" />
           <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
           <ScalarProperty Name="Nom" ColumnName="Nom" />
           <ScalarProperty Name="Role" ColumnName="Role" />
@@ -33,7 +34,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Biographie">
-      <EntityTypeMapping TypeName="V2_bdModel.Biographie">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Biographie)">
         <MappingFragment StoreEntitySet="Biographie">
           <ScalarProperty Name="BiographieID" ColumnName="BiographieID" />
           <ScalarProperty Name="Biographie1" ColumnName="Biographie1" />
@@ -43,7 +44,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Chanson">
-      <EntityTypeMapping TypeName="V2_bdModel.Chanson">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Chanson)">
         <MappingFragment StoreEntitySet="Chanson">
           <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
           <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
@@ -53,7 +54,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Compositeur">
-      <EntityTypeMapping TypeName="V2_bdModel.Compositeur">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Compositeur)">
         <MappingFragment StoreEntitySet="Compositeur">
           <ScalarProperty Name="CompositeurID" ColumnName="CompositeurID" />
           <ScalarProperty Name="Nom" ColumnName="Nom" />
@@ -61,7 +62,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Genre">
-      <EntityTypeMapping TypeName="V2_bdModel.Genre">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Genre)">
         <MappingFragment StoreEntitySet="Genre">
           <ScalarProperty Name="GenreID" ColumnName="GenreID" />
           <ScalarProperty Name="Nom" ColumnName="Nom" />
@@ -69,7 +70,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Instrument">
-      <EntityTypeMapping TypeName="V2_bdModel.Instrument">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Instrument)">
         <MappingFragment StoreEntitySet="Instrument">
           <ScalarProperty Name="InstrumentID" ColumnName="InstrumentID" />
           <ScalarProperty Name="Nom" ColumnName="Nom" />
@@ -78,7 +79,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Jouer">
-      <EntityTypeMapping TypeName="V2_bdModel.Jouer">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Jouer)">
         <MappingFragment StoreEntitySet="Jouer">
           <ScalarProperty Name="JouerID" ColumnName="JouerID" />
           <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
@@ -88,7 +89,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ReleveTransaction">
-      <EntityTypeMapping TypeName="V2_bdModel.ReleveTransaction">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.ReleveTransaction)">
         <MappingFragment StoreEntitySet="ReleveTransaction">
           <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
           <ScalarProperty Name="Acheteur" ColumnName="Acheteur" />
@@ -98,7 +99,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Version">
-      <EntityTypeMapping TypeName="V2_bdModel.Version">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Version)">
         <MappingFragment StoreEntitySet="Version">
           <ScalarProperty Name="VersionID" ColumnName="VersionID" />
           <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />

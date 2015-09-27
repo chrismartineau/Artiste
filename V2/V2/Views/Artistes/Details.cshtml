@@ -27,6 +27,17 @@
         </dd>
 
     </dl>
+    @if (Model.Biographie.FirstOrDefault() != null)
+    {
+        <p>Biographie : @Model.Biographie.FirstOrDefault().Biographie1</p> 
+    }
+
+    Chanson(s) : 
+    @foreach (var c in Model.Jouer )
+    {
+        <div>Titre : @Html.ActionLink(@c.Version.Chanson.Titre, "Details", "Versions", new { id = @c.VersionID }, null),
+        Instrument : @c.Instrument.Nom</div>
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ArtisteID }) |

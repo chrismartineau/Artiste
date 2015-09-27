@@ -14,11 +14,17 @@ namespace V2.Models
     
     public partial class Biographie
     {
+        public Biographie()
+        {
+            this.Artiste1 = new HashSet<Artiste>();
+        }
+    
         public int BiographieID { get; set; }
         public string Biographie1 { get; set; }
         public Nullable<System.DateTime> DateDernierChangement { get; set; }
         public int ArtisteID { get; set; }
     
+        public virtual ICollection<Artiste> Artiste1 { get; set; }
         public virtual Artiste Artiste { get; set; }
     }
 }

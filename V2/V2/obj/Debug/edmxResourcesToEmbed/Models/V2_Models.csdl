@@ -32,8 +32,10 @@
     <Property Name="ArtisteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nom" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
     <Property Name="Role" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Biographie" Relationship="Self.FK_Artiste_Biographie_FK" FromRole="Artiste" ToRole="Biographie" />
     <NavigationProperty Name="Jouer" Relationship="Self.FK_Jouer_Artiste_FK" FromRole="Artiste" ToRole="Jouer" />
+    <Property Name="BiographieID" Type="Int32" Nullable="true" />
+    <NavigationProperty Name="Biographie1" Relationship="V2_bdModel.FK_Biographie_Artiste" FromRole="Artiste" ToRole="Biographie" />
+    <NavigationProperty Name="Biographie" Relationship="V2_bdModel.FK_Artiste_Biographie_FK" FromRole="Artiste" ToRole="Biographie" />
   </EntityType>
   <EntityType Name="Biographie">
     <Key>
@@ -43,7 +45,8 @@
     <Property Name="Biographie1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DateDernierChangement" Type="DateTime" Precision="3" />
     <Property Name="ArtisteID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Artiste" Relationship="Self.FK_Artiste_Biographie_FK" FromRole="Biographie" ToRole="Artiste" />
+    <NavigationProperty Name="Artiste1" Relationship="V2_bdModel.FK_Biographie_Artiste" FromRole="Biographie" ToRole="Artiste" />
+    <NavigationProperty Name="Artiste" Relationship="V2_bdModel.FK_Artiste_Biographie_FK" FromRole="Biographie" ToRole="Artiste" />
   </EntityType>
   <EntityType Name="Chanson">
     <Key>
@@ -113,7 +116,7 @@
     <Property Name="AlbumID" Type="Int32" Nullable="false" />
     <Property Name="Commentaire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DateCreation" Type="DateTime" Precision="3" />
-    <Property Name="Demo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Demo" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Duree" Type="Int32" />
     <Property Name="NbEcoutes" Type="Int32" />
     <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" />
@@ -170,20 +173,6 @@
       </Principal>
       <Dependent Role="Version">
         <PropertyRef Name="AlbumID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Artiste_Biographie_FK">
-    <End Role="Artiste" Type="Self.Artiste" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Biographie" Type="Self.Biographie" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Artiste">
-        <PropertyRef Name="ArtisteID" />
-      </Principal>
-      <Dependent Role="Biographie">
-        <PropertyRef Name="ArtisteID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -281,10 +270,6 @@
       <End Role="Album" EntitySet="Album" />
       <End Role="Version" EntitySet="Version" />
     </AssociationSet>
-    <AssociationSet Name="FK_Artiste_Biographie_FK" Association="Self.FK_Artiste_Biographie_FK">
-      <End Role="Artiste" EntitySet="Artiste" />
-      <End Role="Biographie" EntitySet="Biographie" />
-    </AssociationSet>
     <AssociationSet Name="FK_Jouer_Artiste_FK" Association="Self.FK_Jouer_Artiste_FK">
       <End Role="Artiste" EntitySet="Artiste" />
       <End Role="Jouer" EntitySet="Jouer" />
@@ -309,5 +294,39 @@
       <End Role="Chanson" EntitySet="Chanson" />
       <End Role="Compositeur" EntitySet="Compositeur" />
     </AssociationSet>
+    <AssociationSet Name="FK_Biographie_Artiste" Association="V2_bdModel.FK_Biographie_Artiste">
+      <End Role="Biographie" EntitySet="Biographie" />
+      <End Role="Artiste" EntitySet="Artiste" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Artiste_Biographie_FK" Association="V2_bdModel.FK_Artiste_Biographie_FK">
+      <End Role="Artiste" EntitySet="Artiste" />
+      <End Role="Biographie" EntitySet="Biographie" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Biographie_Artiste">
+    <End Type="V2_bdModel.Biographie" Role="Biographie" Multiplicity="0..1" />
+    <End Type="V2_bdModel.Artiste" Role="Artiste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Biographie">
+        <PropertyRef Name="BiographieID" />
+      </Principal>
+      <Dependent Role="Artiste">
+        <PropertyRef Name="BiographieID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Artiste_Biographie_FK">
+    <End Type="V2_bdModel.Artiste" Role="Artiste" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="V2_bdModel.Biographie" Role="Biographie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artiste">
+        <PropertyRef Name="ArtisteID" />
+      </Principal>
+      <Dependent Role="Biographie">
+        <PropertyRef Name="ArtisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

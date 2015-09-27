@@ -81,8 +81,21 @@
         </div>
 
         <div class="form-group">
+            <span>Artiste(s) : </span>
+            @foreach (var artiste in Model.Jouer)
+            {
+                @Html.ActionLink(artiste.Artiste.Nom, "Details", "Artistes", new { id = artiste.Artiste.ArtisteID }, null);
+                <span> (@artiste.Instrument.Nom) </span>
+                @Html.ActionLink("Supprimer cet artiste de cette chanson", "Delete", "Artistes", new { id = artiste.Artiste.ArtisteID }, null);<br />
+            }
+            <br />
+            <br />
+            <p>@Html.ActionLink("Ajouter un artiste à cette chanson", "Create", "Jouers", new { id = Model.VersionID }, null )</p>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Enregistrer" class="btn btn-default" />
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="V2_bdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="V2_bdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Achat">
           <Key>
             <PropertyRef Name="AchatID" />
@@ -32,6 +32,7 @@
           <Property Name="ArtisteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="nvarchar" MaxLength="40" />
           <Property Name="Role" Type="nvarchar" MaxLength="40" />
+          <Property Name="BiographieID" Type="int" />
         </EntityType>
         <EntityType Name="Biographie">
           <Key>
@@ -108,7 +109,7 @@
           <Property Name="AlbumID" Type="int" Nullable="false" />
           <Property Name="Commentaire" Type="nvarchar" MaxLength="50" />
           <Property Name="DateCreation" Type="datetime" />
-          <Property Name="Demo" Type="varbinary(max)" />
+          <Property Name="Demo" Type="nvarchar(max)" />
           <Property Name="Duree" Type="int" />
           <Property Name="NbEcoutes" Type="int" />
           <Property Name="Prix" Type="decimal" Precision="19" Scale="4" />
@@ -161,6 +162,18 @@
             </Principal>
             <Dependent Role="Biographie">
               <PropertyRef Name="ArtisteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Biographie_Artiste">
+          <End Role="Biographie" Type="Self.Biographie" Multiplicity="0..1" />
+          <End Role="Artiste" Type="Self.Artiste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Biographie">
+              <PropertyRef Name="BiographieID" />
+            </Principal>
+            <Dependent Role="Artiste">
+              <PropertyRef Name="BiographieID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -293,6 +306,10 @@
             <End Role="Artiste" EntitySet="Artiste" />
             <End Role="Biographie" EntitySet="Biographie" />
           </AssociationSet>
+          <AssociationSet Name="FK_Biographie_Artiste" Association="Self.FK_Biographie_Artiste">
+            <End Role="Biographie" EntitySet="Biographie" />
+            <End Role="Artiste" EntitySet="Artiste" />
+          </AssociationSet>
           <AssociationSet Name="FK_Chanson_Genre_FK" Association="Self.FK_Chanson_Genre_FK">
             <End Role="Genre" EntitySet="Genre" />
             <End Role="Chanson" EntitySet="Chanson" />
@@ -326,8 +343,7 @@
             <End Role="Version" EntitySet="Version" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="V2_bdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -363,8 +379,10 @@
           <Property Name="ArtisteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nom" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Biographie" Relationship="Self.FK_Artiste_Biographie_FK" FromRole="Artiste" ToRole="Biographie" />
           <NavigationProperty Name="Jouer" Relationship="Self.FK_Jouer_Artiste_FK" FromRole="Artiste" ToRole="Jouer" />
+          <Property Name="BiographieID" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Biographie1" Relationship="V2_bdModel.FK_Biographie_Artiste" FromRole="Artiste" ToRole="Biographie" />
+          <NavigationProperty Name="Biographie" Relationship="V2_bdModel.FK_Artiste_Biographie_FK" FromRole="Artiste" ToRole="Biographie" />
         </EntityType>
         <EntityType Name="Biographie">
           <Key>
@@ -374,7 +392,8 @@
           <Property Name="Biographie1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateDernierChangement" Type="DateTime" Precision="3" />
           <Property Name="ArtisteID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Artiste" Relationship="Self.FK_Artiste_Biographie_FK" FromRole="Biographie" ToRole="Artiste" />
+          <NavigationProperty Name="Artiste1" Relationship="V2_bdModel.FK_Biographie_Artiste" FromRole="Biographie" ToRole="Artiste" />
+          <NavigationProperty Name="Artiste" Relationship="V2_bdModel.FK_Artiste_Biographie_FK" FromRole="Biographie" ToRole="Artiste" />
         </EntityType>
         <EntityType Name="Chanson">
           <Key>
@@ -444,7 +463,7 @@
           <Property Name="AlbumID" Type="Int32" Nullable="false" />
           <Property Name="Commentaire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DateCreation" Type="DateTime" Precision="3" />
-          <Property Name="Demo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Demo" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Duree" Type="Int32" />
           <Property Name="NbEcoutes" Type="Int32" />
           <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" />
@@ -501,20 +520,6 @@
             </Principal>
             <Dependent Role="Version">
               <PropertyRef Name="AlbumID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Artiste_Biographie_FK">
-          <End Role="Artiste" Type="Self.Artiste" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Biographie" Type="Self.Biographie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Artiste">
-              <PropertyRef Name="ArtisteID" />
-            </Principal>
-            <Dependent Role="Biographie">
-              <PropertyRef Name="ArtisteID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -612,10 +617,6 @@
             <End Role="Album" EntitySet="Album" />
             <End Role="Version" EntitySet="Version" />
           </AssociationSet>
-          <AssociationSet Name="FK_Artiste_Biographie_FK" Association="Self.FK_Artiste_Biographie_FK">
-            <End Role="Artiste" EntitySet="Artiste" />
-            <End Role="Biographie" EntitySet="Biographie" />
-          </AssociationSet>
           <AssociationSet Name="FK_Jouer_Artiste_FK" Association="Self.FK_Jouer_Artiste_FK">
             <End Role="Artiste" EntitySet="Artiste" />
             <End Role="Jouer" EntitySet="Jouer" />
@@ -640,136 +641,170 @@
             <End Role="Chanson" EntitySet="Chanson" />
             <End Role="Compositeur" EntitySet="Compositeur" />
           </AssociationSet>
+          <AssociationSet Name="FK_Biographie_Artiste" Association="V2_bdModel.FK_Biographie_Artiste">
+            <End Role="Biographie" EntitySet="Biographie" />
+            <End Role="Artiste" EntitySet="Artiste" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artiste_Biographie_FK" Association="V2_bdModel.FK_Artiste_Biographie_FK">
+            <End Role="Artiste" EntitySet="Artiste" />
+            <End Role="Biographie" EntitySet="Biographie" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Biographie_Artiste">
+          <End Type="V2_bdModel.Biographie" Role="Biographie" Multiplicity="0..1" />
+          <End Type="V2_bdModel.Artiste" Role="Artiste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Biographie">
+              <PropertyRef Name="BiographieID" />
+            </Principal>
+            <Dependent Role="Artiste">
+              <PropertyRef Name="BiographieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artiste_Biographie_FK">
+          <End Type="V2_bdModel.Artiste" Role="Artiste" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="V2_bdModel.Biographie" Role="Biographie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artiste">
+              <PropertyRef Name="ArtisteID" />
+            </Principal>
+            <Dependent Role="Biographie">
+              <PropertyRef Name="ArtisteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="V2_bdModelStoreContainer" CdmEntityContainer="V2_bdEntities">
-          <EntitySetMapping Name="Achat">
-            <EntityTypeMapping TypeName="V2_bdModel.Achat">
-              <MappingFragment StoreEntitySet="Achat">
-                <ScalarProperty Name="AchatID" ColumnName="AchatID" />
-                <ScalarProperty Name="Cout" ColumnName="Cout" />
-                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
-                <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
-                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Album">
-            <EntityTypeMapping TypeName="V2_bdModel.Album">
-              <MappingFragment StoreEntitySet="Album">
-                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
-                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Prix" ColumnName="Prix" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Artiste">
-            <EntityTypeMapping TypeName="V2_bdModel.Artiste">
-              <MappingFragment StoreEntitySet="Artiste">
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="V2_bdModelStoreContainer" CdmEntityContainer="V2_bdEntities">
+    <EntitySetMapping Name="Achat">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Achat)">
+        <MappingFragment StoreEntitySet="Achat">
+          <ScalarProperty Name="AchatID" ColumnName="AchatID" />
+          <ScalarProperty Name="Cout" ColumnName="Cout" />
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Album">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Album)">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artiste">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Artiste)">
+        <MappingFragment StoreEntitySet="Artiste">
+          <ScalarProperty Name="BiographieID" ColumnName="BiographieID" />
                 <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Biographie">
-            <EntityTypeMapping TypeName="V2_bdModel.Biographie">
-              <MappingFragment StoreEntitySet="Biographie">
-                <ScalarProperty Name="BiographieID" ColumnName="BiographieID" />
-                <ScalarProperty Name="Biographie1" ColumnName="Biographie1" />
-                <ScalarProperty Name="DateDernierChangement" ColumnName="DateDernierChangement" />
-                <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Chanson">
-            <EntityTypeMapping TypeName="V2_bdModel.Chanson">
-              <MappingFragment StoreEntitySet="Chanson">
-                <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
-                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
-                <ScalarProperty Name="Titre" ColumnName="Titre" />
-                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Compositeur">
-            <EntityTypeMapping TypeName="V2_bdModel.Compositeur">
-              <MappingFragment StoreEntitySet="Compositeur">
-                <ScalarProperty Name="CompositeurID" ColumnName="CompositeurID" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Genre">
-            <EntityTypeMapping TypeName="V2_bdModel.Genre">
-              <MappingFragment StoreEntitySet="Genre">
-                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Instrument">
-            <EntityTypeMapping TypeName="V2_bdModel.Instrument">
-              <MappingFragment StoreEntitySet="Instrument">
-                <ScalarProperty Name="InstrumentID" ColumnName="InstrumentID" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Jouer">
-            <EntityTypeMapping TypeName="V2_bdModel.Jouer">
-              <MappingFragment StoreEntitySet="Jouer">
-                <ScalarProperty Name="JouerID" ColumnName="JouerID" />
-                <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
-                <ScalarProperty Name="InstrumentID" ColumnName="InstrumentID" />
-                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReleveTransaction">
-            <EntityTypeMapping TypeName="V2_bdModel.ReleveTransaction">
-              <MappingFragment StoreEntitySet="ReleveTransaction">
-                <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
-                <ScalarProperty Name="Acheteur" ColumnName="Acheteur" />
-                <ScalarProperty Name="CoutTotal" ColumnName="CoutTotal" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Version">
-            <EntityTypeMapping TypeName="V2_bdModel.Version">
-              <MappingFragment StoreEntitySet="Version">
-                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
-                <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
-                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
-                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
-                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
-                <ScalarProperty Name="Demo" ColumnName="Demo" />
-                <ScalarProperty Name="Duree" ColumnName="Duree" />
-                <ScalarProperty Name="NbEcoutes" ColumnName="NbEcoutes" />
-                <ScalarProperty Name="Prix" ColumnName="Prix" />
-                <ScalarProperty Name="Visible" ColumnName="Visible" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="ChansonCompositeur" TypeName="V2_bdModel.ChansonCompositeur" StoreEntitySet="ChansonCompositeur">
-            <EndProperty Name="Chanson">
-              <ScalarProperty Name="ChansonID" ColumnName="Chanson_ChansonID" />
-            </EndProperty>
-            <EndProperty Name="Compositeur">
-              <ScalarProperty Name="CompositeurID" ColumnName="Compositeur_CompositeurID" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Biographie">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Biographie)">
+        <MappingFragment StoreEntitySet="Biographie">
+          <ScalarProperty Name="BiographieID" ColumnName="BiographieID" />
+          <ScalarProperty Name="Biographie1" ColumnName="Biographie1" />
+          <ScalarProperty Name="DateDernierChangement" ColumnName="DateDernierChangement" />
+          <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chanson">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Chanson)">
+        <MappingFragment StoreEntitySet="Chanson">
+          <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="Titre" ColumnName="Titre" />
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Compositeur">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Compositeur)">
+        <MappingFragment StoreEntitySet="Compositeur">
+          <ScalarProperty Name="CompositeurID" ColumnName="CompositeurID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genre">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Genre)">
+        <MappingFragment StoreEntitySet="Genre">
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instrument">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Instrument)">
+        <MappingFragment StoreEntitySet="Instrument">
+          <ScalarProperty Name="InstrumentID" ColumnName="InstrumentID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jouer">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Jouer)">
+        <MappingFragment StoreEntitySet="Jouer">
+          <ScalarProperty Name="JouerID" ColumnName="JouerID" />
+          <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
+          <ScalarProperty Name="InstrumentID" ColumnName="InstrumentID" />
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReleveTransaction">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.ReleveTransaction)">
+        <MappingFragment StoreEntitySet="ReleveTransaction">
+          <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
+          <ScalarProperty Name="Acheteur" ColumnName="Acheteur" />
+          <ScalarProperty Name="CoutTotal" ColumnName="CoutTotal" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Version">
+      <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Version)">
+        <MappingFragment StoreEntitySet="Version">
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="Demo" ColumnName="Demo" />
+          <ScalarProperty Name="Duree" ColumnName="Duree" />
+          <ScalarProperty Name="NbEcoutes" ColumnName="NbEcoutes" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="Visible" ColumnName="Visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ChansonCompositeur" TypeName="V2_bdModel.ChansonCompositeur" StoreEntitySet="ChansonCompositeur">
+      <EndProperty Name="Chanson">
+        <ScalarProperty Name="ChansonID" ColumnName="Chanson_ChansonID" />
+      </EndProperty>
+      <EndProperty Name="Compositeur">
+        <ScalarProperty Name="CompositeurID" ColumnName="Compositeur_CompositeurID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -783,7 +818,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
       </DesignerInfoPropertySet>
     </Options>

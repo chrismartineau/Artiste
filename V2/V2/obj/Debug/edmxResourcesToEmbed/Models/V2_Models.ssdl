@@ -27,6 +27,7 @@
     <Property Name="ArtisteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nom" Type="nvarchar" MaxLength="40" />
     <Property Name="Role" Type="nvarchar" MaxLength="40" />
+    <Property Name="BiographieID" Type="int" />
   </EntityType>
   <EntityType Name="Biographie">
     <Key>
@@ -103,7 +104,7 @@
     <Property Name="AlbumID" Type="int" Nullable="false" />
     <Property Name="Commentaire" Type="nvarchar" MaxLength="50" />
     <Property Name="DateCreation" Type="datetime" />
-    <Property Name="Demo" Type="varbinary(max)" />
+    <Property Name="Demo" Type="nvarchar(max)" />
     <Property Name="Duree" Type="int" />
     <Property Name="NbEcoutes" Type="int" />
     <Property Name="Prix" Type="decimal" Precision="19" Scale="4" />
@@ -156,6 +157,18 @@
       </Principal>
       <Dependent Role="Biographie">
         <PropertyRef Name="ArtisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Biographie_Artiste">
+    <End Role="Biographie" Type="Self.Biographie" Multiplicity="0..1" />
+    <End Role="Artiste" Type="Self.Artiste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Biographie">
+        <PropertyRef Name="BiographieID" />
+      </Principal>
+      <Dependent Role="Artiste">
+        <PropertyRef Name="BiographieID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -287,6 +300,10 @@
     <AssociationSet Name="FK_Artiste_Biographie_FK" Association="Self.FK_Artiste_Biographie_FK">
       <End Role="Artiste" EntitySet="Artiste" />
       <End Role="Biographie" EntitySet="Biographie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Biographie_Artiste" Association="Self.FK_Biographie_Artiste">
+      <End Role="Biographie" EntitySet="Biographie" />
+      <End Role="Artiste" EntitySet="Artiste" />
     </AssociationSet>
     <AssociationSet Name="FK_Chanson_Genre_FK" Association="Self.FK_Chanson_Genre_FK">
       <End Role="Genre" EntitySet="Genre" />

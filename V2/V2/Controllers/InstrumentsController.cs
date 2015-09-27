@@ -48,11 +48,16 @@ namespace V2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "InstrumentID,Nom,Type")] Instrument instrument)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)            
             {
-                db.Instrument.Add(instrument);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.Instrument.Where(a => a.Nom == instrument.Nom) == null)
+                {
+                    if (instrument.Type == null)
+                        instrument.Type = "";
+                    db.Instrument.Add(instrument);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(instrument);

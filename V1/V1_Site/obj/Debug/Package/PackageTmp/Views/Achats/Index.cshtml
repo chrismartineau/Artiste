@@ -1,0 +1,51 @@
+﻿@model IEnumerable<V1_Site.Models.Achat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cout)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Album.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleveTransaction.Acheteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Version.Commentaire)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Album.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleveTransaction.Acheteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Version.Commentaire)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AchatID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AchatID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AchatID })
+        </td>
+    </tr>
+}
+
+</table>

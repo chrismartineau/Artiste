@@ -25,7 +25,7 @@ namespace V2.Models
         public int AlbumID { get; set; }
         public string Commentaire { get; set; }
         public Nullable<System.DateTime> DateCreation { get; set; }
-        public byte[] Demo { get; set; }
+        public string Demo { get; set; }
         public Nullable<int> Duree { get; set; }
         public Nullable<int> NbEcoutes { get; set; }
         public Nullable<decimal> Prix { get; set; }

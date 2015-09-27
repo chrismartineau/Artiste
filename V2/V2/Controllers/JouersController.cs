@@ -37,11 +37,11 @@ namespace V2.Controllers
         }
 
         // GET: Jouers/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             ViewBag.ArtisteID = new SelectList(db.Artiste, "ArtisteID", "Nom");
             ViewBag.InstrumentID = new SelectList(db.Instrument, "InstrumentID", "Nom");
-            ViewBag.VersionID = new SelectList(db.Version, "VersionID", "Commentaire");
+            ViewBag.VersionID = new SelectList(db.Version,"VersionID", "Commentaire", db.Version.Find(id).VersionID);
             return View();
         }
 
@@ -54,10 +54,13 @@ namespace V2.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Jouer.Add(jouer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
+            
 
             ViewBag.ArtisteID = new SelectList(db.Artiste, "ArtisteID", "Nom", jouer.ArtisteID);
             ViewBag.InstrumentID = new SelectList(db.Instrument, "InstrumentID", "Nom", jouer.InstrumentID);

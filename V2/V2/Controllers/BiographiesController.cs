@@ -17,7 +17,7 @@ namespace V2.Controllers
         // GET: Biographies
         public ActionResult Index()
         {
-            var biographie = db.Biographie.Include(b => b.Artiste);
+            var biographie = db.Biographie;
             return View(biographie.ToList());
         }
 
@@ -37,9 +37,9 @@ namespace V2.Controllers
         }
 
         // GET: Biographies/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.ArtisteID = new SelectList(db.Artiste, "ArtisteID", "Nom");
+            ViewBag.ArtisteID = new SelectList(db.Artiste, "ArtisteID", "Nom", db.Artiste.Find(id));
             return View();
         }
 
@@ -51,10 +51,13 @@ namespace V2.Controllers
         public ActionResult Create([Bind(Include = "BiographieID,Biographie1,DateDernierChangement,ArtisteID")] Biographie biographie)
         {
             if (ModelState.IsValid)
-            {
+            {          
+                biographie.DateDernierChangement = DateTime.Now;
                 db.Biographie.Add(biographie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                
+               
             }
 
             ViewBag.ArtisteID = new SelectList(db.Artiste, "ArtisteID", "Nom", biographie.ArtisteID);
@@ -86,6 +89,7 @@ namespace V2.Controllers
         {
             if (ModelState.IsValid)
             {
+                biographie.DateDernierChangement = DateTime.Now;
                 db.Entry(biographie).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

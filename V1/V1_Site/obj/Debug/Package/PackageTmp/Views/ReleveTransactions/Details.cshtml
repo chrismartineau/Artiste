@@ -1,0 +1,42 @@
+﻿@model V1_Site.Models.ReleveTransaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReleveTransaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Acheteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acheteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoutTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoutTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReleveTransactionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
