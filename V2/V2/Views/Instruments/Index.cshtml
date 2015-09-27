@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if (Request.IsAuthenticated)
+{ 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -17,7 +19,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Type)
         </th>
+@if (Request.IsAuthenticated)
+{ 
         <th></th>
+}
     </tr>
 
 @foreach (var item in Model) {
@@ -28,11 +33,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Type)
         </td>
+@if (Request.IsAuthenticated)
+{ 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.InstrumentID }) |
             @Html.ActionLink("Details", "Details", new { id=item.InstrumentID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.InstrumentID })
         </td>
+}
     </tr>
 }
 

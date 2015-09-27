@@ -39,7 +39,10 @@
         Instrument : @c.Instrument.Nom</div>
     }
 </div>
+@if (Request.IsAuthenticated)
+{ 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ArtisteID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+}

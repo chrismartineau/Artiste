@@ -23,8 +23,10 @@
             @Html.DisplayNameFor(model => model.Prix)
         </th>
        
-
+@if (Request.IsAuthenticated)
+{ 
         <th></th>
+}
     </tr>
     
     @foreach (var item in Model)
@@ -51,11 +53,13 @@
                         <p>-----</p>
                     }
                 </td>
+@if (Request.IsAuthenticated) { 
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
                 </td>
+}
             </tr>
         }
     }

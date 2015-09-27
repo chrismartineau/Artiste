@@ -25,23 +25,28 @@
             }
     </style>
 </head>
-<h2>Index</h2>
+<h2>Chansons</h2>
 
+@if (Request.IsAuthenticated)
+{ 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 @foreach (var chanson in Model)
 {
     <h3>
         Chanson : @Html.DisplayFor(c => chanson.Titre) &nbsp; Genre : @Html.DisplayFor(c => chanson.Genre.Nom)
 
 
-
+        @if (Request.IsAuthenticated)
+        { 
         <div style="font-size:medium; text-align:right">
             @Html.ActionLink("Edit", "Edit", new { id = chanson.ChansonID }) |
             @Html.ActionLink("Details", "Details", new { id = chanson.ChansonID }) |
             @Html.ActionLink("Delete", "Delete", new { id = chanson.ChansonID })
         </div>
+        }
     </h3>
     <div class="container2">
 
@@ -59,7 +64,10 @@
                 <th class="tab-content  col-md-2">
                     Album
                 </th>
-                <th class="tab-content  col-md-2">Options</th>
+                    @if(Request.IsAuthenticated)
+                    { 
+                        <th class="tab-content  col-md-2">Options</th>
+                    }
                 <th class="tab-content  col-md-2">Artiste(s)</th>
             </tr>
             @foreach (var item in chanson.Version)
@@ -93,11 +101,14 @@
                         @Html.DisplayFor(modelItem => item.Album.Nom)
 
                     </td>
+                        @if (Request.IsAuthenticated)
+                        { 
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
                         @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
                     </td>
+                        }
                     <td>
                         @if (item.Jouer.Count == 0)
                         {

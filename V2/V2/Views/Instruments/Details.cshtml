@@ -28,7 +28,9 @@
 
     </dl>
 </div>
+@if (Request.IsAuthenticated) { 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.InstrumentID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+}
