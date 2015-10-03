@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="V2_bdModel.ReleveTransaction" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="V2_bdModel.Version" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
         <AssociationConnector Association="V2_bdModel.FK_Achat_Album_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="V2_bdModel.FK_Achat_ReleveTransaction_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Achat_Version_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Version_Album_FK" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Jouer_Artiste_FK" ManuallyRouted="false" />
@@ -28,6 +27,7 @@
         <AssociationConnector Association="V2_bdModel.ChansonCompositeur" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Biographie_Artiste" />
         <AssociationConnector Association="V2_bdModel.FK_Artiste_Biographie_FK" />
+        <AssociationConnector Association="V2_bdModel.FK_Achat_ReleveTransaction" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -55,7 +55,15 @@ namespace V2.Controllers
             if (ModelState.IsValid)
             {
                 version.DateCreation = DateTime.Now;
-
+                int index = version.Demo.IndexOf("height=");
+                version.Demo = version.Demo.Remove(index, 14);
+                version.Demo = version.Demo.Insert(index, "height=125");
+                index = version.Demo.IndexOf("show_comments=");
+                version.Demo = version.Demo.Remove(index, 18);
+                version.Demo = version.Demo.Insert(index, "show_comments=false");
+                index = version.Demo.IndexOf("visual=");
+                version.Demo = version.Demo.Remove(index, 11);
+                version.Demo = version.Demo.Insert(index, "visual=false");
                 db.Version.Add(version);
                 db.SaveChanges();
                 return RedirectToAction("Index");

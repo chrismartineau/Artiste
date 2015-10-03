@@ -14,16 +14,12 @@ namespace V2.Models
     
     public partial class ReleveTransaction
     {
-        public ReleveTransaction()
-        {
-            this.Achat = new HashSet<Achat>();
-        }
-    
         public int ReleveTransactionID { get; set; }
         public string Acheteur { get; set; }
         public string CoutTotal { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public int AchatID { get; set; }
     
-        public virtual ICollection<Achat> Achat { get; set; }
+        public virtual Achat Achat1 { get; set; }
     }
 }

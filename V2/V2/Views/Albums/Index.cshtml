@@ -48,18 +48,23 @@
             @Html.ActionLink("Delete", "Delete", new { id = album.AlbumID })
         </p>
 }
+        @if (!Request.IsAuthenticated)
+        {
+            <p>@Html.ActionLink("Details", "Details", new { id = album.AlbumID })</p>
+        }
     </h3>
+    <p style="text-align:right">@String.Format("{0:C2}", album.Prix)</p>
     <div class="container2">
 
         <table class="table">
             <tr>
-                <th class="tab-content  col-md-3">
+                <th class="tab-content  col-md-5">
 
                 </th>
                 <th class="tab-content  col-md-3">
                     @Html.DisplayNameFor(model => model.First().Version.First().Demo)
                 </th>
-                <th class="tab-content  col-md-3">
+                <th class="tab-content  col-md-1">
                     @Html.DisplayNameFor(model => model.First().Version.First().Prix)
                 </th>
                 <th class="tab-content  col-md-3">
@@ -68,6 +73,8 @@
             </tr>
             @foreach (var item in album.Version)
             {
+                if (item.Visible != false)
+                { 
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Commentaire)
@@ -86,6 +93,7 @@
                     </td>
 
                 </tr>
+                }
             }
         </table>
     </div>

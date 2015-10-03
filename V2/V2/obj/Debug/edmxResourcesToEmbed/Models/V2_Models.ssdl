@@ -7,7 +7,6 @@
     <Property Name="AchatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Cout" Type="decimal" Precision="19" Scale="4" />
     <Property Name="AlbumID" Type="int" />
-    <Property Name="ReleveTransactionID" Type="int" />
     <Property Name="VersionID" Type="int" />
   </EntityType>
   <EntityType Name="Album">
@@ -94,6 +93,7 @@
     <Property Name="Acheteur" Type="nvarchar" MaxLength="30" />
     <Property Name="CoutTotal" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Date" Type="datetime" />
+    <Property Name="AchatID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Version">
     <Key>
@@ -122,15 +122,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Achat_ReleveTransaction_FK">
-    <End Role="ReleveTransaction" Type="Self.ReleveTransaction" Multiplicity="0..1" />
-    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
+  <Association Name="FK_Achat_ReleveTransaction">
+    <End Role="Achat" Type="Self.Achat" Multiplicity="1" />
+    <End Role="ReleveTransaction" Type="Self.ReleveTransaction" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ReleveTransaction">
-        <PropertyRef Name="ReleveTransactionID" />
+      <Principal Role="Achat">
+        <PropertyRef Name="AchatID" />
       </Principal>
-      <Dependent Role="Achat">
-        <PropertyRef Name="ReleveTransactionID" />
+      <Dependent Role="ReleveTransaction">
+        <PropertyRef Name="AchatID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -289,9 +289,9 @@
       <End Role="Album" EntitySet="Album" />
       <End Role="Achat" EntitySet="Achat" />
     </AssociationSet>
-    <AssociationSet Name="FK_Achat_ReleveTransaction_FK" Association="Self.FK_Achat_ReleveTransaction_FK">
-      <End Role="ReleveTransaction" EntitySet="ReleveTransaction" />
+    <AssociationSet Name="FK_Achat_ReleveTransaction" Association="Self.FK_Achat_ReleveTransaction">
       <End Role="Achat" EntitySet="Achat" />
+      <End Role="ReleveTransaction" EntitySet="ReleveTransaction" />
     </AssociationSet>
     <AssociationSet Name="FK_Achat_Version_FK" Association="Self.FK_Achat_Version_FK">
       <End Role="Version" EntitySet="Version" />

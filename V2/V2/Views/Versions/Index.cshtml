@@ -51,14 +51,15 @@
             <th class="tab-content  col-md-2">
                 Album
             </th>
-            @if (Request.IsAuthenticated)
-            { 
+
              <th class="tab-content  col-md-2">Options</th>
-            }
+            
             <th  class="tab-content  col-md-2">Artiste(s)</th>
         </tr>
         @foreach (var item in chanson.Version)
         {
+            if (item.Visible != false)
+            { 
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Commentaire)
@@ -68,8 +69,8 @@
                     }
                 </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Demo)
+                <td style="max-height:100px">
+                    @Html.Raw(item.Demo)
                     @if (item.Demo == null || item.Demo == "")
                     {
                         <span>-----------</span>
@@ -95,6 +96,10 @@
                     @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
                 </td>
                 }
+                @if (!Request.IsAuthenticated)
+                {
+                    <td>@Html.ActionLink("Details", "Details", new { id = item.VersionID })</td>
+                }
                 <td>
                     @if (item.Jouer.Count == 0)
                     {                        
@@ -115,7 +120,7 @@
                     }
                 </td>
             </tr>
-       
+        }
         }
         
     </table>

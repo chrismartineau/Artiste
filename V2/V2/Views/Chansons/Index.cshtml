@@ -52,26 +52,26 @@
 
         <table class="table">
             <tr>
-                <th class="tab-content  col-md-2">
+                <th class="tab-content  col-md-3">
 
                 </th>
                 <th class="tab-content  col-md-2">
                     @Html.DisplayNameFor(model => model.First().Version.First().Demo)
                 </th>
-                <th class="tab-content  col-md-2">
+                <th class="tab-content  col-md-1">
                     @Html.DisplayNameFor(model => model.First().Version.First().Prix)
                 </th>
                 <th class="tab-content  col-md-2">
                     Album
                 </th>
-                    @if(Request.IsAuthenticated)
-                    { 
                         <th class="tab-content  col-md-2">Options</th>
-                    }
+                    
                 <th class="tab-content  col-md-2">Artiste(s)</th>
             </tr>
             @foreach (var item in chanson.Version)
             {
+                if (item.Visible != false)
+                { 
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Commentaire)
@@ -109,6 +109,10 @@
                         @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
                     </td>
                         }
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <td>@Html.ActionLink("Details", "Details", new { id = item.VersionID })</td>
+                    }
                     <td>
                         @if (item.Jouer.Count == 0)
                         {
@@ -129,6 +133,7 @@
                         }
                     </td>
                 </tr>
+            }
 
             }
 

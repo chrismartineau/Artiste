@@ -310,11 +310,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Achats\Create.cshtml" />
-    <Content Include="Views\Achats\Delete.cshtml" />
-    <Content Include="Views\Achats\Details.cshtml" />
-    <Content Include="Views\Achats\Edit.cshtml" />
-    <Content Include="Views\Achats\Index.cshtml" />
     <Content Include="Views\Albums\Create.cshtml" />
     <Content Include="Views\Albums\Delete.cshtml" />
     <Content Include="Views\Albums\Details.cshtml" />
@@ -355,11 +350,6 @@
     <Content Include="Views\Jouers\Details.cshtml" />
     <Content Include="Views\Jouers\Edit.cshtml" />
     <Content Include="Views\Jouers\Index.cshtml" />
-    <Content Include="Views\ReleveTransactions\Create.cshtml" />
-    <Content Include="Views\ReleveTransactions\Delete.cshtml" />
-    <Content Include="Views\ReleveTransactions\Details.cshtml" />
-    <Content Include="Views\ReleveTransactions\Edit.cshtml" />
-    <Content Include="Views\ReleveTransactions\Index.cshtml" />
     <Content Include="Views\Versions\Create.cshtml" />
     <Content Include="Views\Versions\Delete.cshtml" />
     <Content Include="Views\Versions\Details.cshtml" />
@@ -367,6 +357,16 @@
     <Content Include="Views\Versions\Index.cshtml" />
     <Content Include="Views\Versions\ListVersion.cshtml" />
     <Content Include="Views\Versions\ListVersionAlbum.cshtml" />
+    <Content Include="Views\Achats\Create.cshtml" />
+    <Content Include="Views\Achats\Delete.cshtml" />
+    <Content Include="Views\Achats\Details.cshtml" />
+    <Content Include="Views\Achats\Edit.cshtml" />
+    <Content Include="Views\Achats\Index.cshtml" />
+    <Content Include="Views\ReleveTransactions\Create.cshtml" />
+    <Content Include="Views\ReleveTransactions\Delete.cshtml" />
+    <Content Include="Views\ReleveTransactions\Details.cshtml" />
+    <Content Include="Views\ReleveTransactions\Edit.cshtml" />
+    <Content Include="Views\ReleveTransactions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

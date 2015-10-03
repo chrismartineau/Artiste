@@ -17,7 +17,8 @@ namespace V2.Controllers
         // GET: ReleveTransactions
         public ActionResult Index()
         {
-            return View(db.ReleveTransaction.ToList());
+            var releveTransaction = db.ReleveTransaction.Include(r => r.Achat1);
+            return View(releveTransaction.ToList());
         }
 
         // GET: ReleveTransactions/Details/5
@@ -38,6 +39,7 @@ namespace V2.Controllers
         // GET: ReleveTransactions/Create
         public ActionResult Create()
         {
+            ViewBag.AchatID = new SelectList(db.Achat, "AchatID", "AchatID");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace V2.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReleveTransactionID,Acheteur,CoutTotal,Date")] ReleveTransaction releveTransaction)
+        public ActionResult Create([Bind(Include = "ReleveTransactionID,Acheteur,CoutTotal,Date,AchatID")] ReleveTransaction releveTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace V2.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AchatID = new SelectList(db.Achat, "AchatID", "AchatID", releveTransaction.AchatID);
             return View(releveTransaction);
         }
 
@@ -70,6 +73,7 @@ namespace V2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AchatID = new SelectList(db.Achat, "AchatID", "AchatID", releveTransaction.AchatID);
             return View(releveTransaction);
         }
 
@@ -78,7 +82,7 @@ namespace V2.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReleveTransactionID,Acheteur,CoutTotal,Date")] ReleveTransaction releveTransaction)
+        public ActionResult Edit([Bind(Include = "ReleveTransactionID,Acheteur,CoutTotal,Date,AchatID")] ReleveTransaction releveTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace V2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AchatID = new SelectList(db.Achat, "AchatID", "AchatID", releveTransaction.AchatID);
             return View(releveTransaction);
         }
 

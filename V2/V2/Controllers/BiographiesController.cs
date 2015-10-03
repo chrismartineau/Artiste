@@ -89,6 +89,7 @@ namespace V2.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 biographie.DateDernierChangement = DateTime.Now;
                 db.Entry(biographie).State = EntityState.Modified;
                 db.SaveChanges();

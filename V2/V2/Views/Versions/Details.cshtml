@@ -82,9 +82,23 @@
             @Html.DisplayFor(model => model.Chanson.Titre)
         </dd>
 
+
     </dl>
+    <div class="form-group">
+        <span>Artiste(s) : </span>
+        @foreach (var artiste in Model.Jouer)
+        {
+            @Html.ActionLink(artiste.Artiste.Nom, "Details", "Artistes", new { id = artiste.Artiste.ArtisteID }, null);
+            <span> (@artiste.Instrument.Nom) </span>           
+        }
+        <br />
+        <br />
+    </div>
+
 </div>
-<p>
+@if (Request.IsAuthenticated)
+{<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.VersionID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+}

@@ -7,11 +7,10 @@
     <Property Name="AchatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Cout" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="AlbumID" Type="Int32" />
-    <Property Name="ReleveTransactionID" Type="Int32" />
     <Property Name="VersionID" Type="Int32" />
     <NavigationProperty Name="Album" Relationship="Self.FK_Achat_Album_FK" FromRole="Achat" ToRole="Album" />
-    <NavigationProperty Name="ReleveTransaction" Relationship="Self.FK_Achat_ReleveTransaction_FK" FromRole="Achat" ToRole="ReleveTransaction" />
     <NavigationProperty Name="Version" Relationship="Self.FK_Achat_Version_FK" FromRole="Achat" ToRole="Version" />
+    <NavigationProperty Name="ReleveTransaction1" Relationship="V2_bdModel.FK_Achat_ReleveTransaction" FromRole="Achat" ToRole="ReleveTransaction" />
   </EntityType>
   <EntityType Name="Album">
     <Key>
@@ -105,7 +104,8 @@
     <Property Name="Acheteur" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="CoutTotal" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Date" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Achat" Relationship="Self.FK_Achat_ReleveTransaction_FK" FromRole="ReleveTransaction" ToRole="Achat" />
+    <Property Name="AchatID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Achat1" Relationship="V2_bdModel.FK_Achat_ReleveTransaction" FromRole="ReleveTransaction" ToRole="Achat" />
   </EntityType>
   <EntityType Name="Version">
     <Key>
@@ -116,7 +116,7 @@
     <Property Name="AlbumID" Type="Int32" Nullable="false" />
     <Property Name="Commentaire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DateCreation" Type="DateTime" Precision="3" />
-    <Property Name="Demo" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Demo" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" ConcurrencyMode="None" />
     <Property Name="Duree" Type="Int32" />
     <Property Name="NbEcoutes" Type="Int32" />
     <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" />
@@ -135,18 +135,6 @@
       </Principal>
       <Dependent Role="Achat">
         <PropertyRef Name="AlbumID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Achat_ReleveTransaction_FK">
-    <End Role="ReleveTransaction" Type="Self.ReleveTransaction" Multiplicity="0..1" />
-    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ReleveTransaction">
-        <PropertyRef Name="ReleveTransactionID" />
-      </Principal>
-      <Dependent Role="Achat">
-        <PropertyRef Name="ReleveTransactionID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -258,10 +246,6 @@
       <End Role="Album" EntitySet="Album" />
       <End Role="Achat" EntitySet="Achat" />
     </AssociationSet>
-    <AssociationSet Name="FK_Achat_ReleveTransaction_FK" Association="Self.FK_Achat_ReleveTransaction_FK">
-      <End Role="ReleveTransaction" EntitySet="ReleveTransaction" />
-      <End Role="Achat" EntitySet="Achat" />
-    </AssociationSet>
     <AssociationSet Name="FK_Achat_Version_FK" Association="Self.FK_Achat_Version_FK">
       <End Role="Version" EntitySet="Version" />
       <End Role="Achat" EntitySet="Achat" />
@@ -302,6 +286,10 @@
       <End Role="Artiste" EntitySet="Artiste" />
       <End Role="Biographie" EntitySet="Biographie" />
     </AssociationSet>
+    <AssociationSet Name="FK_Achat_ReleveTransaction" Association="V2_bdModel.FK_Achat_ReleveTransaction">
+      <End Role="Achat" EntitySet="Achat" />
+      <End Role="ReleveTransaction" EntitySet="ReleveTransaction" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_Biographie_Artiste">
     <End Type="V2_bdModel.Biographie" Role="Biographie" Multiplicity="0..1" />
@@ -326,6 +314,18 @@
       </Principal>
       <Dependent Role="Biographie">
         <PropertyRef Name="ArtisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Achat_ReleveTransaction">
+    <End Type="V2_bdModel.Achat" Role="Achat" Multiplicity="1" />
+    <End Type="V2_bdModel.ReleveTransaction" Role="ReleveTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Achat">
+        <PropertyRef Name="AchatID" />
+      </Principal>
+      <Dependent Role="ReleveTransaction">
+        <PropertyRef Name="AchatID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

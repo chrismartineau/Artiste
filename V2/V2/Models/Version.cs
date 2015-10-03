@@ -11,6 +11,7 @@ namespace V2.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.Mvc;
     
     public partial class Version
     {
@@ -25,6 +26,7 @@ namespace V2.Models
         public int AlbumID { get; set; }
         public string Commentaire { get; set; }
         public Nullable<System.DateTime> DateCreation { get; set; }
+        [AllowHtml]
         public string Demo { get; set; }
         public Nullable<int> Duree { get; set; }
         public Nullable<int> NbEcoutes { get; set; }

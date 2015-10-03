@@ -17,7 +17,7 @@ namespace V2.Controllers
         // GET: Achats
         public ActionResult Index()
         {
-            var achat = db.Achat.Include(a => a.Album).Include(a => a.ReleveTransaction).Include(a => a.Version);
+            var achat = db.Achat.Include(a => a.Album).Include(a => a.Version);
             return View(achat.ToList());
         }
 
@@ -40,7 +40,6 @@ namespace V2.Controllers
         public ActionResult Create()
         {
             ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Description");
-            ViewBag.ReleveTransactionID = new SelectList(db.ReleveTransaction, "ReleveTransactionID", "Acheteur");
             ViewBag.VersionID = new SelectList(db.Version, "VersionID", "Commentaire");
             return View();
         }
@@ -50,7 +49,7 @@ namespace V2.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AchatID,Cout,AlbumID,ReleveTransactionID,VersionID")] Achat achat)
+        public ActionResult Create([Bind(Include = "AchatID,Cout,AlbumID,VersionID")] Achat achat)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +59,6 @@ namespace V2.Controllers
             }
 
             ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Description", achat.AlbumID);
-            ViewBag.ReleveTransactionID = new SelectList(db.ReleveTransaction, "ReleveTransactionID", "Acheteur", achat.ReleveTransactionID);
             ViewBag.VersionID = new SelectList(db.Version, "VersionID", "Commentaire", achat.VersionID);
             return View(achat);
         }
@@ -78,7 +76,6 @@ namespace V2.Controllers
                 return HttpNotFound();
             }
             ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Description", achat.AlbumID);
-            ViewBag.ReleveTransactionID = new SelectList(db.ReleveTransaction, "ReleveTransactionID", "Acheteur", achat.ReleveTransactionID);
             ViewBag.VersionID = new SelectList(db.Version, "VersionID", "Commentaire", achat.VersionID);
             return View(achat);
         }
@@ -88,7 +85,7 @@ namespace V2.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AchatID,Cout,AlbumID,ReleveTransactionID,VersionID")] Achat achat)
+        public ActionResult Edit([Bind(Include = "AchatID,Cout,AlbumID,VersionID")] Achat achat)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +94,6 @@ namespace V2.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AlbumID = new SelectList(db.Album, "AlbumID", "Description", achat.AlbumID);
-            ViewBag.ReleveTransactionID = new SelectList(db.ReleveTransaction, "ReleveTransactionID", "Acheteur", achat.ReleveTransactionID);
             ViewBag.VersionID = new SelectList(db.Version, "VersionID", "Commentaire", achat.VersionID);
             return View(achat);
         }
