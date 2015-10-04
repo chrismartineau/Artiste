@@ -13,6 +13,7 @@
           <Property Name="Cout" Type="decimal" Precision="19" Scale="4" />
           <Property Name="AlbumID" Type="int" />
           <Property Name="VersionID" Type="int" />
+          <Property Name="CartID" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Album">
           <Key>
@@ -358,6 +359,7 @@
           <NavigationProperty Name="Album" Relationship="Self.FK_Achat_Album_FK" FromRole="Achat" ToRole="Album" />
           <NavigationProperty Name="Version" Relationship="Self.FK_Achat_Version_FK" FromRole="Achat" ToRole="Version" />
           <NavigationProperty Name="ReleveTransaction1" Relationship="V2_bdModel.FK_Achat_ReleveTransaction" FromRole="Achat" ToRole="ReleveTransaction" />
+          <Property Name="CartID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Album">
           <Key>
@@ -685,7 +687,8 @@
     <EntitySetMapping Name="Achat">
       <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Achat)">
         <MappingFragment StoreEntitySet="Achat">
-          <ScalarProperty Name="AchatID" ColumnName="AchatID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="AchatID" ColumnName="AchatID" />
           <ScalarProperty Name="Cout" ColumnName="Cout" />
           <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
           <ScalarProperty Name="VersionID" ColumnName="VersionID" />

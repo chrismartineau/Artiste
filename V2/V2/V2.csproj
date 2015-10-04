@@ -211,6 +211,7 @@
     <Compile Include="Models\ReleveTransaction.cs">
       <DependentUpon>V2_Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\V2_Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

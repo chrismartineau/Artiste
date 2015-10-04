@@ -23,6 +23,7 @@ namespace V2.Models
         public Nullable<decimal> Cout { get; set; }
         public Nullable<int> AlbumID { get; set; }
         public Nullable<int> VersionID { get; set; }
+        public string CartID { get; set; }
     
         public virtual Album Album { get; set; }
         public virtual Version Version { get; set; }
