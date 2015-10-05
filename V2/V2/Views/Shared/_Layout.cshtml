@@ -22,10 +22,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Aristes", "Index", "Artistes")</li>
+                    <li>@Html.ActionLink("Artistes", "Index", "Artistes")</li>
                     <li>@Html.ActionLink("Versions", "Index", "Versions")</li>
                     <li>@Html.ActionLink("Chansons", "Index", "Chansons")</li>
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
+                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

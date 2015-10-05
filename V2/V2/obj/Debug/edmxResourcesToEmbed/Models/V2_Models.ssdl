@@ -8,6 +8,7 @@
     <Property Name="Cout" Type="decimal" Precision="19" Scale="4" />
     <Property Name="AlbumID" Type="int" />
     <Property Name="VersionID" Type="int" />
+    <Property Name="CartID" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Album">
     <Key>

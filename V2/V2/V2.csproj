@@ -173,6 +173,7 @@
     <Compile Include="Controllers\JouersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReleveTransactionsController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\VersionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,6 +213,8 @@
       <DependentUpon>V2_Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\ShoppingCartRemoveViewModel.cs" />
+    <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\V2_Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -368,6 +371,8 @@
     <Content Include="Views\ReleveTransactions\Details.cshtml" />
     <Content Include="Views\ReleveTransactions\Edit.cshtml" />
     <Content Include="Views\ReleveTransactions\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
