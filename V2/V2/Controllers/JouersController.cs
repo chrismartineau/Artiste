@@ -64,7 +64,7 @@ namespace V2.Controllers
 
             ViewBag.ArtisteID = new SelectList(db.Artiste, "ArtisteID", "Nom", jouer.ArtisteID);
             ViewBag.InstrumentID = new SelectList(db.Instrument, "InstrumentID", "Nom", jouer.InstrumentID);
-            ViewBag.VersionID = new SelectList(db.Version, "VersionID", "Commentaire", jouer.VersionID);
+            ViewBag.VersionID = new SelectList(db.Version, "VersionID", "Chanson.Titre" , jouer.VersionID);
             return View(jouer);
         }
 

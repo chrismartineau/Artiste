@@ -82,7 +82,7 @@
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.Demo)
+                        @Html.Raw(item.Demo)
                         @if (item.Demo == null || item.Demo == "")
                         {
                             <span>-----------</span>
@@ -111,7 +111,7 @@
                         }
                     @if (!Request.IsAuthenticated)
                     {
-                        <td>@Html.ActionLink("Details", "Details", new { id = item.VersionID })</td>
+                        <td>@Html.ActionLink("Details", "Details","Versions", new { id = item.VersionID }, null)</td>
                     }
                     <td>
                         @if (item.Jouer.Count == 0)

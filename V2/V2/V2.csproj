@@ -374,7 +374,9 @@
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Chansons\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

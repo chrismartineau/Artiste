@@ -56,7 +56,7 @@
 @if (Request.IsAuthenticated) { 
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
+                    @Html.ActionLink("Details", "Details","Versions", new { id = item.VersionID }, null) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
                 </td>
 }

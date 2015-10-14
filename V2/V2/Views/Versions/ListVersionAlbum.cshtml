@@ -11,7 +11,8 @@
 </h1>
 @if (Model.First().Album.Prix != null)
 { 
-    <h3>@Html.DisplayFor(model => model.First().Album.Prix)$</h3>
+    <h3>@Html.DisplayFor(model => model.First().Album.Prix)$</h3><h4>@Html.ActionLink("Add to cart", "AddAlbumToCart",
+        "ShoppingCart", new { id = Model.First().AlbumID }, "")</h4>
 }
 <table class="table">
     <tr>

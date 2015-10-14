@@ -19,11 +19,26 @@
     cursor: pointer;
     font-weight: bold;
 }
-.container2 .content {
+/*.container2 .content {
     display: none;
     padding : 5px;
-}
+}*/
     </style>
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(".header").click(function () {
+
+            $(this).next().toggle();
+    //getting the next element
+    //$content2 = $header2;
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+   // $content2.slideToggle(500, function () {
+        //execute this after slideToggle is done
+        //change text of header based on visibility of content div
+   // });
+
+        });
+    </script>
 </head>
 <h2>Chansons - Versions</h2>
 @if (Request.IsAuthenticated)
@@ -34,99 +49,105 @@
 }
     @foreach (var chanson in Model)
     {
-       <h3>Chanson : @Html.DisplayFor(c => chanson.Titre) </h3>
+       
         <div class="container2">
+            <div class="header">@chanson.Titre</div>
+            <div class="content">
            
-    <table class="table">
-        <tr>
-            <th class="tab-content  col-md-2">
+                <table class="table">
+                    <tr>
+                        <th class="tab-content  col-md-2">
 
-            </th>
-            <th class="tab-content  col-md-2">
-                @Html.DisplayNameFor(model => model.First().Version.First().Demo)
-            </th>
-            <th class="tab-content  col-md-2">
-                @Html.DisplayNameFor(model => model.First().Version.First().Prix)
-            </th>
-            <th class="tab-content  col-md-2">
-                Album
-            </th>
+                        </th>
+                        <th class="tab-content  col-md-2">
+                            @Html.DisplayNameFor(model => model.First().Version.First().Demo)
+                        </th>
+                        <th class="tab-content  col-md-2">
+                            @Html.DisplayNameFor(model => model.First().Version.First().Prix)
+                        </th>
+                        <th class="tab-content  col-md-2">
+                            Album
+                        </th>
 
-             <th class="tab-content  col-md-2">Options</th>
-            
-            <th  class="tab-content  col-md-2">Artiste(s)</th>
-        </tr>
-        @foreach (var item in chanson.Version)
-        {
-            if (item.Visible != false)
-            { 
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Commentaire)
-                    @if (item.Commentaire == null || item.Commentaire == "")
+                        <th class="tab-content  col-md-2">Options</th>
+
+                        <th class="tab-content  col-md-2">Artiste(s)</th>
+                    </tr>
+                    @foreach (var item in chanson.Version)
                     {
-                        <span>-----------</span>
-                    }
-                </td>
-
-                <td style="max-height:100px">
-                    @Html.Raw(item.Demo)
-                    @if (item.Demo == null || item.Demo == "")
-                    {
-                        <span>-----------</span>
-                    }
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prix)
-                    @if (item.Prix == null || item.Prix == 0)
-                    {
-                        <span>-----------</span>
-                    }
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Album.Nom)
-
-                </td>
-                @if (Request.IsAuthenticated) { 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
-                </td>
-                }
-                @if (!Request.IsAuthenticated)
-                {
-                    <td>@Html.ActionLink("Details", "Details", new { id = item.VersionID })</td>
-                }
-                <td>
-                    @if (item.Jouer.Count == 0)
-                    {                        
-                            <span>-----------</span>
-                        
-                    }
-                    @if (item.Jouer.Count <= 3 && item.Jouer.Count > 0)
-                    { 
-                        foreach (var artiste in item.Jouer)
+                        if (item.Visible != false)
                         {
-                            @Html.ActionLink(artiste.Artiste.Nom, "Details", "Artistes", new { id = artiste.Artiste.ArtisteID }, null)
-                            <span>(@artiste.Instrument.Nom) </span><br />
-                        }
-                    }
-                    @if (item.Jouer.Count > 3)
-                    {
-                        @Html.ActionLink("Voir tous les artistes", "Details", new { id = item.VersionID})
-                    }
-                </td>
-            </tr>
-        }
-        }
-        
-    </table>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Commentaire)
+                                    @if (item.Commentaire == null || item.Commentaire == "")
+                                    {
+                                        <span>-----------</span>
+                                    }
+                                </td>
 
+                                <td style="max-height:100px">
+                                    @Html.Raw(item.Demo)
+                                    @if (item.Demo == null || item.Demo == "")
+                                    {
+                                        <span>-----------</span>
+                                    }
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Prix)
+                                    @if (item.Prix == null || item.Prix == 0)
+                                    {
+                                        <span>-----------</span>
+                                    }
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Album.Nom)
+
+                                </td>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.VersionID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
+                                    </td>
+                                }
+                                @if (!Request.IsAuthenticated)
+                                {
+                                    <td>@Html.ActionLink("Details", "Details", new { id = item.VersionID })</td>
+                                }
+                                <td>
+                                    @if (item.Jouer.Count == 0)
+                                    {
+                                        <span>-----------</span>
+
+                                    }
+                                    @if (item.Jouer.Count <= 3 && item.Jouer.Count > 0)
+                                    {
+                                        foreach (var artiste in item.Jouer)
+                                        {
+                                            @Html.ActionLink(artiste.Artiste.Nom, "Details", "Artistes", new { id = artiste.Artiste.ArtisteID }, null)
+                                            <span>(@artiste.Instrument.Nom) </span><br />
+                                        }
+                                    }
+                                    @if (item.Jouer.Count > 3)
+                                    {
+                                        @Html.ActionLink("Voir tous les artistes", "Details", new { id = item.VersionID })
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                </table>
+                
             <hr />
+                </div>
             </div>
+        <hr />
 
     }
     

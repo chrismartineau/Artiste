@@ -59,7 +59,7 @@ namespace V2.Controllers
                 if (index != 0)
                 {
                     version.Demo = version.Demo.Remove(index, 14);
-                    version.Demo = version.Demo.Insert(index, "height=125");
+                    version.Demo = version.Demo.Insert(index, "height=110");
                 }
                 index = version.Demo.IndexOf("show_comments=");
                 if (index != 0)
