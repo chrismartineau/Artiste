@@ -115,6 +115,7 @@
           <Property Name="NbEcoutes" Type="int" />
           <Property Name="Prix" Type="decimal" Precision="19" Scale="4" />
           <Property Name="Visible" Type="bit" />
+          <Property Name="Path" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Achat_Album_FK">
           <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
@@ -474,6 +475,7 @@
           <NavigationProperty Name="Album" Relationship="Self.FK_Version_Album_FK" FromRole="Version" ToRole="Album" />
           <NavigationProperty Name="Chanson" Relationship="Self.FK_Version_Chanson_FK" FromRole="Version" ToRole="Chanson" />
           <NavigationProperty Name="Jouer" Relationship="Self.FK_Jouer_Version_FK" FromRole="Version" ToRole="Jouer" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Achat_Album_FK">
           <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
@@ -785,7 +787,8 @@
     <EntitySetMapping Name="Version">
       <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Version)">
         <MappingFragment StoreEntitySet="Version">
-          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
           <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
           <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
           <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />

@@ -126,6 +126,7 @@
     <NavigationProperty Name="Album" Relationship="Self.FK_Version_Album_FK" FromRole="Version" ToRole="Album" />
     <NavigationProperty Name="Chanson" Relationship="Self.FK_Version_Chanson_FK" FromRole="Version" ToRole="Chanson" />
     <NavigationProperty Name="Jouer" Relationship="Self.FK_Jouer_Version_FK" FromRole="Version" ToRole="Jouer" />
+    <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Achat_Album_FK">
     <End Role="Album" Type="Self.Album" Multiplicity="0..1" />

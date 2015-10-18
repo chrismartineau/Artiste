@@ -19,8 +19,10 @@ namespace V2.Controllers
             ShoppingCartViewModel viewModel = new ShoppingCartViewModel
             {
                 CartItems = cart.GetCartItems(),
-                CartTotal = cart.GetTotal()
+                CartTotal = cart.GetTotal(),
             };
+            ViewBag.Total = cart.GetTotal();
+
 
             return View(viewModel);
         }
@@ -111,6 +113,21 @@ namespace V2.Controllers
             var cart = ShoppingCart.GetCart(this.HttpContext);
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
+        }
+
+        public ActionResult AchatComplet()
+        {
+            ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+
+            ShoppingCartViewModel viewModel = new ShoppingCartViewModel
+            {
+                CartItems = cart.GetCartItems(),
+                CartTotal = cart.GetTotal(),
+            };
+            ViewBag.Total = cart.GetTotal();
+
+
+            return View(viewModel);
         }
     }
 }

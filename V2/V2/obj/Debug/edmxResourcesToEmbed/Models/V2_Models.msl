@@ -102,6 +102,7 @@
     <EntitySetMapping Name="Version">
       <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Version)">
         <MappingFragment StoreEntitySet="Version">
+          <ScalarProperty Name="Path" ColumnName="Path" />
           <ScalarProperty Name="VersionID" ColumnName="VersionID" />
           <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
           <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />

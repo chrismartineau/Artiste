@@ -373,6 +373,7 @@
     <Content Include="Views\ReleveTransactions\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
+    <Content Include="Views\ShoppingCart\AchatComplet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Chansons\" />

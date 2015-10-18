@@ -110,6 +110,7 @@
     <Property Name="NbEcoutes" Type="int" />
     <Property Name="Prix" Type="decimal" Precision="19" Scale="4" />
     <Property Name="Visible" Type="bit" />
+    <Property Name="Path" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Achat_Album_FK">
     <End Role="Album" Type="Self.Album" Multiplicity="0..1" />

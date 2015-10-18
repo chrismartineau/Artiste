@@ -32,6 +32,7 @@ namespace V2.Models
         public Nullable<int> NbEcoutes { get; set; }
         public Nullable<decimal> Prix { get; set; }
         public Nullable<bool> Visible { get; set; }
+        public string Path { get; set; }
     
         public virtual ICollection<Achat> Achat { get; set; }
         public virtual Album Album { get; set; }
