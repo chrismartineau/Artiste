@@ -14,19 +14,15 @@ namespace V2.Models
     
     public partial class Achat
     {
-        public Achat()
-        {
-            this.ReleveTransaction1 = new HashSet<ReleveTransaction>();
-        }
-    
         public int AchatID { get; set; }
         public Nullable<decimal> Cout { get; set; }
         public Nullable<int> AlbumID { get; set; }
         public Nullable<int> VersionID { get; set; }
         public string CartID { get; set; }
+        public Nullable<int> ReleveTransactionID { get; set; }
     
         public virtual Album Album { get; set; }
         public virtual Version Version { get; set; }
-        public virtual ICollection<ReleveTransaction> ReleveTransaction1 { get; set; }
+        public virtual ReleveTransaction ReleveTransaction { get; set; }
     }
 }

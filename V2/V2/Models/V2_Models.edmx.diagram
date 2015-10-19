@@ -27,7 +27,7 @@
         <AssociationConnector Association="V2_bdModel.ChansonCompositeur" ManuallyRouted="false" />
         <AssociationConnector Association="V2_bdModel.FK_Biographie_Artiste" />
         <AssociationConnector Association="V2_bdModel.FK_Artiste_Biographie_FK" />
-        <AssociationConnector Association="V2_bdModel.FK_Achat_ReleveTransaction" />
+        <AssociationConnector Association="V2_bdModel.FK_Achat_ReleveTransaction_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

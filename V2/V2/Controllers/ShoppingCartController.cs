@@ -116,7 +116,8 @@ namespace V2.Controllers
         }
 
         public ActionResult AchatComplet()
-        {
+        {           
+
             ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
 
             ShoppingCartViewModel viewModel = new ShoppingCartViewModel
@@ -125,9 +126,35 @@ namespace V2.Controllers
                 CartTotal = cart.GetTotal(),
             };
             ViewBag.Total = cart.GetTotal();
-
-
+            //foreach (var c in cart.GetCartItems())
+            //{
+            //    storeDB.Achat.Add(c);
+            //}
+            storeDB.SaveChanges();
             return View(viewModel);
+        }
+
+        public ActionResult EnvoyerProduitEmail(string email)
+        {
+             ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+
+            ShoppingCartViewModel viewModel = new ShoppingCartViewModel
+            {
+                CartItems = cart.GetCartItems(),
+                CartTotal = cart.GetTotal(),
+            };
+            if (email != null)
+            {
+                ReleveTransaction releve = new ReleveTransaction();
+                releve.Acheteur = email.ToString();
+                releve.CoutTotal = cart.GetTotal();
+                releve.Date = DateTime.Now;
+                foreach (var c in cart.GetCartItems())
+                {
+                    releve.Achat.Add(c);
+                }                
+            }
+            return View();
         }
     }
 }

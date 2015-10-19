@@ -45,6 +45,11 @@
 </script>
 <div id="update-message">
 </div>
+@using (Html.BeginForm("EnvoyerProduitEmail", "ShoppingCart"))
+{
+   @Html.TextBox("email")
+    <input type="submit" value="Envoyer" />
+}
 
 @foreach (var item in Model.CartItems)
 {
@@ -86,7 +91,7 @@
                 "Details", "Store", new { id = item.VersionID }, null)
                     </td>
                     <td class="col-md-3">
-                        @version.Path
+                        <a href="@version.Path">Télécharger maintenant</a>
                     </td>
                     <td></td>
                 </tr>
@@ -113,7 +118,7 @@
                 "Details", "Store", new { id = item.VersionID }, null)
                 </td>
                 <td class="col-md-3">
-                    @item.Version.Path
+                    <a href="@item.Version.Path">Télécharger maintenant</a>
                 </td>
                 <td></td>
             </tr>

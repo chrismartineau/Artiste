@@ -133,5 +133,15 @@ namespace V2.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Search(string contenu)
+        {
+            if (db.Album.ToList() == null)
+            {
+                return RedirectToAction("Create");
+            }
+            var album = db.Album.Where(a => a.Nom.Contains(contenu)).ToList();
+            return View(album);
+        }
     }
 }

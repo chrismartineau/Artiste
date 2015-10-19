@@ -19,26 +19,21 @@
     cursor: pointer;
     font-weight: bold;
 }
-/*.container2 .content {
+.container2 .content {
     display: none;
     padding : 5px;
-}*/
+}
     </style>
     <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(".header").click(function () {
-
-            $(this).next().toggle();
-    //getting the next element
-    //$content2 = $header2;
-    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-   // $content2.slideToggle(500, function () {
-        //execute this after slideToggle is done
-        //change text of header based on visibility of content div
-   // });
-
+        jQuery(document).ready(function ($) {
+            
+            $(".header").click(function () {
+                $(this).next().toggle();
+            });
         });
     </script>
+
 </head>
 <h2>Chansons - Versions</h2>
 @if (Request.IsAuthenticated)
@@ -51,7 +46,7 @@
     {
        
         <div class="container2">
-            <div class="header">@chanson.Titre</div>
+            <div class="header">@chanson.Titre <span style="align-content:stretch">@chanson.Genre.Nom</span></div>
             <div class="content">
            
                 <table class="table">

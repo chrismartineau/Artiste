@@ -26,8 +26,39 @@
                     <li>@Html.ActionLink("Versions", "Index", "Versions")</li>
                     <li>@Html.ActionLink("Chansons", "Index", "Chansons")</li>
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
-                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>                   
                 </ul>
+                @using (Html.BeginForm("Search", "Home"))
+                {
+                    List<SelectListItem> items = new List<SelectListItem>();
+
+                    items.Add(new SelectListItem
+                    {
+                        Text = "Album",
+                        Value = "Albums"
+
+                    });
+                    items.Add(new SelectListItem
+                    {
+                        Text = "Artiste",
+                        Value = "Artistes",
+                        Selected = true
+                    });
+                    items.Add(new SelectListItem
+                    {
+                        Text = "Chanson",
+                        Value = "Chansons"
+                    });
+                    items.Add(new SelectListItem
+                    {
+                        Text = "Genre",
+                        Value = "Genres"
+                    });
+                    @Html.TextBox("recherche");
+                    @Html.DropDownList("sujet", items)
+                    <input type="submit" value="Rechercher" />
+
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

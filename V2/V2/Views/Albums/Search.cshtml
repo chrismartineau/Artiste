@@ -1,0 +1,101 @@
+﻿@model IEnumerable<V2.Models.Album>
+<head>
+    <title>Index</title>
+    @{
+        ViewBag.Title = "Search";
+    }
+    <style>
+        .container2 {
+            border: 1px solid #d3d3d3;
+        }
+
+            .container2 div {
+            }
+
+            .container2 .header {
+                background-color: #d3d3d3;
+                padding: 2px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .container2 .content {
+                display: none;
+                padding: 5px;
+            }
+    </style>
+</head>
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+@foreach (var album in Model)
+{
+    <h3>
+        Album : @Html.DisplayFor(c => album.Nom) &nbsp; @if (album.Prix == null)
+        {
+            <span> - </span> @Html.DisplayFor(c => album.Prix)
+        }
+
+
+        @if (Request.IsAuthenticated)
+        {
+            <p style="font-size:medium; text-align:right">
+                @Html.ActionLink("Edit", "Edit", new { id = album.AlbumID }) |
+                @Html.ActionLink("Details", "Details", new { id = album.AlbumID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = album.AlbumID })
+            </p>
+        }
+        @if (!Request.IsAuthenticated)
+        {
+            <p>@Html.ActionLink("Details", "Details", new { id = album.AlbumID })</p>
+        }
+    </h3>
+    <p style="text-align:right">@String.Format("{0:C2}", album.Prix)</p>
+    <div class="container2">
+
+        <table class="table">
+            <tr>
+                <th class="tab-content  col-md-5">
+
+                </th>
+                <th class="tab-content  col-md-3">
+                    @Html.DisplayNameFor(model => model.First().Version.First().Demo)
+                </th>
+                <th class="tab-content  col-md-1">
+                    @Html.DisplayNameFor(model => model.First().Version.First().Prix)
+                </th>
+                <th class="tab-content  col-md-3">
+                    Chanson
+                </th>
+            </tr>
+            @foreach (var item in album.Version)
+            {
+                if (item.Visible != false)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Commentaire)
+                        </td>
+
+                        <td>
+                            @Html.Raw(item.Demo)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prix)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                        </td>
+
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+
+}
