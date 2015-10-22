@@ -38,6 +38,7 @@ namespace V2.Controllers
             return RedirectToAction("ListVersion", "Versions", new { id = i2 });
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Chansons/Create
         public ActionResult Create()
         {
@@ -64,6 +65,7 @@ namespace V2.Controllers
             return View(chanson);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Chansons/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -97,6 +99,7 @@ namespace V2.Controllers
             return View(chanson);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Chansons/Delete/5
         public ActionResult Delete(int? id)
         {

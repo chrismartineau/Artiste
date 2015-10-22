@@ -39,7 +39,7 @@
         Instrument : @c.Instrument.Nom</div>
     }
 </div>
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ArtisteID }) |

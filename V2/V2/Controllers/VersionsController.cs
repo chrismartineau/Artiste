@@ -37,6 +37,7 @@ namespace V2.Controllers
             return View(version);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Versions/Create
         public ActionResult Create()
         {
@@ -84,6 +85,7 @@ namespace V2.Controllers
             return View(version);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Versions/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -119,6 +121,7 @@ namespace V2.Controllers
             return View(version);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Versions/Delete/5
         public ActionResult Delete(int? id)
         {

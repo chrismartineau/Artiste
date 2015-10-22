@@ -35,6 +35,7 @@ namespace V2.Controllers
         //    return View(genre);
         //}
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Genres/Create
         public ActionResult Create()
         {
@@ -58,6 +59,7 @@ namespace V2.Controllers
             return View(genre);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Genres/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -89,6 +91,7 @@ namespace V2.Controllers
             return View(genre);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Genres/Delete/5
         public ActionResult Delete(int? id)
         {

@@ -36,6 +36,7 @@ namespace V2.Controllers
             return View(biographie);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Biographies/Create
         public ActionResult Create(int? id)
         {
@@ -64,6 +65,7 @@ namespace V2.Controllers
             return View(biographie);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Biographies/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -99,6 +101,7 @@ namespace V2.Controllers
             return View(biographie);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Biographies/Delete/5
         public ActionResult Delete(int? id)
         {

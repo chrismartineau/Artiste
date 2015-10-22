@@ -13,7 +13,7 @@ namespace V2.Controllers
     public class JouersController : Controller
     {
         private V2_bdEntities db = new V2_bdEntities();
-
+        
         // GET: Jouers
         public ActionResult Index()
         {
@@ -36,6 +36,7 @@ namespace V2.Controllers
             return View(jouer);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Jouers/Create
         public ActionResult Create(int? id)
         {
@@ -68,6 +69,7 @@ namespace V2.Controllers
             return View(jouer);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Jouers/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -105,6 +107,7 @@ namespace V2.Controllers
             return View(jouer);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Jouers/Delete/5
         public ActionResult Delete(int? id)
         {

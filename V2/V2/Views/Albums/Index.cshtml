@@ -25,7 +25,7 @@
             }
     </style>
 </head>
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -40,7 +40,7 @@
                                                         }
 
 
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
         <p style="font-size:medium; text-align:right">
             @Html.ActionLink("Edit", "Edit", new { id = album.AlbumID }) |
@@ -48,7 +48,7 @@
             @Html.ActionLink("Delete", "Delete", new { id = album.AlbumID })
         </p>
 }
-        @if (!Request.IsAuthenticated)
+        @if (!Request.IsAuthenticated && User.IsInRole("Administrateur"))
         {
             <p>@Html.ActionLink("Details", "Details", new { id = album.AlbumID })</p>
         }
