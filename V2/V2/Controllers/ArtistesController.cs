@@ -35,6 +35,7 @@ namespace V2.Controllers
             return View(artiste);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Artistes/Create
         public ActionResult Create()
         {
@@ -58,6 +59,7 @@ namespace V2.Controllers
             return View(artiste);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Artistes/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -89,6 +91,7 @@ namespace V2.Controllers
             return View(artiste);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Artistes/Delete/5
         public ActionResult Delete(int? id)
         {

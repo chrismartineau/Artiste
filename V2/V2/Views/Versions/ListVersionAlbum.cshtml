@@ -28,7 +28,7 @@
             @Html.DisplayNameFor(model => model.Prix)
         </th>
 
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
         <th></th>
 }
@@ -56,7 +56,7 @@
                         <p>-----</p>
                     }
                 </td>
-@if (Request.IsAuthenticated) { 
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur")) { 
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })

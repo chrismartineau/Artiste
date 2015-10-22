@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -19,7 +19,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Type)
         </th>
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
         <th></th>
 }
@@ -33,7 +33,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Type)
         </td>
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.InstrumentID }) |

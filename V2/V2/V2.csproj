@@ -172,6 +172,8 @@
     <Compile Include="Controllers\InstrumentsController.cs" />
     <Compile Include="Controllers\JouersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NVPAPICaller.cs" />
+    <Compile Include="Controllers\PaypalController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\VersionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -374,6 +376,8 @@
     <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
     <Content Include="Views\ShoppingCart\AchatComplet.cshtml" />
     <Content Include="Views\Albums\Search.cshtml" />
+    <Content Include="Views\Paypal\RevisePaiement.cshtml" />
+    <Content Include="Views\Paypal\APIError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Chansons\" />

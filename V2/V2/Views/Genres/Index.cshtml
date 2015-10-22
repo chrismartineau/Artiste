@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -16,7 +16,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Nom)
         </th>
-        @if (Request.IsAuthenticated)  { <th></th>}
+        @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))  { <th></th>}
     </tr>
 
 @foreach (var item in Model) {
@@ -24,7 +24,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Nom)
         </td>
-@if (Request.IsAuthenticated) { 
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur")) { 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.GenreID }) |
             @Html.ActionLink("Details", "Details", new { id=item.GenreID }) |

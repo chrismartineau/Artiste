@@ -22,44 +22,47 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Artistes", "Index", "Artistes")</li>
-                    <li>@Html.ActionLink("Versions", "Index", "Versions")</li>
-                    <li>@Html.ActionLink("Chansons", "Index", "Chansons")</li>
-                    <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
-                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>                   
+                    <li>@Html.ActionLink("Chansons", "Index", "Versions")</li>
+                    <li>@Html.ActionLink("Médiagraphie", "Index", "Albums")</li>
+                    <li style="padding-right:40px">@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+                    <li style="padding-right:75px">
+                        @Html.Partial("_LoginPartial")
+                    </li>
+                    @using (Html.BeginForm("Search", "Home"))
+                    {
+                        List<SelectListItem> items = new List<SelectListItem>();
+
+                        items.Add(new SelectListItem
+                        {
+                            Text = "Album",
+                            Value = "Albums"
+
+                        });
+                        items.Add(new SelectListItem
+                        {
+                            Text = "Artiste",
+                            Value = "Artistes",
+                            Selected = true
+                        });
+                        items.Add(new SelectListItem
+                        {
+                            Text = "Chanson",
+                            Value = "Chansons"
+                        });
+                        items.Add(new SelectListItem
+                        {
+                            Text = "Genre",
+                            Value = "Genres"
+                        });
+                        <li style="padding-top:12px" class="right">
+                            @Html.TextBox("recherche");
+                            @Html.DropDownList("sujet", items)
+                            <input type="submit" value="Rechercher" />
+                        </li>
+                    }
+                    
                 </ul>
-                @using (Html.BeginForm("Search", "Home"))
-                {
-                    List<SelectListItem> items = new List<SelectListItem>();
-
-                    items.Add(new SelectListItem
-                    {
-                        Text = "Album",
-                        Value = "Albums"
-
-                    });
-                    items.Add(new SelectListItem
-                    {
-                        Text = "Artiste",
-                        Value = "Artistes",
-                        Selected = true
-                    });
-                    items.Add(new SelectListItem
-                    {
-                        Text = "Chanson",
-                        Value = "Chansons"
-                    });
-                    items.Add(new SelectListItem
-                    {
-                        Text = "Genre",
-                        Value = "Genres"
-                    });
-                    @Html.TextBox("recherche");
-                    @Html.DropDownList("sujet", items)
-                    <input type="submit" value="Rechercher" />
-
-                }
-                @Html.Partial("_LoginPartial")
+               
             </div>
         </div>
     </div>

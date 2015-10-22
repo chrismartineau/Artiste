@@ -36,6 +36,7 @@ namespace V2.Controllers
             return RedirectToAction("ListVersionAlbum", "Versions", new { id = i2 });
         }
 
+        [Authorize(Roles="Administrateur")]
         // GET: Albums/Create
         public ActionResult Create()
         {
@@ -60,6 +61,7 @@ namespace V2.Controllers
             return View(album);
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Albums/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -91,6 +93,7 @@ namespace V2.Controllers
             return View(album);
         }
 
+        [Authorize(Roles = "Administrateur")]
         public ActionResult RemovePrice(int? id)
         {
             Album album = db.Album.Find(id);
@@ -99,6 +102,7 @@ namespace V2.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        [Authorize(Roles = "Administrateur")]
         // GET: Albums/Delete/5
         public ActionResult Delete(int? id)
         {

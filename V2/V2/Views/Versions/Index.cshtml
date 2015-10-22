@@ -36,7 +36,7 @@
 
 </head>
 <h2>Chansons - Versions</h2>
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -101,7 +101,7 @@
                                     @Html.DisplayFor(modelItem => item.Album.Nom)
 
                                 </td>
-                                @if (Request.IsAuthenticated)
+                                @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
                                 {
                                     <td>
                                         @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |

@@ -27,7 +27,7 @@
 </head>
 <h2>Chansons</h2>
 
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -39,7 +39,7 @@
         Chanson : @Html.DisplayFor(c => chanson.Titre) &nbsp; Genre : @Html.DisplayFor(c => chanson.Genre.Nom)
 
 
-        @if (Request.IsAuthenticated)
+        @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
         { 
         <div style="font-size:medium; text-align:right">
             @Html.ActionLink("Edit", "Edit", new { id = chanson.ChansonID }) |
@@ -101,7 +101,7 @@
                         @Html.DisplayFor(modelItem => item.Album.Nom)
 
                     </td>
-                        @if (Request.IsAuthenticated)
+                        @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
                         { 
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.VersionID }) |
@@ -109,7 +109,7 @@
                         @Html.ActionLink("Delete", "Delete", new { id = item.VersionID })
                     </td>
                         }
-                    @if (!Request.IsAuthenticated)
+                    @if (!Request.IsAuthenticated && User.IsInRole("Administrateur"))
                     {
                         <td>@Html.ActionLink("Details", "Details","Versions", new { id = item.VersionID }, null)</td>
                     }

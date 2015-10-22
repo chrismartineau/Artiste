@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "RevisePaiement";
+}
+
+<h2>RevisePaiement</h2>
+Vous êtes sur le point d'acheter du bon stock!
+
+@*<p>
+    @ViewBag.shippingAddress
+</p>*@
+
+@using (Html.BeginForm("ConfirmePaiement", "Paypal", FormMethod.Post))
+{
+    <input type="submit" name="Confirmation" value="Confirmer l'achat'" />
+}
