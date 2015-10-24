@@ -244,10 +244,15 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\353759.png" />
+    <Content Include="Images\lock.png" />
+    <Content Include="Images\seemore.png" />
+    <Content Include="Images\unlock.png" />
     <Content Include="Models\V2_Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>V2_Models.edmx</DependentUpon>
