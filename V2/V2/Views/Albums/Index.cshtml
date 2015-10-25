@@ -4,232 +4,7 @@
 	@{
 		ViewBag.Title = "Index";
 	}
-	<style>
-	  
-
-		/* simple */
-		.flip-container {
-			-webkit-perspective: 1000px;
-			-moz-perspective: 1000px;
-			-ms-perspective: 1000px;
-			perspective: 1000px;
-
-			-ms-transform: perspective(1000px);
-			-moz-transform: perspective(1000px);
-				-moz-transform-style: preserve-3d; 
-				-ms-transform-style: preserve-3d; 
-
-			border: 1px solid #ccc;
-		}
-
-			/*
-			.flip-container:hover .flipper, .flip-container.hover .flipper, #flip-toggle.flip .flipper {
-				-webkit-transform: rotateY(180deg);
-				-moz-transform: rotateY(180deg);
-				-ms-transform: rotateY(180deg);
-				transform: rotateY(180deg);
-				filter: FlipH;
-				-ms-filter: "FlipH";
-			}
-			*/
-
-
-			/* START: Accommodating for IE */
-			.flip-container:hover .back, .flip-container.hover .back {
-	-webkit-transform: rotateY(0deg);
-	-moz-transform: rotateY(0deg);
-	-o-transform: rotateY(0deg);
-	-ms-transform: rotateY(0deg);
-	transform: rotateY(0deg);
-}
-
-.flip-container:hover .front, .flip-container.hover .front {
-	-webkit-transform: rotateY(180deg);
-	-moz-transform: rotateY(180deg);
-	-o-transform: rotateY(180deg);
-	transform: rotateY(180deg);
-}
-		
-		/* END: Accommodating for IE */
-
-		.flip-container, .front, .back {
-			width: 1000px;
-			height: 525px;
-		}
-
-		.flipper {
-			-webkit-transition: 0.6s;
-			-webkit-transform-style: preserve-3d;
-			-ms-transition: 0.6s;
-
-			-moz-transition: 0.6s;
-			-moz-transform: perspective(1000px);
-			-moz-transform-style: preserve-3d;
-			-ms-transform-style: preserve-3d;
-
-			transition: 0.6s;
-			transform-style: preserve-3d;
-
-			position: relative;
-		}
-
-		.front, .back {
-			-webkit-backface-visibility: hidden;
-			-moz-backface-visibility: hidden;
-			-ms-backface-visibility: hidden;
-			backface-visibility: hidden;
-
-			-webkit-transition: 0.6s;
-			-webkit-transform-style: preserve-3d;
-			-webkit-transform: rotateY(0deg);
-
-			-moz-transition: 0.6s;
-			-moz-transform-style: preserve-3d;
-			-moz-transform: rotateY(0deg);
-
-			-o-transition: 0.6s;
-			-o-transform-style: preserve-3d;
-			-o-transform: rotateY(0deg);
-
-			-ms-transition: 0.6s;
-			-ms-transform-style: preserve-3d;
-			-ms-transform: rotateY(0deg);
-
-			transition: 0.6s;
-			transform-style: preserve-3d;
-			transform: rotateY(0deg);
-
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-
-		.front {
-			-webkit-transform: rotateY(0deg);
-			-ms-transform: rotateY(0deg);
-			 background: -webkit-linear-gradient(left, black, #2b3e50, #2b3e50,#2b3e50, black); /* For Safari 5.1 to 6.0 */
-			 background: -o-linear-gradient(right, black, #2b3e50, #2b3e50, #2b3e50, black); /* For Opera 11.1 to 12.0 */
-			 background: -moz-linear-gradient(right, black, #2b3e50, #2b3e50, #2b3e50, black); /* For Firefox 3.6 to 15 */
-			 background: linear-gradient(to right, black, #2b3e50, #2b3e50, #2b3e50, black); /* Standard syntax */
-			 
-			 /*background: -webkit-linear-gradient(left,rgba(255,0,0,1),rgba(255,0,0,0), rgb(1, 1, 1, 1))); /*Safari 5.1-6*/
-			 /*background: -o-linear-gradient(right,rgba(255,0,0,0),rgba(255,0,0,1)); /*Opera 11.1-12*/
-			 /*background: -moz-linear-gradient(right,rgba(255,0,0,0),rgba(255,0,0,1)); /*Fx 3.6-15*/
-			 /*background: linear-gradient(to right, rgba(1,1,1,1), rgba(1,1,1,0), rgba(1,1,1,0), rgba(1,1,1,0), rgba(1,1,1,0), rgba(1,1,1,0), rgba(1,1,1,1)); /*Standard*/
-			z-index: 2;
-		}
-
-		.back {
-			/*background: #2b3e50;*/
-			-webkit-transform: rotateY(-180deg);
-			-moz-transform: rotateY(-180deg);
-			-o-transform: rotateY(-180deg);
-			-ms-transform: rotateY(-180deg);
-			transform: rotateY(-180deg);
-			padding-left:100px;
-			padding-right:0px;
-			 background: -webkit-linear-gradient(left, black, #2b3e50, #2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50, black); /* For Safari 5.1 to 6.0 */
-			 background: -o-linear-gradient(right, black, #2b3e50, #2b3e50, #2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50, black); /* For Opera 11.1 to 12.0 */
-			 background: -moz-linear-gradient(right, black, #2b3e50, #2b3e50, #2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50, black); /* For Firefox 3.6 to 15 */
-			 background: linear-gradient(to right, black, #2b3e50, #2b3e50, #2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50,#2b3e50, black); /* Standard syntax */
-		}
-
-		.front .name {
-			font-size: 2em;
-			display: inline-block;
-			background: rgba(33, 33, 33, 0.9);
-			color: #f8f8f8;
-			font-family: Courier;
-			padding: 5px 10px;
-			border-radius: 5px;
-			bottom: 60px;
-			left: 25%;
-			position: absolute;
-			text-shadow: 0.1em 0.1em 0.05em #333;
-			display: none;
-
-			-webkit-transform: rotate(-20deg);
-			-moz-transform: rotate(-20deg);
-			-ms-transform: rotate(-20deg);
-			transform: rotate(-20deg);
-		}
-
-		.front-logo {
-			position: absolute;
-			top: 60px;
-			left: 50px;
-			width: 400px;
-			height: 300px;
-			
-			
-			
-		}
-		.front-white {
-			position: absolute;
-			top: 0px;
-			left: 250px;
-			width: 500px;
-			height: 100%;
-			background-color:#2b3e50;
-			
-		}
-
-		.back-title {
-			font-weight: bold;
-			color: #00304a;
-			position: absolute;
-			top: 180px;
-			left: 0;
-			right: 0;
-			text-align: center;
-			text-shadow: 0.1em 0.1em 0.05em #acd7e5;
-			font-family: Courier;
-			font-size: 22px;
-		}
-
-		.back p {
-			position: absolute;
-			bottom: 40px;
-			left: 0;
-			right: 0;
-			text-align: center;
-			padding: 0 0px;
-			font-size: 18px;
-		}
-		.back-lock {
-			position: absolute;
-			left:800px;
-			top:450px;
-			color: #ffffff;
-  background-color: #4e5d6c;
-  border-color: transparent;
-		}
-
-		
-		/* END: Accommodating for IE */
-	.titrealbum {
-		width:100%;
-		text-align:center;
-	}
-	.imagealbum {
-		width:100%;
-		height:auto;
-		width: auto\9;
-	}
-	/*.seemore {
-		width:100%;
-		height:100%;
-		background: url(../../Images/seemore.png) no-repeat top left;
-		
-	 display:flex;
-	}*/
-	.addtocart {
-		position:absolute;
-		top: 20px;
-		left: 850px;
-
-	}
-	</style>
+    <link rel="stylesheet" type="text/css" href="~/Content/album.css">
 	<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function changeImage(element) {
@@ -238,6 +13,7 @@
 			element.src = element.bln ? right : left;
 			element.bln = !element.bln;
 		}
+		
 	 </script>
 
 </head>
@@ -252,15 +28,16 @@
 @foreach (var c in Model)
 { 
    <div class="flip-container" ontouchstart="this.classList.toggle('hover');" id="flip-toggle">
+	   @*<div class="bande-noire-top-front"></div>
+	   <div class="bande-noire-bottom-front"></div>*@
 	<div class="flipper">
-		<div class="front">			
-			<div class="front-white">
-				<h2 class="titrealbum">@c.Nom</h2>
-				<div class="front-logo" style="background: url(../../Images/353759.png) 0 0 no-repeat;background-size:contain"></div>
-			</div>
-			
+		<div class="front">
+			<h3 class="titrealbum">@c.Nom</h3>
+			<div class="front-logo" style="background: url(../../Images/1NkYHZU.png) no-repeat center center; background-size:contain"></div>
 		</div>
 		<div class="back">
+			<h3 class="titrealbum">@c.Nom</h3>
+			
 			<h3>Chansons</h3>
 			<table class="table">
 				@if (c.Version.Count < 7)
@@ -278,7 +55,14 @@
 							</td>          
 
 							<td class="col-lg-2">
-								@Html.DisplayFor(modelItem => item.Prix)
+								@if (item.Prix != null)
+								{
+									@Html.DisplayFor(modelItem => item.Prix)<span>$</span>
+								}
+								@if (item.Prix == null)
+								{
+									<span>-----</span>
+								}
 							</td>
 							<td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
 
@@ -302,7 +86,14 @@
 								</td>
 
 								<td class="col-lg-4">
-									@Html.DisplayFor(modelItem => item.Prix)
+									@if (item.Prix != null)
+									{ 
+										@Html.DisplayFor(modelItem => item.Prix)<span>$</span>                                            
+									}
+									@if (item.Prix == null)
+									{
+										<span>-----</span>
+									}
 								</td>
 								<td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
 
@@ -315,13 +106,18 @@
 				</table>
 			@if (c.Prix != null)
 			{
-				<div class="addtocart">@Html.ActionLink("Ajouter au panier", "AddVersionToCart",
+				<div class="addtocart">
+					@Html.DisplayFor(modelItem => c.Prix)<span>$ - </span>
+					@Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
 					"ShoppingCart", new { id = c.AlbumID }, "")</div>
 			}
 			<div class="back-lock" onclick="document.querySelector('#flip-toggle').classList.toggle('hover');">
-				<img id="imgClickandChange" onclick="changeImage(this)" src="~/Images/unlock.png" width="50px" height="50px" />
+				<img id="imgClickandChange" onclick="changeImage(this)" src="~/Images/unlock.png" width="25" height="25" />
 			</div>
+
 			</div>
+	   
+
 	</div>
    </div>
 	

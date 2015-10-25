@@ -80,7 +80,7 @@
 
     @foreach (var item in Model.CartItems)
     {
-        if (item.Version == null)
+        if (item.Album != null)
         {
             <table>
                 <tr>
@@ -99,7 +99,7 @@
                     "Details", "Store", new { id = item.AlbumID }, null)
                     </td>
                     <td>
-                        @item.Album.Prix
+                       @Html.DisplayFor(modelitem => item.Album.Prix)
                     </td>
                     <td></td>
 
@@ -111,7 +111,7 @@
             </table>
 
         }
-        if (item.Version != null)
+        if (item.Album == null)
         {
             <table>
                 <tr>
@@ -150,7 +150,7 @@
                     <td></td>
 
                     <td id="cart-total">
-                        @Model.CartTotal
+                        @Html.DisplayFor(modelitem => Model.CartTotal)
                     </td>
                 </tr>
 

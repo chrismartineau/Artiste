@@ -242,6 +242,7 @@
     <Content Include="App_Data\V2_bd_log.ldf">
       <DependentUpon>V2_bd.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\album.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -249,6 +250,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\1NkYHZU.png" />
     <Content Include="Images\353759.png" />
     <Content Include="Images\lock.png" />
     <Content Include="Images\seemore.png" />
@@ -383,6 +385,7 @@
     <Content Include="Views\Albums\Search.cshtml" />
     <Content Include="Views\Paypal\RevisePaiement.cshtml" />
     <Content Include="Views\Paypal\APIError.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Chansons\" />

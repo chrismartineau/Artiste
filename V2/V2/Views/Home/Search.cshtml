@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm("Search", "Home"))
+{
+    List<SelectListItem> items = new List<SelectListItem>();
+
+    items.Add(new SelectListItem
+    {
+        Text = "Album",
+        Value = "Albums"
+
+    });
+    items.Add(new SelectListItem
+    {
+        Text = "Artiste",
+        Value = "Artistes",
+        Selected = true
+    });
+    items.Add(new SelectListItem
+    {
+        Text = "Chanson",
+        Value = "Chansons"
+    });
+    items.Add(new SelectListItem
+    {
+        Text = "Genre",
+        Value = "Genres"
+    });
+    <span style="padding-top:11px" class="right">
+        @Html.TextBox("recherche")
+        @Html.DropDownList("sujet", items)
+        <input type="submit" value="Rechercher" />
+    </span>
+}
+

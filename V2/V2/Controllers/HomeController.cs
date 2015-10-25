@@ -29,8 +29,13 @@ namespace V2.Controllers
 
         public ActionResult Search(string recherche, string sujet)
         {
-
+            if (recherche == null && sujet == null)
+            {
+                return View("Search");
+            }
             return RedirectToAction("Search", sujet, new { contenu = recherche });
         }
+
+        
     }
 }
