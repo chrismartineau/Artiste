@@ -246,14 +246,17 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Content\Wordpress.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\1NkYHZU.png" />
     <Content Include="Images\353759.png" />
+    <Content Include="Images\a22.png" />
+    <Content Include="Images\b05.png" />
     <Content Include="Images\lock.png" />
-    <Content Include="Images\seemore.png" />
     <Content Include="Images\unlock.png" />
     <Content Include="Models\V2_Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -279,14 +282,24 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jssor.slider.debug.js" />
+    <Content Include="Scripts\jssor.slider.min.js" />
+    <Content Include="Scripts\jssor.slider.mini.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Slideshow\03al1xf.jpg" />
+    <Content Include="Slideshow\1nkyhzu.png" />
+    <Content Include="Slideshow\31236_gintama_reverse.jpg" />
+    <Content Include="Slideshow\cssslider.html" />
+    <Content Include="Slideshow\howto-cssslider.html" />
+    <Content Include="Slideshow\iframe-cssslider.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -386,6 +399,7 @@
     <Content Include="Views\Paypal\RevisePaiement.cshtml" />
     <Content Include="Views\Paypal\APIError.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Albums\Slideshow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Chansons\" />

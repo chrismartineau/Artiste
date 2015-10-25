@@ -1,198 +1,453 @@
 ﻿@model IEnumerable<V2.Models.Album>
 <head>
-	<title>Index</title>
-	@{
-		ViewBag.Title = "Index";
-	}
+    <title>Index</title>
+    @{
+        ViewBag.Title = "Index";
+    }
     <link rel="stylesheet" type="text/css" href="~/Content/album.css">
-	<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		function changeImage(element) {
-			var right = "/Images/unlock.png";
-			var left = "/Images/lock.png";
-			element.src = element.bln ? right : left;
-			element.bln = !element.bln;
-		}
-		
-	 </script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Wordpress.css">
+    <link rel="stylesheet" href="../Content/styles.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function changeImage(element) {
+            var right = "/Images/unlock.png";
+            var left = "/Images/lock.png";
+            element.src = element.bln ? right : left;
+            element.bln = !element.bln;
+        }
+
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/jssor.slider.mini.js"></script>
+    <!-- use jssor.slider.debug.js instead for release -->
+    <script>
+        jQuery(document).ready(function ($) {
+
+            var jssor_1_options = {
+                $AutoPlay: true,
+                $SlideDuration: 800,
+                $SlideEasing: $Jease$.$OutQuint,
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$
+                },
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$
+                }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizes
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1920);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            //responsive code end
+        });
+    </script>
+
+    <style>
+        /* jssor slider bullet navigator skin 05 css */
+        /*
+        .jssorb05 div           (normal)
+        .jssorb05 div:hover     (normal mouseover)
+        .jssorb05 .av           (active)
+        .jssorb05 .av:hover     (active mouseover)
+        .jssorb05 .dn           (mousedown)
+        */
+        .jssorb05 {
+            position: absolute;
+        }
+
+            .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+                position: absolute;
+                /* size of bullet elment */
+                width: 16px;
+                height: 16px;
+                background: url('img/b05.png') no-repeat;
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+            .jssorb05 div {
+                background-position: -7px -7px;
+            }
+
+                .jssorb05 div:hover, .jssorb05 .av:hover {
+                    background-position: -37px -7px;
+                }
+
+            .jssorb05 .av {
+                background-position: -67px -7px;
+            }
+
+            .jssorb05 .dn, .jssorb05 .dn:hover {
+                background-position: -97px -7px;
+            }
+
+        /* jssor slider arrow navigator skin 22 css */
+        /*
+        .jssora22l                  (normal)
+        .jssora22r                  (normal)
+        .jssora22l:hover            (normal mouseover)
+        .jssora22r:hover            (normal mouseover)
+        .jssora22l.jssora22ldn      (mousedown)
+        .jssora22r.jssora22rdn      (mousedown)
+        */
+        .jssora22l, .jssora22r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 40px;
+            height: 58px;
+            cursor: pointer;
+            background: url('../../Images/a22.png') center center no-repeat;
+            overflow: hidden;
+        }
+
+        .jssora22l {
+            background-position: -10px -31px;
+        }
+
+        .jssora22r {
+            background-position: -70px -31px;
+        }
+
+        .jssora22l:hover {
+            background-position: -130px -31px;
+        }
+
+        .jssora22r:hover {
+            background-position: -190px -31px;
+        }
+
+        .jssora22l.jssora22ldn {
+            background-position: -250px -31px;
+        }
+
+        .jssora22r.jssora22rdn {
+            background-position: -310px -31px;
+        }
+    </style>
 
 </head>
 @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
-{ 
-<p>
-	@Html.ActionLink("Create New", "Create")
-</p>
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 }
 
-
-@foreach (var c in Model)
-{ 
-   <div class="flip-container" ontouchstart="this.classList.toggle('hover');" id="flip-toggle">
-	   @*<div class="bande-noire-top-front"></div>
-	   <div class="bande-noire-bottom-front"></div>*@
-	<div class="flipper">
-		<div class="front">
-			<h3 class="titrealbum">@c.Nom</h3>
-			<div class="front-logo" style="background: url(../../Images/1NkYHZU.png) no-repeat center center; background-size:contain"></div>
-		</div>
-		<div class="back">
-			<h3 class="titrealbum">@c.Nom</h3>
-			
-			<h3>Chansons</h3>
-			<table class="table">
-				@if (c.Version.Count < 7)
-				{ 
-					foreach (var item in c.Version)
-					{
-					if (item.Visible != false)
-					{
-						<tr >
-							<td style="font-size:x-large" class="col-lg-2">
-								@Html.DisplayFor(modelItem => item.Chanson.Titre)
-							</td>                       
-							<td class="col-lg-4">
-								@Html.DisplayFor(modelItem => item.Commentaire)
-							</td>          
-
-							<td class="col-lg-2">
-								@if (item.Prix != null)
-								{
-									@Html.DisplayFor(modelItem => item.Prix)<span>$</span>
-								}
-								@if (item.Prix == null)
-								{
-									<span>-----</span>
-								}
-							</td>
-							<td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
+<!-- #region Jssor Slider Begin -->
+<!-- Jssor Slider is free under MIT license. -->
+<!-- Development Reference http://www.jssor.com/development. -->
+<!-- Jssor Slider Maker Start At $5 http://www.jssor.com/slider-maker. -->
+<!-- This demo works with jquery library -->
 
 
-						</tr>
-					}
-					}
-				}
-				@if (c.Version.Count >= 7)
-				{
-					foreach (var item in c.Version.Take(6))
-					{
-						if (item.Visible != false)
-						{
-							<tr>
-								<td style="font-size:x-large" class="col-lg-2">
-									@Html.DisplayFor(modelItem => item.Chanson.Titre)
-								</td>
-								<td class="col-lg-4">
-									@Html.DisplayFor(modelItem => item.Commentaire)
-								</td>
-
-								<td class="col-lg-4">
-									@if (item.Prix != null)
-									{ 
-										@Html.DisplayFor(modelItem => item.Prix)<span>$</span>                                            
-									}
-									@if (item.Prix == null)
-									{
-										<span>-----</span>
-									}
-								</td>
-								<td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
 
 
-							</tr>
-						}
-					}
-					@Html.ActionLink("Voir toutes les chansons", "details", new { id = c.AlbumID })
-				}
-				</table>
-			@if (c.Prix != null)
-			{
-				<div class="addtocart">
-					@Html.DisplayFor(modelItem => c.Prix)<span>$ - </span>
-					@Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
-					"ShoppingCart", new { id = c.AlbumID }, "")</div>
-			}
-			<div class="back-lock" onclick="document.querySelector('#flip-toggle').classList.toggle('hover');">
-				<img id="imgClickandChange" onclick="changeImage(this)" src="~/Images/unlock.png" width="25" height="25" />
-			</div>
+<div id="jssor_1" class="flip-container" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 525px; overflow: hidden; visibility: hidden;">
+    <!-- Loading Screen -->
+    <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+        <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+        <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+    </div>
+    <div class="flipper" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 150px; width: 1000px; height: 525px; overflow: hidden;">
+        @foreach (var album in Model)
+        {
+            <div data-p="225.00" style="display: none;">
+                <div class="front" style="left:100px">
+                    <div class="front-logo" style="background: url(../../Images/1NkYHZU.png) no-repeat center center; background-size:contain"></div>
+                    <div style="position: absolute; top: -10px; left: 20px; width: 100%; height: 100%;">
+                       <h3 class="titrealbum-front">@album.Nom</h3>
+                    </div>
+                </div>
 
-			</div>
-	   
+                <div class="back" style="left:100px">
+                    <h3 class="titrealbum">@album.Nom</h3>
 
-	</div>
-   </div>
-	
-}
-	   
+                    <h3>Chansons</h3>
+                    <table class="table">
+                        @if (album.Version.Count < 7)
+                        {
+                            foreach (var item in album.Version)
+                            {
+                                if (item.Visible != false)
+                                {
+                                    <tr>
+                                        <td style="font-size:x-large" class="col-lg-2">
+                                            @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                                        </td>
+                                        <td class="col-lg-4">
+                                            @Html.DisplayFor(modelItem => item.Commentaire)
+                                        </td>
+
+                                        <td class="col-lg-2">
+                                            @if (item.Prix != null)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
+                                            }
+                                            @if (item.Prix == null)
+                                            {
+                                                <span>-----</span>
+                                            }
+                                        </td>
+                                        <td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
+
+
+                                    </tr>
+                                }
+                            }
+                        }
+                        @if (album.Version.Count >= 7)
+                        {
+                            foreach (var item in album.Version.Take(6))
+                            {
+                                if (item.Visible != false)
+                                {
+                                    <tr>
+                                        <td style="font-size:x-large" class="col-lg-2">
+                                            @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                                        </td>
+                                        <td class="col-lg-4">
+                                            @Html.DisplayFor(modelItem => item.Commentaire)
+                                        </td>
+
+                                        <td class="col-lg-4">
+                                            @if (item.Prix != null)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
+                                            }
+                                            @if (item.Prix == null)
+                                            {
+                                                <span>-----</span>
+                                            }
+                                        </td>
+                                        <td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
+
+
+                                    </tr>
+                                }
+                            }
+                            @Html.ActionLink("Voir toutes les chansons", "details", new { id = album.AlbumID })
+                        }
+                    </table>
+                    @if (album.Prix != null)
+                    {
+                        <div class="addtocart">
+                            @Html.DisplayFor(modelItem => album.Prix)<span>$ - </span>
+                            @Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
+                        "ShoppingCart", new { id = album.AlbumID }, "")
+                        </div>
+                    }
+                    @*<div class="back-lock" onclick="document.querySelector('#flip-toggle').classList.toggle('hover');">
+                        <img id="imgClickandChange" onclick="changeImage(this)" src="~/Images/unlock.png" width="25" height="25" />
+                    </div>*@
+
+                </div>
+
+            </div>
+        }
+        @*<div data-p="225.00" style="display: none;">
+                <img data-u="image" src="../../Images/353759.png" />
+            </div>
+            <div data-p="225.00" style="display: none;">
+                <img data-u="image" src="../../Images/dummy-640x310-2.jpg" />
+            </div>
+            <div data-p="225.00" style="display: none;">
+                <img data-u="image" src="../../Images/1NkYHZU.png" />
+            </div>*@
+    </div>
+    <!-- Bullet Navigator -->
+    <div data-u="navigator" class="jssorb05" style="bottom:16px;right:6px;" data-autocenter="1">
+        <!-- bullet navigator item prototype -->
+        <div data-u="prototype" style="width:16px;height:16px;"></div>
+    </div>
+    <!-- Arrow Navigator -->
+    <span data-u="arrowleft" class="jssora22l" style="top:123px;left:12px;width:40px;height:58px;" data-autocenter="2"></span>
+    <span data-u="arrowright" class="jssora22r" style="top:123px;right:12px;width:40px;height:58px;" data-autocenter="2"></span>
+</div>
+
+<!-- #endregion Jssor Slider End -->
+@*@foreach (var c in Model)
+    {
+       <div class="flip-container" ontouchstart="this.classList.toggle('hover');" id="flip-toggle">
+        <div class="flipper">
+            <div class="front">
+                <h3 class="titrealbum">@c.Nom</h3>
+                <div class="front-logo" style="background: url(../../Images/1NkYHZU.png) no-repeat center center; background-size:contain"></div>
+            </div>
+            <div class="back">
+                <h3 class="titrealbum">@c.Nom</h3>
+
+                <h3>Chansons</h3>
+                <table class="table">
+                    @if (c.Version.Count < 7)
+                    {
+                        foreach (var item in c.Version)
+                        {
+                        if (item.Visible != false)
+                        {
+                            <tr >
+                                <td style="font-size:x-large" class="col-lg-2">
+                                    @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                                </td>
+                                <td class="col-lg-4">
+                                    @Html.DisplayFor(modelItem => item.Commentaire)
+                                </td>
+
+                                <td class="col-lg-2">
+                                    @if (item.Prix != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
+                                    }
+                                    @if (item.Prix == null)
+                                    {
+                                        <span>-----</span>
+                                    }
+                                </td>
+                                <td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
+
+
+                            </tr>
+                        }
+                        }
+                    }
+                    @if (c.Version.Count >= 7)
+                    {
+                        foreach (var item in c.Version.Take(6))
+                        {
+                            if (item.Visible != false)
+                            {
+                                <tr>
+                                    <td style="font-size:x-large" class="col-lg-2">
+                                        @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                                    </td>
+                                    <td class="col-lg-4">
+                                        @Html.DisplayFor(modelItem => item.Commentaire)
+                                    </td>
+
+                                    <td class="col-lg-4">
+                                        @if (item.Prix != null)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
+                                        }
+                                        @if (item.Prix == null)
+                                        {
+                                            <span>-----</span>
+                                        }
+                                    </td>
+                                    <td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
+
+
+                                </tr>
+                            }
+                        }
+                        @Html.ActionLink("Voir toutes les chansons", "details", new { id = c.AlbumID })
+                    }
+                    </table>
+                @if (c.Prix != null)
+                {
+                    <div class="addtocart">
+                        @Html.DisplayFor(modelItem => c.Prix)<span>$ - </span>
+                        @Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
+                        "ShoppingCart", new { id = c.AlbumID }, "")</div>
+                }
+                <div class="back-lock" onclick="document.querySelector('#flip-toggle').classList.toggle('hover');">
+                    <img id="imgClickandChange" onclick="changeImage(this)" src="~/Images/unlock.png" width="25" height="25" />
+                </div>
+
+                </div>
+
+
+        </div>
+       </div>
+
+    }*@
+
 
 
 
 
 @*@foreach (var album in Model)
-	{
+    {
 
-		<h3>
-			Album : @Html.DisplayFor(c => album.Nom) &nbsp; @if (album.Prix == null)
-															{
-															   <span> - </span> @Html.DisplayFor(c => album.Prix)
-															}
+        <h3>
+            Album : @Html.DisplayFor(c => album.Nom) &nbsp; @if (album.Prix == null)
+                                                            {
+                                                               <span> - </span> @Html.DisplayFor(c => album.Prix)
+                                                            }
 
 
-	@if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
-	{
-			<p style="font-size:medium; text-align:right">
-				@Html.ActionLink("Edit", "Edit", new { id = album.AlbumID }) |
-				@Html.ActionLink("Details", "Details", new { id = album.AlbumID }) |
-				@Html.ActionLink("Delete", "Delete", new { id = album.AlbumID })
-			</p>
-	}
-			@if (!Request.IsAuthenticated && User.IsInRole("Administrateur"))
-			{
-				<p>@Html.ActionLink("Details", "Details", new { id = album.AlbumID })</p>
-			}
-		</h3>
-		<p style="text-align:right">@String.Format("{0:C2}", album.Prix)</p>
-		<div class="container2">
+    @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
+    {
+            <p style="font-size:medium; text-align:right">
+                @Html.ActionLink("Edit", "Edit", new { id = album.AlbumID }) |
+                @Html.ActionLink("Details", "Details", new { id = album.AlbumID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = album.AlbumID })
+            </p>
+    }
+            @if (!Request.IsAuthenticated && User.IsInRole("Administrateur"))
+            {
+                <p>@Html.ActionLink("Details", "Details", new { id = album.AlbumID })</p>
+            }
+        </h3>
+        <p style="text-align:right">@String.Format("{0:C2}", album.Prix)</p>
+        <div class="container2">
 
-			<table class="table">
-				<tr>
-					<th class="tab-content  col-md-5">
+            <table class="table">
+                <tr>
+                    <th class="tab-content  col-md-5">
 
-					</th>
-					<th class="tab-content  col-md-3">
-						@Html.DisplayNameFor(model => model.First().Version.First().Demo)
-					</th>
-					<th class="tab-content  col-md-1">
-						@Html.DisplayNameFor(model => model.First().Version.First().Prix)
-					</th>
-					<th class="tab-content  col-md-3">
-						Chanson
-					</th>
-				</tr>
-				@foreach (var item in album.Version)
-				{
-					if (item.Visible != false)
-					{
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.Commentaire)
-						</td>
+                    </th>
+                    <th class="tab-content  col-md-3">
+                        @Html.DisplayNameFor(model => model.First().Version.First().Demo)
+                    </th>
+                    <th class="tab-content  col-md-1">
+                        @Html.DisplayNameFor(model => model.First().Version.First().Prix)
+                    </th>
+                    <th class="tab-content  col-md-3">
+                        Chanson
+                    </th>
+                </tr>
+                @foreach (var item in album.Version)
+                {
+                    if (item.Visible != false)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Commentaire)
+                        </td>
 
-						<td>
-							@Html.Raw(item.Demo)
-						</td>
+                        <td>
+                            @Html.Raw(item.Demo)
+                        </td>
 
-						<td>
-							@Html.DisplayFor(modelItem => item.Prix)
-						</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prix)
+                        </td>
 
-						<td>
-							@Html.DisplayFor(modelItem => item.Chanson.Titre)
-						</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                        </td>
 
-					</tr>
-					}
-				}
-			</table>
-		</div>
+                    </tr>
+                    }
+                }
+            </table>
+        </div>
 
-	}*@
+    }*@

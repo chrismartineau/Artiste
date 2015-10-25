@@ -147,5 +147,10 @@ namespace V2.Controllers
             var album = db.Album.Where(a => a.Nom.Contains(contenu)).ToList();
             return View(album);
         }
+
+        public ActionResult Slideshow()
+        {
+            return View();
+        }
     }
 }
