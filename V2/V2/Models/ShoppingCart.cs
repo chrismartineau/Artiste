@@ -150,9 +150,26 @@ namespace V2.Models
         /// <returns></returns>
         public int GetCount()
         {
-            int? count = (from cartItems in storeDB.Achat
-                          where cartItems.CartID == ShoppingCartId
-                          select cartItems).Count();
+            int? count;
+            try
+            {
+
+
+                if (storeDB.Achat.Count() > 0)
+                {
+                    count = (from cartItems in storeDB.Achat
+                             where cartItems.CartID == ShoppingCartId
+                             select cartItems).Count();
+                }
+                else
+                {
+                    count = 0;
+                }
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
 
             return count ?? 0;
         }

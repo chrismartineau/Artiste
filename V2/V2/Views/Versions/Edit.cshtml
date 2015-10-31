@@ -15,7 +15,14 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    if (Model.Path == null)
+    {
+        <div>@Html.ActionLink("Ajouter un fichier audio pour cette chanson", "AjouterFichier", new { id = Model.VersionID })</div>
+    }
+    if (Model.Path != null)
+    {
+        <div>@Html.ActionLink("Modifier le fichier audio pour cette chanson", "AjouterFichier", new { id = Model.VersionID })</div>
+    }
     <div class="form-horizontal">
         <h4>Version</h4>
         <hr />

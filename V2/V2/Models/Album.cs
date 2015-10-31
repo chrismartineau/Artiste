@@ -25,6 +25,7 @@ namespace V2.Models
         public string Description { get; set; }
         public Nullable<decimal> Prix { get; set; }
         public string Nom { get; set; }
+        public string Image { get; set; }
     
         public virtual ICollection<Achat> Achat { get; set; }
         public virtual ICollection<Version> Version { get; set; }

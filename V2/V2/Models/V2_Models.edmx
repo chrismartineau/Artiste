@@ -25,6 +25,7 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Prix" Type="decimal" Precision="19" Scale="4" />
           <Property Name="Nom" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Artiste">
           <Key>
@@ -374,6 +375,7 @@
           <Property Name="Nom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Achat" Relationship="Self.FK_Achat_Album_FK" FromRole="Album" ToRole="Achat" />
           <NavigationProperty Name="Version" Relationship="Self.FK_Version_Album_FK" FromRole="Album" ToRole="Version" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Artiste">
           <Key>
@@ -701,6 +703,7 @@
     <EntitySetMapping Name="Album">
       <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Album)">
         <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
           <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
           <ScalarProperty Name="Description" ColumnName="Description" />

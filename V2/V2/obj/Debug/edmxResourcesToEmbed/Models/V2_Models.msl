@@ -16,6 +16,7 @@
     <EntitySetMapping Name="Album">
       <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.Album)">
         <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
           <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
           <ScalarProperty Name="Description" ColumnName="Description" />

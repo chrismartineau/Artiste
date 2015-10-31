@@ -1,0 +1,14 @@
+﻿@model V2.Models.Version
+
+@{
+    ViewBag.Title = "AjouterFichier";
+}
+
+<h2>AjouterFichier</h2>
+
+@using (Html.BeginForm("AjouterFichier", "Versions", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div style="display:none">@Html.TextBox("idVersion", Model.VersionID)</div>
+    <input type="file" name="file" value="Ajouter une Image" />
+    <input type="submit" value="Enregistrer" />
+}

@@ -162,7 +162,7 @@
         {
             <div data-p="225.00" style="display: none;">
                 <div class="front" style="left:100px">
-                    <div class="front-logo" style="background: url(../../Images/1NkYHZU.png) no-repeat center center; background-size:contain"></div>
+                    <div class="front-logo" style="background: url(@album.Image) no-repeat center center; background-size:contain"></div>
                     <div style="position: absolute; top: -10px; left: 20px; width: 100%; height: 100%;">
                        <h3 class="titrealbum-front">@album.Nom</h3>
                     </div>
@@ -261,7 +261,7 @@
         @{int i = 1 - nb;}
         @foreach (var c in Model)
         { 
-            <div data-u="prototype" style="width: 16px; height: 16px; position: absolute; left: var(i * 26)px  ; top: 0px;" class="av"></div>
+                <div data-u="prototype" style="width: 16px; height: 16px; position: absolute; left: var(i * 26)px  ; top: 0px;" class="av"></div>
             i++;
         }
         @*<div data-u="prototype" style="width: 16px; height: 16px; position: absolute; left: 26px; top: 0px;" class=""></div>

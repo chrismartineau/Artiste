@@ -20,6 +20,7 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Prix" Type="decimal" Precision="19" Scale="4" />
     <Property Name="Nom" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Artiste">
     <Key>

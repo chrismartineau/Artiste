@@ -1,0 +1,15 @@
+﻿@model V2.Models.Album
+
+@{
+    ViewBag.Title = "AjouterImage";
+}
+
+<h2>AjouterImage</h2>
+
+@using (Html.BeginForm("AjouterImage", "Albums", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div style="display:none">@Html.TextBox("idAlbum", Model.AlbumID)</div>
+    <input type="file" name="file" value="Ajouter une Image" />
+    <input type="submit" value="Enregistrer" />
+}
+

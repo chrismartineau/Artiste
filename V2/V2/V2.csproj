@@ -400,6 +400,8 @@
     <Content Include="Views\Paypal\APIError.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Albums\Slideshow.cshtml" />
+    <Content Include="Views\Albums\AjouterImage.cshtml" />
+    <Content Include="Views\Versions\AjouterFichier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Chansons\" />

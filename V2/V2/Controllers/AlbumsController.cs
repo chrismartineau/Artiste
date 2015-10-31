@@ -147,10 +147,42 @@ namespace V2.Controllers
             var album = db.Album.Where(a => a.Nom.Contains(contenu)).ToList();
             return View(album);
         }
-
-        public ActionResult Slideshow()
+        
+        [HttpGet]
+        public ActionResult AjouterImage(int idAlbum)
         {
-            return View();
+            var album = db.Album.Find(idAlbum);
+            return View(album);
         }
+
+        [HttpPost]
+        public ActionResult AjouterImage(int? idAlbum, HttpPostedFileBase file)
+        {
+            string[] split = file.ContentType.Split('/');
+            if (db.Album.Find(idAlbum) == null)
+            {
+
+            }
+            string filename;
+            try
+            {
+                filename = db.Album.Where(a => a.AlbumID == idAlbum).FirstOrDefault().Nom + "." + split[1];
+                filename = filename.Replace(' ', '-');
+                filename = filename.Replace('\'', '-');
+            }
+            catch (Exception e)
+            {
+                filename = "test." + split[1];
+            }
+            if (file == null || split[0] != "image")
+            {
+                return View();
+            }
+            System.IO.File.Copy(file.FileName, Server.MapPath("~/Images/" + filename), true);
+            db.Album.Find(idAlbum).Image = "../../Images/" + filename;
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = idAlbum });
+        }
+
     }
 }

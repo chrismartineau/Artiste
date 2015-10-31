@@ -190,5 +190,43 @@ namespace V2.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpGet]
+        public ActionResult AjouterFichier(int? id)
+        {
+            var version = db.Version.Find(id);
+            return View(version);
+        }
+
+
+        [HttpPost]
+        public ActionResult AjouterFichier(int? idVersion, HttpPostedFileBase file)
+        {
+            string[] split = file.ContentType.Split('/');
+            if (db.Album.Find(idVersion) == null)
+            {
+
+            }
+            string filename;
+            try
+            {
+                var f = db.Version.Where(a => a.VersionID == idVersion).FirstOrDefault();
+                filename = f.Chanson.Titre + "_" + f.VersionID + "." + split[1];
+                filename = filename.Replace(' ', '-');
+                filename = filename.Replace('\'', '_');
+            }
+            catch (Exception e)
+            {
+                filename = "test." + split[1];
+            }
+            if (file == null || split[0] != "audio")
+            {
+                return View();
+            }
+            System.IO.File.Copy(file.FileName, Server.MapPath("~/Chansons/" + filename), true);
+            db.Version.Find(idVersion).Path = "../../Chansons/" + filename;
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = idVersion });
+        }
     }
 }
