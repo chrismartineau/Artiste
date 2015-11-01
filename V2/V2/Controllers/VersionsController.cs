@@ -194,6 +194,10 @@ namespace V2.Controllers
         [HttpGet]
         public ActionResult AjouterFichier(int? id)
         {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
             var version = db.Version.Find(id);
             return View(version);
         }
@@ -205,7 +209,7 @@ namespace V2.Controllers
             string[] split = file.ContentType.Split('/');
             if (db.Album.Find(idVersion) == null)
             {
-
+                return HttpNotFound();
             }
             string filename;
             try
@@ -227,6 +231,18 @@ namespace V2.Controllers
             db.Version.Find(idVersion).Path = "../../Chansons/" + filename;
             db.SaveChanges();
             return RedirectToAction("Details", new { id = idVersion });
+        }
+
+        public ActionResult TelechargerFichier(int? id)
+        {           
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var version   = db.Version.Find(id);
+            string[] split = version.Path.Split('.');
+            string s = MimeMapping.GetMimeMapping(split[split.Count() - 2] + "." + split[split.Count() - 1]);
+            return File(Server.MapPath(version.Path), s, version.Chanson.Titre + "." + split[split.Count() - 1]);
         }
     }
 }

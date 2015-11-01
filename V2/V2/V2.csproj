@@ -402,6 +402,7 @@
     <Content Include="Views\Albums\Slideshow.cshtml" />
     <Content Include="Views\Albums\AjouterImage.cshtml" />
     <Content Include="Views\Versions\AjouterFichier.cshtml" />
+    <Content Include="Views\Account\Commandes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Chansons\" />

@@ -97,11 +97,12 @@
     </div>
 
 </div>
-@if (Model.Prix != null)
+@if (Model.Prix != null && Model.Path != null)
 {
     <h4>
         @Html.ActionLink("Add to cart", "AddVersionToCart",
         "ShoppingCart", new { id = Model.VersionID }, "")
+        @Html.ActionLink("Télécharger", "TelechargerFichier", new { id = Model.VersionID})
 </h4>
 }
 @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))

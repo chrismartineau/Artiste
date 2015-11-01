@@ -147,17 +147,20 @@ namespace V2.Controllers
                 //' Exchange rate if a currency conversion occurred. Relevant only if your are billing in their non-primary currency. If 
                 string exchangeRate = decoder["PAYMENTINFO_0_EXCHANGERATE"];
                 ReleveTransaction releve = new ReleveTransaction();
-                foreach(var c in cart.GetCartItems())
-                {
-                    releve.Achat.Add(c);
-                }
+
                 releve.Acheteur = User.Identity.GetUserName();
                 releve.CoutTotal = cart.GetTotal();
                 releve.Date = DateTime.Now;
-               
-                cart.EmptyCart();
+                StoreDB.ReleveTransaction.Add(releve);
+                StoreDB.SaveChanges();
+                //foreach (var c in cart.GetCartItems())
+                //{
+                //    c.ReleveTransactionID = releve.ReleveTransactionID;
+                //    StoreDB.Achat.Add(c);
+                //}
+                //StoreDB.SaveChanges();
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("EmptyCart", "ShoppingCart", new { id = releve.ReleveTransactionID});
             }
             else
             {

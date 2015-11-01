@@ -17,6 +17,8 @@ namespace V2.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private V2_bdEntities db = new V2_bdEntities();
+
 
         public AccountController()
         {
@@ -421,6 +423,17 @@ namespace V2.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        public ActionResult Commandes()
+        {
+            string username = User.Identity.GetUserName();
+            var commandes = from achat in db.Achat
+                            join releve in db.ReleveTransaction on achat.ReleveTransactionID equals releve.ReleveTransactionID
+                            where releve.Acheteur == username
+                            select achat;
+            var test = commandes.FirstOrDefault();
+            return View(commandes);
         }
 
         #region Applications auxiliaires

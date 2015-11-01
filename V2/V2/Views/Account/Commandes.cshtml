@@ -1,0 +1,46 @@
+﻿@model IEnumerable<V2.Models.Achat>
+@{
+    ViewBag.Title = "Commandes";
+}
+
+<h2>Commandes</h2>
+    <table>
+        @foreach (var achat in Model)
+        {
+            if (achat.AlbumID != null)
+            {
+                foreach (var item in achat.Album.Version)
+                {
+                    <tr>
+                        <td style="font-size:x-large" class="col-lg-2">
+                            @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                        </td>
+                        <td class="col-lg-4">
+                            @Html.DisplayFor(modelItem => item.Commentaire)
+                        </td>
+                        <td class="col-lg-4">@Html.ActionLink("Télécharger", "TelechargerFichier", "Versions", new { id = item.VersionID },"")</td>
+
+
+                    </tr>
+                }
+            }
+            if (achat.AlbumID == null)
+            {
+                <tr>
+                    <td style="font-size:x-large" class="col-lg-2">
+                        @Html.DisplayFor(modelItem => achat.Version.Chanson.Titre)
+                    </td>
+                    <td class="col-lg-4">
+                        @Html.DisplayFor(modelItem => achat.Version.Commentaire)
+                    </td>
+
+                    <td class="col-lg-4">                       
+                            @Html.DisplayFor(modelItem => achat.Version.Prix)<span>$</span>                 
+                    </td>
+                    <td class="col-lg-4">@Html.ActionLink("Télécharger", "TelechargerFichier", "Versions", new { id = achat.VersionID },"")</td>
+                </tr>
+            }
+        }
+    </table>
+
+
