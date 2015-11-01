@@ -1,15 +1,80 @@
 ﻿@model IEnumerable<V2.Models.Version>
 
-@{
-    ViewBag.Title = "Versions";
-}
-<div></div>
+<head>
+    @{
+        ViewBag.Title = "Versions";
+    }
+    <link rel="stylesheet" type="text/css" href="~/Content/albumdetails.css">
+</head>
+
+<div class="flip-container" style="position:absolute;top:100px">
+    <div class="front" style="top:100px">
+        <div class="front-logo" style="background: url(@Model.First().Album.Image) no-repeat center center; background-size:contain"></div>
+        <div style="position: relative; top: -550px; left: 20px; width: 100%; height: 100%;">
+            <h3 class="titrealbum-front">@Model.First().Album.Nom</h3>
+        </div>
+    </div>
+
+    <div class="back" style="position:absolute;top:-20px;left:555px">
+        <h3>Chansons</h3>
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                if (item.Visible != false)
+                {
+                    <tr>
+                        <td style="font-size:15px" class="col-lg-4" valign="bottom">
+                            @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                        </td>
+                        <td class="col-lg-4" valign="bottom">
+                            @Html.DisplayFor(modelItem => item.Commentaire)
+                        </td>
+
+                        <td class="col-sm-2" valign="bottom">
+                            @if (item.Prix != null)
+                            {
+                                @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
+                            }
+                            @if (item.Prix == null)
+                            {
+                                <span>-----</span>
+                            }
+                        </td>
+                        <td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
 
 
-<h1>
-    @Html.DisplayFor(model => model.First().Album.Nom)
-</h1>
-@if (Model.First().Album.Prix != null)
+                    </tr>
+                }
+            }
+
+        </table>
+        @{bool bpath = true;}
+
+
+        @foreach (var version in Model)
+        {
+            if (version.Path == null)
+            {
+                bpath = false;
+            }
+        }
+        @if (Model.First().Album.Prix != null && bpath == true)
+        {
+        <div class="addtocart" style="position:absolute;top:35px;left:400px">
+            @Html.DisplayFor(modelItem => Model.First().Album.Prix)<span>$ - </span>
+            @Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
+                         "ShoppingCart", new { id = Model.First().Album.AlbumID }, "")
+        </div>
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
+        {
+            <div class="editalbum">@Html.ActionLink("Modifier l'album", "Edit", new { id = Model.First().Album.AlbumID })</div>
+        }
+
+    </div>
+</div>
+
+@*@if (Model.First().Album.Prix != null)
 { 
     <h3>@Html.DisplayFor(model => model.First().Album.Prix)$</h3><h4>@Html.ActionLink("Add to cart", "AddAlbumToCart",
         "ShoppingCart", new { id = Model.First().AlbumID }, "")</h4>
@@ -66,4 +131,4 @@
         }
     }
 
-</table>
+</table>*@

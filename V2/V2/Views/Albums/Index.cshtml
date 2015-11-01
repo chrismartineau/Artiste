@@ -151,115 +151,123 @@
 }
 
 
-<div id="jssor_1" class="flip-container" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 525px; overflow: hidden; visibility: hidden;">
+<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 525px; overflow: hidden; visibility: hidden;">
     <!-- Loading Screen -->
     <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
         <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
         <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
     </div>
-    <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 150px; width: 1000px; height: 525px; overflow: hidden;">
+    <div class="flip-container" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 150px; width: 1000px; height: 525px; overflow: hidden;">
         @foreach (var album in Model)
         {
-                <div data-p="225.00" style="display: none;">
-                    <div class="flipper">
-                        <div class="front" style="left:100px">
-                            <div class="front-logo" style="background: url(@album.Image) no-repeat center center; background-size:contain"></div>
-                            <div style="position: absolute; top: -10px; left: 20px; width: 100%; height: 100%;">
-                                <h3 class="titrealbum-front">@album.Nom</h3>
-                            </div>
+            <div data-p="225.00" style="display: none;">
+                <div class="flipper">
+                    <div class="front" style="left:100px">
+                        <div class="front-logo" style="background: url(@album.Image) no-repeat center center; background-size:contain"></div>
+                        <div style="position: absolute; top: -10px; left: 20px; width: 100%; height: 100%;">
+                            <h3 class="titrealbum-front">@album.Nom</h3>
                         </div>
+                    </div>
 
-                        <div class="back" style="left:100px">
-                            <h3 class="titrealbum">@album.Nom</h3>
+                    <div class="back" style="left:100px">
+                        <h3 class="titrealbum">@album.Nom</h3>
 
-                            <h3>Chansons</h3>
-                            <table class="table">
-                                @if (album.Version.Count < 7)
-                                {
-                                    foreach (var item in album.Version)
-                                    {
-                                        if (item.Visible != false)
-                                        {
-                                            <tr>
-                                                <td style="font-size:x-large" class="col-lg-2">
-                                                    @Html.DisplayFor(modelItem => item.Chanson.Titre)
-                                                </td>
-                                                <td class="col-lg-4">
-                                                    @Html.DisplayFor(modelItem => item.Commentaire)
-                                                </td>
-
-                                                <td class="col-lg-2">
-                                                    @if (item.Prix != null)
-                                                    {
-                                                        @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
-                                                    }
-                                                    @if (item.Prix == null)
-                                                    {
-                                                        <span>-----</span>
-                                                    }
-                                                </td>
-                                                <td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
-
-
-                                            </tr>
-                                        }
-                                    }
-                                }
-                                @if (album.Version.Count >= 7)
-                                {
-                                    foreach (var item in album.Version.Take(6))
-                                    {
-                                        if (item.Visible != false)
-                                        {
-                                            <tr>
-                                                <td style="font-size:x-large" class="col-lg-2">
-                                                    @Html.DisplayFor(modelItem => item.Chanson.Titre)
-                                                </td>
-                                                <td class="col-lg-4">
-                                                    @Html.DisplayFor(modelItem => item.Commentaire)
-                                                </td>
-
-                                                <td class="col-lg-4">
-                                                    @if (item.Prix != null)
-                                                    {
-                                                        @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
-                                                    }
-                                                    @if (item.Prix == null)
-                                                    {
-                                                        <span>-----</span>
-                                                    }
-                                                </td>
-                                                <td class="col-lg-4">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
-
-
-                                            </tr>
-                                        }
-                                    }
-                                    @Html.ActionLink("Voir toutes les chansons", "details", new { id = album.AlbumID })
-                                }
-                            </table>
-                            @{bool bpath = true;}
-
-
-                            @foreach (var version in album.Version)
+                        <h3>Chansons</h3>
+                        <table class="table">
+                            @if (album.Version.Count < 7)
                             {
-                                if (version.Path == null)
+                                foreach (var item in album.Version)
                                 {
-                                    bpath = false;
+                                    if (item.Visible != false)
+                                    {
+                                        <tr>
+                                            <td style="font-size:x-large" class="col-lg-2" valign="middle">
+                                                @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                                            </td>
+                                            <td class="col-lg-4" valign="middle">
+                                                @Html.DisplayFor(modelItem => item.Commentaire)
+                                            </td>
+
+                                            <td class="col-lg-2" valign="middle">
+                                                @if (item.Prix != null)
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
+                                                }
+                                                @if (item.Prix == null)
+                                                {
+                                                    <span>-----</span>
+                                                }
+                                            </td>
+                                            <td class="col-lg-4" valign="middle">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
+
+
+                                        </tr>
+                                    }
                                 }
                             }
-                            @if (album.Prix != null && bpath == true)
+                            @if (album.Version.Count >= 7)
                             {
-                                <div class="addtocart">
-                                    @Html.DisplayFor(modelItem => album.Prix)<span>$ - </span>
-                                    @Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
+                                foreach (var item in album.Version.Take(6))
+                                {
+                                    if (item.Visible != false)
+                                    {
+                                        <tr>
+                                            <td style="font-size:x-large" class="col-lg-2" valign="middle">
+                                                @Html.DisplayFor(modelItem => item.Chanson.Titre)
+                                            </td>
+                                            <td class="col-lg-4" valign="middle">
+                                                @Html.DisplayFor(modelItem => item.Commentaire)
+                                            </td>
+
+                                            <td class="col-lg-4" valign="middle">
+                                                @if (item.Prix != null)
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.Prix)<span>$</span>
+                                                }
+                                                @if (item.Prix == null)
+                                                {
+                                                    <span>-----</span>
+                                                }
+                                            </td>
+                                            <td class="col-lg-4" valign="middle">@Html.ActionLink("Plus", "Details", "Versions", new { id = item.VersionID }, new { @class = "seemore" })</td>
+
+
+                                        </tr>
+                                    }
+                                }
+                                @Html.ActionLink("Voir toutes les chansons", "details", new { id = album.AlbumID })
+                            }
+                        </table>
+                        @{bool bpath = true;}
+
+
+                        @foreach (var version in album.Version)
+                        {
+                            if (version.Path == null)
+                            {
+                                bpath = false;
+                            }
+                        }
+                        @if (album.Prix != null && bpath == true)
+                        {
+                            <div class="addtocart">
+                                @Html.DisplayFor(modelItem => album.Prix)<span>$ - </span>
+                                @Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
                         "ShoppingCart", new { id = album.AlbumID }, "")
-                                </div>
-                            }
+                            </div>
+                        }
+                        <div class="editalbum">
+                            @Html.ActionLink("Voir détails", "Details", new { id = album.AlbumID})
+                            @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
+                            {
+                                <span> / </span> @Html.ActionLink("Modifier l'album", "Edit", new { id = album.AlbumID })
 
+                            }
                         </div>
 
                     </div>
+
+                </div>
             </div>
         }
     </div>

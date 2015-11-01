@@ -1,0 +1,123 @@
+﻿		.flip-container {
+			width: 1600px;
+			height: 525px;
+			margin:auto;
+		}
+        .front {
+			width: 550px;
+			height: 475px;
+            left:0px;
+		}
+        .back {
+			width: 450px;
+			height: 375px;
+            left:800px;
+			background-color:#2b3e50;
+
+		}
+
+.front {
+
+			border-style:inset;
+			border-color:black;
+			border-width:3px;
+			background-color:black;
+			z-index: -1;
+		}
+
+		.front .name {
+			font-size: 2em;
+			display: inline-block;
+			background: rgba(33, 33, 33, 0.9);
+			color: #f8f8f8;
+			font-family: Courier;
+			padding: 5px 10px;
+			border-radius: 5px;
+			bottom: 60px;
+			left: 25%;
+			position: absolute;
+			text-shadow: 0.1em 0.1em 0.05em #333;
+		}
+
+				.front-logo {
+			position: relative;
+			top: 02px;
+			left: 02px;
+			width: 541px;
+			height: 466px;
+			background-color:black;
+			z-index:1;
+		background-position: center;
+		background-attachment:fixed;
+				}
+
+						.back-title {
+			font-weight: bold;
+			color: #00304a;
+			position: absolute;
+			top: 180px;
+			left: 0;
+			right: 0;
+			text-align: center;
+			text-shadow: 0.1em 0.1em 0.05em #acd7e5;
+			font-family: Courier;
+			font-size: 22px;
+		}
+
+		.back p {
+			position: absolute;
+			bottom: 40px;
+			left: 0;
+			right: 0;
+			text-align: center;
+			padding: 0 0px;
+			font-size: 18px;
+		}
+	.titrealbum {
+		position:absolute;
+		top:-10px;
+		left:0px;
+		width:100%;
+		text-align:center;
+		z-index:2;
+		text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+	}
+		.titrealbum-front {
+		position:absolute;
+		top:10px;
+		left:20px;
+		width:100%;		
+		z-index:2;
+		text-align:right;
+        font-size:xx-large;
+		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	}
+	.prixalbum {
+		position:absolute;
+		top:00px;
+		left:00px;
+		width:100%;
+		text-align:right;
+	}
+	.imagealbum {
+		width:100%;
+		height:auto;
+		width: auto\9;
+	}
+		.addtocart {
+		position:absolute;
+		z-index:3;
+		top: 20px;
+		left: 600px;
+        width:250px;
+
+	}
+		.editalbum {
+		position:absolute;
+		z-index:3;
+		top: 70px;
+		left: 600px;
+
+	}
+
+
