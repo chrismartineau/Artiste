@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using V2.Models;
+using System.Collections.Generic;
 
 namespace V2.Controllers
 {
@@ -17,7 +18,7 @@ namespace V2.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private V2_bdEntities db = new V2_bdEntities();
+        private chansons db = new chansons();
 
 
         public AccountController()
@@ -432,8 +433,35 @@ namespace V2.Controllers
                             join releve in db.ReleveTransaction on achat.ReleveTransactionID equals releve.ReleveTransactionID
                             where releve.Acheteur == username
                             select achat;
-            var test = commandes.FirstOrDefault();
-            return View(commandes);
+           
+            return View(commandes.Where(a => a.VersionID != null));
+        }
+
+        [Authorize(Roles="Administrateur")]
+        public ActionResult ListesCommandes()
+        {
+            var commandes = db.ReleveTransaction;
+            List<ReleveTransaction> list = new List<ReleveTransaction>();
+            foreach (var c in commandes)
+            {
+                foreach (var d in c.Achat)
+                {
+                    if (d.VersionID == null)
+                        list.Add(c);
+                }
+            }
+            return View(list.OrderBy(a => a.Envoyer == false));
+        }
+
+        public ActionResult ChangerEnvoyer(int? id)
+        {
+            var releve = db.ReleveTransaction.Find(id);
+            if ((bool)releve.Envoyer)
+                releve.Envoyer = false;
+            else
+                releve.Envoyer = true;
+            db.SaveChanges();
+            return RedirectToAction("ListesCommandes");                    
         }
 
         #region Applications auxiliaires

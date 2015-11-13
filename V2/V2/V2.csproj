@@ -216,6 +216,9 @@
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="Models\ShoppingCartViewModel.cs" />
+    <Compile Include="Models\Stanley.cs">
+      <DependentUpon>V2_Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V2_Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -253,18 +256,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\1NkYHZU.png" />
-    <Content Include="Images\353759.png" />
     <Content Include="Images\a22.png" />
     <Content Include="Images\b05.png" />
-    <Content Include="Images\lock.png" />
-    <Content Include="Images\unlock.png" />
     <Content Include="Models\V2_Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>V2_Models.edmx</DependentUpon>
       <LastGenOutput>V2_Models.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\V2_Models.edmx.sql" />
     <Content Include="Models\V2_Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>V2_Models.edmx</DependentUpon>
@@ -404,6 +402,12 @@
     <Content Include="Views\Albums\AjouterImage.cshtml" />
     <Content Include="Views\Versions\AjouterFichier.cshtml" />
     <Content Include="Views\Account\Commandes.cshtml" />
+    <Content Include="Views\Account\ListesCommandes.cshtml" />
+    <Content Include="Views\Home\EditBio.cshtml" />
+    <Content Include="Views\Home\EditImage.cshtml" />
+    <Content Include="Views\Artistes\Search.cshtml" />
+    <Content Include="Views\Chansons\Search.cshtml" />
+    <Content Include="Views\Genres\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Chansons\" />

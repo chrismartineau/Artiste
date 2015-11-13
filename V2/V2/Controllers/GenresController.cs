@@ -12,7 +12,7 @@ namespace V2.Controllers
 {
     public class GenresController : Controller
     {
-        private V2_bdEntities db = new V2_bdEntities();
+        private chansons db = new chansons();
 
         // GET: Genres
         public ActionResult Index()
@@ -134,6 +134,10 @@ namespace V2.Controllers
                 return RedirectToAction("Create");
             }
             var album = db.Chanson.Where(a => a.Genre.Nom.Contains(contenu)).ToList();
+            if (album.Count() == 1)
+                return RedirectToAction("Details", "Chansons", new { id = album.FirstOrDefault().ChansonID });
+            if (album.Count() == 0)
+                return RedirectToAction("Index", "Version");
             return View(album);
         }
     }

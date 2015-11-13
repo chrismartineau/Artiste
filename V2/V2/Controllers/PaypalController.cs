@@ -12,7 +12,7 @@ namespace V2.Controllers
     [Authorize]
     public class PaypalController : Controller
     {
-        V2_bdEntities StoreDB = new V2_bdEntities();
+        chansons StoreDB = new chansons();
         /// <summary>
         /// Permet d'exécuter un Express Checkout avec les items dans le panier
         /// </summary>
@@ -83,7 +83,6 @@ namespace V2.Controllers
                 Session["payerId"] = payerId;
                 Session["token"] = token;
                 ViewBag.shippingAddress = shippingAddress;
-                Response.Write(shippingAddress);
             }
             else
             {
@@ -106,6 +105,7 @@ namespace V2.Controllers
             string token = "";
             string finalPaymentAmount = "";
             string payerId = "";
+            string shippingAddress = "";
             NVPCodec decoder = null;
 
             token = Session["token"].ToString();
@@ -146,19 +146,26 @@ namespace V2.Controllers
 
                 //' Exchange rate if a currency conversion occurred. Relevant only if your are billing in their non-primary currency. If 
                 string exchangeRate = decoder["PAYMENTINFO_0_EXCHANGERATE"];
-                ReleveTransaction releve = new ReleveTransaction();
 
+
+                ret = test.GetShippingDetails(token, ref payerId, ref shippingAddress, ref retMsg);
+
+                ReleveTransaction releve = new ReleveTransaction();
+                releve.Adresse = shippingAddress;
                 releve.Acheteur = User.Identity.GetUserName();
                 releve.CoutTotal = cart.GetTotal();
                 releve.Date = DateTime.Now;
                 StoreDB.ReleveTransaction.Add(releve);
+                foreach (var c in cart.GetCartItems())
+                {
+                    if (c.AlbumID == null)
+                    {
+                        releve.Envoyer = true;
+                    }
+                    else
+                        releve.Envoyer = false;
+                }
                 StoreDB.SaveChanges();
-                //foreach (var c in cart.GetCartItems())
-                //{
-                //    c.ReleveTransactionID = releve.ReleveTransactionID;
-                //    StoreDB.Achat.Add(c);
-                //}
-                //StoreDB.SaveChanges();
 
                 return RedirectToAction("EmptyCart", "ShoppingCart", new { id = releve.ReleveTransactionID});
             }

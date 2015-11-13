@@ -93,6 +93,9 @@
     <EntitySetMapping Name="ReleveTransaction">
       <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.ReleveTransaction)">
         <MappingFragment StoreEntitySet="ReleveTransaction">
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Envoyer" ColumnName="Envoyer" />
           <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
           <ScalarProperty Name="Acheteur" ColumnName="Acheteur" />
           <ScalarProperty Name="CoutTotal" ColumnName="CoutTotal" />
@@ -125,5 +128,14 @@
         <ScalarProperty Name="CompositeurID" ColumnName="Compositeur_CompositeurID" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Stanley">
+      <EntityTypeMapping TypeName="V2_bdModel.Stanley">
+        <MappingFragment StoreEntitySet="Stanley">
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="biographie" ColumnName="biographie" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

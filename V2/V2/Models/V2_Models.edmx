@@ -101,6 +101,17 @@
           <Property Name="Acheteur" Type="nvarchar" MaxLength="30" />
           <Property Name="CoutTotal" Type="money" Nullable="false" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="Envoyer" Type="bit" />
+          <Property Name="Adresse" Type="nvarchar(max)" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Stanley">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="biographie" Type="nvarchar(max)" />
+          <Property Name="image" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Version">
           <Key>
@@ -131,7 +142,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Achat_ReleveTransaction_FK">
-          <End Role="ReleveTransaction" Type="Self.ReleveTransaction" Multiplicity="0..1" />
+          <End Role="ReleveTransaction" Type="Self.ReleveTransaction" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ReleveTransaction">
@@ -292,6 +305,7 @@
           <EntitySet Name="Instrument" EntityType="Self.Instrument" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jouer" EntityType="Self.Jouer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReleveTransaction" EntityType="Self.ReleveTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stanley" EntityType="Self.Stanley" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Version" EntityType="Self.Version" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Achat_Album_FK" Association="Self.FK_Achat_Album_FK">
             <End Role="Album" EntitySet="Album" />
@@ -458,6 +472,9 @@
           <Property Name="CoutTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Achat" Relationship="V2_bdModel.FK_Achat_ReleveTransaction_FK" FromRole="ReleveTransaction" ToRole="Achat" />
+          <Property Name="Envoyer" Type="Boolean" />
+          <Property Name="Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Version">
           <Key>
@@ -643,6 +660,7 @@
             <End Role="ReleveTransaction" EntitySet="ReleveTransaction" />
             <End Role="Achat" EntitySet="Achat" />
           </AssociationSet>
+          <EntitySet Name="Stanley" EntityType="V2_bdModel.Stanley" />
         </EntityContainer>
         <Association Name="FK_Biographie_Artiste">
           <End Type="V2_bdModel.Biographie" Role="Biographie" Multiplicity="0..1" />
@@ -682,6 +700,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Stanley">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="biographie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -780,6 +806,9 @@
     <EntitySetMapping Name="ReleveTransaction">
       <EntityTypeMapping TypeName="IsTypeOf(V2_bdModel.ReleveTransaction)">
         <MappingFragment StoreEntitySet="ReleveTransaction">
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Envoyer" ColumnName="Envoyer" />
                 <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
           <ScalarProperty Name="Acheteur" ColumnName="Acheteur" />
           <ScalarProperty Name="CoutTotal" ColumnName="CoutTotal" />
@@ -812,6 +841,15 @@
         <ScalarProperty Name="CompositeurID" ColumnName="Compositeur_CompositeurID" />
       </EndProperty>
     </AssociationSetMapping>
+          <EntitySetMapping Name="Stanley">
+            <EntityTypeMapping TypeName="V2_bdModel.Stanley">
+              <MappingFragment StoreEntitySet="Stanley">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="biographie" ColumnName="biographie" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

@@ -12,7 +12,7 @@ namespace V2.Controllers
 {
     public class InstrumentsController : Controller
     {
-        private V2_bdEntities db = new V2_bdEntities();
+        private chansons db = new chansons();
 
         // GET: Instruments
         public ActionResult Index()

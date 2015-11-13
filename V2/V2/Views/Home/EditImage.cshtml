@@ -1,0 +1,13 @@
+﻿@model V2.Models.Stanley
+
+@{
+    ViewBag.Title = "EditImage";
+}
+
+<h2>EditImage</h2>
+
+@using (Html.BeginForm("EditImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" value="Ajouter une Image" />
+    <input type="submit" value="Enregistrer" />
+}

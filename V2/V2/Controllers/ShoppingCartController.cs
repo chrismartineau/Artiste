@@ -10,7 +10,7 @@ namespace V2.Controllers
     public class ShoppingCartController : Controller
     {
 
-        V2_bdEntities storeDB = new V2_bdEntities();
+        chansons storeDB = new chansons();
 
         public ActionResult Index()
         {
@@ -136,7 +136,7 @@ namespace V2.Controllers
 
         public ActionResult EmptyCart(int id)
         {
-            using (V2_bdEntities StoreDB = new V2_bdEntities())
+            using (chansons StoreDB = new chansons())
             {
                 ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
 

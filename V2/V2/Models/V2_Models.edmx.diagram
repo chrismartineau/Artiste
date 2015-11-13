@@ -28,6 +28,7 @@
         <AssociationConnector Association="V2_bdModel.FK_Biographie_Artiste" />
         <AssociationConnector Association="V2_bdModel.FK_Artiste_Biographie_FK" />
         <AssociationConnector Association="V2_bdModel.FK_Achat_ReleveTransaction_FK" />
+        <EntityTypeShape EntityType="V2_bdModel.Stanley" Width="1.5" PointX="9" PointY="7.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

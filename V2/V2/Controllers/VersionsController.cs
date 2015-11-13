@@ -12,7 +12,7 @@ namespace V2.Controllers
 {
     public class VersionsController : Controller
     {
-        private V2_bdEntities db = new V2_bdEntities();
+        private chansons db = new chansons();
 
         // GET: Versions
         public ActionResult Index()
@@ -60,7 +60,7 @@ namespace V2.Controllers
                 if (index != 0)
                 {
                     version.Demo = version.Demo.Remove(index, 14);
-                    version.Demo = version.Demo.Insert(index, "height=110");
+                    version.Demo = version.Demo.Insert(index, "height=70");
                 }
                 index = version.Demo.IndexOf("show_comments=");
                 if (index != 0)
@@ -159,10 +159,8 @@ namespace V2.Controllers
             {
                 return HttpNotFound();
             }
-            var versions = (from c in db.Version
-                            where c.ChansonID == id
-                            select c);
-            return View(versions.ToList());
+            
+            return View(chanson);
         }
 
         public ActionResult ListVersionAlbum(int? id)
@@ -207,7 +205,7 @@ namespace V2.Controllers
         public ActionResult AjouterFichier(int? idVersion, HttpPostedFileBase file)
         {
             string[] split = file.ContentType.Split('/');
-            if (db.Album.Find(idVersion) == null)
+            if (db.Version.Find(idVersion) == null)
             {
                 return HttpNotFound();
             }
@@ -219,7 +217,7 @@ namespace V2.Controllers
                 filename = filename.Replace(' ', '-');
                 filename = filename.Replace('\'', '_');
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 filename = "test." + split[1];
             }

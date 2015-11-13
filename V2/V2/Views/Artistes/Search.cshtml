@@ -1,0 +1,43 @@
+﻿@model IEnumerable<V2.Models.Artiste>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Biographie1.Biographie1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Biographie1.Biographie1)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.ArtisteID })
+        </td>
+    </tr>
+}
+
+</table>

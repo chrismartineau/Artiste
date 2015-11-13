@@ -12,7 +12,7 @@ namespace V2.Controllers
 {
     public class AlbumsController : Controller
     {
-        private V2_bdEntities db = new V2_bdEntities();
+        private chansons db = new chansons();
 
         // GET: Albums
         public ActionResult Index()
@@ -170,7 +170,7 @@ namespace V2.Controllers
                 filename = filename.Replace(' ', '-');
                 filename = filename.Replace('\'', '-');
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 filename = "test." + split[1];
             }
@@ -178,6 +178,13 @@ namespace V2.Controllers
             {
                 return View();
             }
+            string fullPath = Request.MapPath("~/Images/" + filename);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
+            db.Album.Find(idAlbum).Image = "";
+            db.SaveChanges();
             System.IO.File.Copy(file.FileName, Server.MapPath("~/Images/" + filename), true);
             db.Album.Find(idAlbum).Image = "../../Images/" + filename;
             db.SaveChanges();

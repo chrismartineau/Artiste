@@ -1,0 +1,14 @@
+﻿@model V2.Models.Stanley
+
+@{
+    ViewBag.Title = "Modifier la biographie";
+}
+
+<h2>Modification de la biographie</h2>
+
+@using (Html.BeginForm("EditBio", "Home", FormMethod.Post, null))
+{
+    @Html.TextArea("bio",Model.biographie, 10, 70, htmlAttributes: new { @name = "bio" })
+    <input type="submit" value="Enregistrer" />
+}
+

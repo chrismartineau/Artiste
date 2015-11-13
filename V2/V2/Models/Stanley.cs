@@ -12,21 +12,10 @@ namespace V2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ReleveTransaction
+    public partial class Stanley
     {
-        public ReleveTransaction()
-        {
-            this.Achat = new HashSet<Achat>();
-        }
-    
-        public int ReleveTransactionID { get; set; }
-        public string Acheteur { get; set; }
-        public decimal CoutTotal { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<bool> Envoyer { get; set; }
-        public string Adresse { get; set; }
-        public string Zip { get; set; }
-    
-        public virtual ICollection<Achat> Achat { get; set; }
+        public int Id { get; set; }
+        public string biographie { get; set; }
+        public string image { get; set; }
     }
 }

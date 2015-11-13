@@ -1,0 +1,54 @@
+﻿@model IEnumerable<V2.Models.ReleveTransaction>
+@{
+    ViewBag.Title = "Commandes";
+}
+
+<h2>Commandes</h2>
+    @foreach (var releve in Model)
+    {
+        
+            <table >
+                <tr>
+                    <th>
+                        Nom de l'album
+                    </th>
+                    <th>
+                        Prix
+                    </th>
+                </tr>
+                @foreach (var achat in releve.Achat)
+                {
+                    <tr>
+                        <td style="font-size:x-large" class="col-lg-2">
+                            @Html.DisplayFor(modelItem => achat.Album.Nom)
+                        </td>
+                        <td class="col-lg-2">
+                            @Html.DisplayFor(modelItem => achat.Album.Prix)
+                        </td>
+                        <td class="col-lg-4"></td>
+                    </tr>
+                }
+            </table>
+
+        <div>@Html.DisplayFor(modelItem => releve.Adresse)</div>
+        <br />
+        if (releve.Envoyer == true)
+        {
+            <div>
+                La commande est envoyée
+                <span style="padding-left:100px">@Html.ActionLink("Marquer cette transaction comme non envoyée", "ChangerEnvoyer", "Account", new { id = releve.ReleveTransactionID }, "")</span> 
+</div>
+        }
+        if (releve.Envoyer == false)
+        {
+            <div>
+                La commande n'est pas envoyée 
+                <span style="padding-left:100px">@Html.ActionLink("Marquer cette transaction comme envoyée", "ChangerEnvoyer", "Account", new { id = releve.ReleveTransactionID }, "")</span> 
+            </div>
+        }
+    
+        <hr />
+
+    }
+
+

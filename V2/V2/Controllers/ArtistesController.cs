@@ -12,7 +12,7 @@ namespace V2.Controllers
 {
     public class ArtistesController : Controller
     {
-        private V2_bdEntities db = new V2_bdEntities();
+        private chansons db = new chansons();
 
         // GET: Artistes
         public ActionResult Index()
@@ -134,6 +134,8 @@ namespace V2.Controllers
                 return RedirectToAction("Create");
             }
             var album = db.Artiste.Where(a => a.Nom.Contains(contenu)).ToList();
+            if (album.Count() == 1)
+                return RedirectToAction("Details", new { id = album.FirstOrDefault().ArtisteID });
             return View(album);
         }
     }

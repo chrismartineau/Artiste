@@ -8,7 +8,7 @@ namespace V2.Models
     public class ShoppingCart
     {
 
-        V2_bdEntities storeDB = new V2_bdEntities();
+        chansons storeDB = new chansons();
         private static ShoppingCart cart = null;
         string ShoppingCartId { get; set; }
         public const string CartSessionKey = "CartId";

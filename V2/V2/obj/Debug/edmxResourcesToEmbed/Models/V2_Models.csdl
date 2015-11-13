@@ -108,6 +108,9 @@
     <Property Name="CoutTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="Date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Achat" Relationship="V2_bdModel.FK_Achat_ReleveTransaction_FK" FromRole="ReleveTransaction" ToRole="Achat" />
+    <Property Name="Envoyer" Type="Boolean" />
+    <Property Name="Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Version">
     <Key>
@@ -293,6 +296,7 @@
       <End Role="ReleveTransaction" EntitySet="ReleveTransaction" />
       <End Role="Achat" EntitySet="Achat" />
     </AssociationSet>
+    <EntitySet Name="Stanley" EntityType="V2_bdModel.Stanley" />
   </EntityContainer>
   <Association Name="FK_Biographie_Artiste">
     <End Type="V2_bdModel.Biographie" Role="Biographie" Multiplicity="0..1" />
@@ -332,4 +336,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Stanley">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="biographie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <meta name="description" content="The description of my page" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -18,14 +19,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nom d'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Stanley Colimon", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Chansons", "Index", "Versions")</li>
-                    <li>@Html.ActionLink("Médiagraphie", "Index", "Albums")</li>
+                    <li>@Html.ActionLink("Discographie", "Index", "Albums")</li>
                     <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
-                    <li style="padding-right:340px">@Html.ActionLink("Rechercher", "Search", "Home")</li>
+                    @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
+                    {
+                        <li>@Html.ActionLink("Voir les commandes", "ListesCommandes", "Account")</li>
+                    }
+                    <li style="padding-right:140px">@Html.ActionLink("Rechercher", "Search", "Home")</li>
                     <li style="padding-right:75px">
                         @Html.Partial("_LoginPartial")
                     </li>  

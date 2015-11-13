@@ -42,7 +42,6 @@
 @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 { 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtisteID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtisteID })
 </p>
 }

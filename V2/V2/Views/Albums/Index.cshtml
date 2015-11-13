@@ -8,13 +8,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/Wordpress.css">
     <link rel="stylesheet" href="../Content/styles.css">
     <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function changeImage(element) {
-            var right = "/Images/unlock.png";
-            var left = "/Images/lock.png";
-            element.src = element.bln ? right : left;
-            element.bln = !element.bln;
-        }
+
 
     </script>
 
@@ -248,14 +242,14 @@
                                 bpath = false;
                             }
                         }
-                        @if (album.Prix != null && bpath == true)
-                        {
+                        @*@if (album.Prix != null && bpath == true)
+                        {*@
                             <div class="addtocart">
                                 @Html.DisplayFor(modelItem => album.Prix)<span>$ - </span>
                                 @Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
                         "ShoppingCart", new { id = album.AlbumID }, "")
                             </div>
-                        }
+                        @*}*@
                         <div class="editalbum">
                             @Html.ActionLink("Voir détails", "Details", new { id = album.AlbumID})
                             @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
