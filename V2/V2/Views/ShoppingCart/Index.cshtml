@@ -44,37 +44,17 @@
     }
 </script>
 <h3>
-    <em>Review</em> your cart:
+    Réviser votre panier
 </h3>
 <p class="button">
 
 
     @using (Html.BeginForm("Checkout", "Paypal", FormMethod.Post))
     {
-        <input type='submit' name="payment_amt" value="CheckOut" />
+        <input type='submit' name="payment_amt" value="Acheter" />
     }
 
 </p>
-@*<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-">
-    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>*@
-
-
-@*<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="no_shipping" value="1" />
-    <input type="hidden" name="business" value="c.m.phyle@gmail.com">
-    <input type="hidden" name="item_name" value="Panier">
-    <input type="hidden" name="currency_code" value="CAD">
-    <input type="hidden" name="amount" value="4.99">
-    <input type="hidden" name="return" value="@Url.Action("AchatComplet","ShoppingCart")">
-    <input type="hidden" name="cancel_return" value="@Url.Action("Index","ShoppingCart")">
-    <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-</form>*@
 <div id="update-message">
 </div>
 
@@ -82,7 +62,7 @@
     {
         if (item.Album != null)
         {
-            <table>
+            <table style="font-size:larger">
                 <tr>
                     <th>
                         Nom de l'album
@@ -99,12 +79,11 @@
                     "Details", "Store", new { id = item.AlbumID }, null)
                     </td>
                     <td>
-                       @Html.DisplayFor(modelitem => item.Album.Prix)
+                        @Html.DisplayFor(modelitem => item.Album.Prix)
                     </td>
                     <td></td>
-
                     <td>
-                        <a href="#" class="RemoveLink" data-id="@item.AchatID">Remove from cart</a>
+                        @Html.ActionLink("Retirer la chanson du panier", "RemoveAlbumFromCart", new { id = item.VersionID })
                     </td>
                 </tr>
 
@@ -113,7 +92,7 @@
         }
         if (item.Album == null)
         {
-            <table>
+            <table style="font-size:larger">
                 <tr>
                     <th class="col-md-3">
                         Nom de la chanson
@@ -130,12 +109,12 @@
                 "Details", "Store", new { id = item.VersionID }, null)
                     </td>
                     <td class="col-md-3"    >
-                        @item.Version.Prix
+                        @Html.DisplayFor(i => item.Version.Prix)
                     </td>
                     <td></td>
 
                     <td>
-                        <a href="#" class="RemoveLink" data-id="@item.AchatID">Remove from cart</a>
+                       @Html.ActionLink("Retirer la chanson du panier", "RemoveVersionFromCart", "ShoppingCart",new { id = item.VersionID }, "")
                     </td>
                 </tr>
             </table>
@@ -150,7 +129,7 @@
                     <td></td>
 
                     <td id="cart-total">
-                        @Html.DisplayFor(modelitem => Model.CartTotal)
+                        @Html.DisplayFor(modelitem => Model.CartTotal)$
                     </td>
                 </tr>
 

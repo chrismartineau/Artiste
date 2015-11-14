@@ -41,11 +41,11 @@ namespace V2.Controllers
                 }
                 else
                 {
-                    return Redirect("APIError.aspx?" + retMsg);
+                    return Redirect("APIError.cshtml?" + retMsg);
                 }
             }
             else
-                return Redirect("APIError.aspx?ErrorCode=AmtMissing");
+                return Redirect("APIError.cshtml?ErrorCode=AmtMissing");
 
         }
 

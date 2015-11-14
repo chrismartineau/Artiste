@@ -1,9 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Recherche";
 }
 
-<h2>Search</h2>
+<h2>Recherche</h2>
+<style>
+     option.red {background-color: black; font-weight: bold; font-size: 12px;}
+</style>
 
 @using (Html.BeginForm("Search", "Home"))
 {
@@ -32,8 +35,14 @@
         Value = "Genres"
     });
     <span style="padding-top:11px" class="right">
-        @Html.TextBox("recherche")
-        @Html.DropDownList("sujet", items)
+            @Html.TextBox("recherche")
+        <select name=sujet>
+            <option class="red" value="Albums" selected="selected">Album</option>
+            <option class="red" value="Artistes">Artiste</option>
+            <option class="red" value="Chansons">Chanson</option>
+            <option class="red" value="Genres">Genre</option>
+        </select>
+
         <input type="submit" value="Rechercher" />
     </span>
 }

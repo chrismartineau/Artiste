@@ -61,12 +61,11 @@ namespace V2.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
         public ActionResult RemoveAlbumFromCart(int id)
         {
             var cart = ShoppingCart.GetCart(this.HttpContext);
             string albumName = storeDB.Achat
-             .Single(item => item.AchatID == id).Album.Nom;
+             .Single(item => item.AlbumID == id).Album.Nom;
             cart.RemoveAlbumFromCart(id);
             var results = new ShoppingCartRemoveViewModel
             {
@@ -84,22 +83,20 @@ namespace V2.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
         public ActionResult RemoveVersionFromCart(int id)
         {
             var cart = ShoppingCart.GetCart(this.HttpContext);
-            string VersionName = storeDB.Achat
-             .Single(item => item.AchatID == id).Version.Chanson.Titre;
-            cart.RemoveAlbumFromCart(id);
+            var VersionName = storeDB.Achat.Where(a => a.VersionID == id).FirstOrDefault();
+            cart.RemoveVersionFromCart(id);
             var results = new ShoppingCartRemoveViewModel
             {
-                Message = Server.HtmlEncode(VersionName) +
-                " a été retiré de votre panier.",
+                //Message = Server.HtmlEncode(VersionName) +
+                //" a été retiré de votre panier.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),
                 DeleteId = id
             };
-            return Json(results);
+            return RedirectToAction("Index");
         }
 
         /// <summary>

@@ -167,7 +167,7 @@
                         <h3 class="titrealbum">@album.Nom</h3>
 
                         <h3>Chansons</h3>
-                        <table class="table">
+                        <table class="table" style="font-size:larger">
                             @if (album.Version.Count < 7)
                             {
                                 foreach (var item in album.Version)
@@ -242,16 +242,16 @@
                                 bpath = false;
                             }
                         }
-                        @*@if (album.Prix != null && bpath == true)
-                        {*@
+                        @if (album.Prix != null && bpath == true)
+                        {
                             <div class="addtocart">
                                 @Html.DisplayFor(modelItem => album.Prix)<span>$ - </span>
                                 @Html.ActionLink("Ajouter au panier", "AddAlbumToCart",
                         "ShoppingCart", new { id = album.AlbumID }, "")
                             </div>
-                        @*}*@
+                        }
                         <div class="editalbum">
-                            @Html.ActionLink("Voir détails", "Details", new { id = album.AlbumID})
+                            @Html.ActionLink("Plus d'infos", "Details", new { id = album.AlbumID})
                             @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
                             {
                                 <span> / </span> @Html.ActionLink("Modifier l'album", "Edit", new { id = album.AlbumID })

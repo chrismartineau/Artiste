@@ -4,29 +4,22 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>
+    @Html.DisplayFor(model => model.Chanson.Titre)
+    @if (Model.Commentaire != null)
+    {
+        <span> - </span>
+
+        @Html.DisplayFor(model => model.Commentaire)
+    }
+</h2>
 
 <div>
-    <h4>Version</h4>
+    
     <hr />
-
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Commentaire)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Commentaire)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreation)
-        </dd>
-
+        @if (Model.Demo != null)
+        {
         <dt>
             @Html.DisplayNameFor(model => model.Demo)
         </dt>
@@ -34,7 +27,9 @@
         <dd>
             @Html.Raw(Model.Demo)
         </dd>
-
+        }
+@if (Model.Duree != null)
+        {
         <dt>
             @Html.DisplayNameFor(model => model.Duree)
         </dt>
@@ -42,45 +37,28 @@
         <dd>
             @Html.DisplayFor(model => model.Duree)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NbEcoutes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NbEcoutes)
-        </dd>
-
+        }
         <dt>
             @Html.DisplayNameFor(model => model.Prix)
         </dt>
-
+@if (Model.Prix != null)
+{ 
         <dd>
-            @Html.DisplayFor(model => model.Prix)
+            @Html.DisplayFor(model => model.Prix)$
         </dd>
-
+}
+@if (Model.Prix == null)
+{
+    <dd>
+        Prix non disponible
+    </dd>
+}
         <dt>
-            @Html.DisplayNameFor(model => model.Visible)
+            Album
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Visible)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Album.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Album.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Chanson.Titre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Chanson.Titre)
+            @Html.DisplayFor(model => model.Album.Nom)
         </dd>
 
 
@@ -100,14 +78,14 @@
 @if (Model.Prix != null && Model.Path != null)
 {
     <h4>
-        @Html.ActionLink("Add to cart", "AddVersionToCart",
+        @Html.ActionLink("Ajouter au panier", "AddVersionToCart",
         "ShoppingCart", new { id = Model.VersionID }, "")
-        @Html.ActionLink("Télécharger", "TelechargerFichier", new { id = Model.VersionID})
 </h4>
-}
+}   <p>
+@Html.ActionLink("Retourner à la liste des chansons", "Index")
+    </p>
 @if (Request.IsAuthenticated && User.IsInRole("Administrateur"))
 {<p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.VersionID }) |
-        @Html.ActionLink("Back to List", "Index")
     </p>
 }
