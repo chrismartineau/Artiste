@@ -53,7 +53,7 @@ namespace V2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ChansonID,Titre,GenreID")] Chanson chanson)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && chanson.Titre != null)
             {
                 chanson.DateCreation = DateTime.Now;
                 db.Chanson.Add(chanson);

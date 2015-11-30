@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="chansonsModelStoreContainer" CdmEntityContainer="chansons">
+    <EntitySetMapping Name="Achat">
+      <EntityTypeMapping TypeName="chansonsModel.Achat">
+        <MappingFragment StoreEntitySet="Achat">
+          <ScalarProperty Name="AchatID" ColumnName="AchatID" />
+          <ScalarProperty Name="Cout" ColumnName="Cout" />
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+          <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Album">
+      <EntityTypeMapping TypeName="chansonsModel.Album">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artiste">
+      <EntityTypeMapping TypeName="chansonsModel.Artiste">
+        <MappingFragment StoreEntitySet="Artiste">
+          <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="BiographieID" ColumnName="BiographieID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Biographie">
+      <EntityTypeMapping TypeName="chansonsModel.Biographie">
+        <MappingFragment StoreEntitySet="Biographie">
+          <ScalarProperty Name="BiographieID" ColumnName="BiographieID" />
+          <ScalarProperty Name="Biographie1" ColumnName="Biographie1" />
+          <ScalarProperty Name="DateDernierChangement" ColumnName="DateDernierChangement" />
+          <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chanson">
+      <EntityTypeMapping TypeName="chansonsModel.Chanson">
+        <MappingFragment StoreEntitySet="Chanson">
+          <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="Titre" ColumnName="Titre" />
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Compositeur">
+      <EntityTypeMapping TypeName="chansonsModel.Compositeur">
+        <MappingFragment StoreEntitySet="Compositeur">
+          <ScalarProperty Name="CompositeurID" ColumnName="CompositeurID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genre">
+      <EntityTypeMapping TypeName="chansonsModel.Genre">
+        <MappingFragment StoreEntitySet="Genre">
+          <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instrument">
+      <EntityTypeMapping TypeName="chansonsModel.Instrument">
+        <MappingFragment StoreEntitySet="Instrument">
+          <ScalarProperty Name="InstrumentID" ColumnName="InstrumentID" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jouer">
+      <EntityTypeMapping TypeName="chansonsModel.Jouer">
+        <MappingFragment StoreEntitySet="Jouer">
+          <ScalarProperty Name="JouerID" ColumnName="JouerID" />
+          <ScalarProperty Name="ArtisteID" ColumnName="ArtisteID" />
+          <ScalarProperty Name="InstrumentID" ColumnName="InstrumentID" />
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReleveTransaction">
+      <EntityTypeMapping TypeName="chansonsModel.ReleveTransaction">
+        <MappingFragment StoreEntitySet="ReleveTransaction">
+          <ScalarProperty Name="ReleveTransactionID" ColumnName="ReleveTransactionID" />
+          <ScalarProperty Name="Acheteur" ColumnName="Acheteur" />
+          <ScalarProperty Name="CoutTotal" ColumnName="CoutTotal" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Envoyer" ColumnName="Envoyer" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stanley">
+      <EntityTypeMapping TypeName="chansonsModel.Stanley">
+        <MappingFragment StoreEntitySet="Stanley">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="biographie" ColumnName="biographie" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Version">
+      <EntityTypeMapping TypeName="chansonsModel.Version">
+        <MappingFragment StoreEntitySet="Version">
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="ChansonID" ColumnName="ChansonID" />
+          <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+          <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="Demo" ColumnName="Demo" />
+          <ScalarProperty Name="Duree" ColumnName="Duree" />
+          <ScalarProperty Name="NbEcoutes" ColumnName="NbEcoutes" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="Visible" ColumnName="Visible" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ChansonCompositeur" TypeName="chansonsModel.ChansonCompositeur" StoreEntitySet="ChansonCompositeur">
+      <EndProperty Name="Chanson">
+        <ScalarProperty Name="ChansonID" ColumnName="Chanson_ChansonID" />
+      </EndProperty>
+      <EndProperty Name="Compositeur">
+        <ScalarProperty Name="CompositeurID" ColumnName="Compositeur_CompositeurID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

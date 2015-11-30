@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "SetAdresse";
+}
+
+<h2>Veuillez entrer votre adresse (Vous aurez à les entrer de nouveau sur Paypal)</h2>
+
+@using (Html.BeginForm("ChooseShipping", "ShoppingCart", FormMethod.Get, null))
+{
+    <p>Adresse : @Html.TextBox("adresse")</p>
+    <p>Ville : @Html.TextBox("ville")</p>
+    <p>Province (2lettres) : @Html.TextBox("province")</p>
+    <p>Pays (2lettres) @Html.TextBox("pays")</p>
+    <p>Code Postal (sans espace) : @Html.TextBox("codepostal")</p>
+
+    <input type="submit" value="Enregistrer" />
+}
+

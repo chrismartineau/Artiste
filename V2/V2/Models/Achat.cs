@@ -22,7 +22,7 @@ namespace V2.Models
         public Nullable<int> ReleveTransactionID { get; set; }
     
         public virtual Album Album { get; set; }
-        public virtual Version Version { get; set; }
         public virtual ReleveTransaction ReleveTransaction { get; set; }
+        public virtual Version Version { get; set; }
     }
 }

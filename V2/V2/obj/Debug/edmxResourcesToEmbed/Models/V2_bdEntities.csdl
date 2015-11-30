@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="V2_bdModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Achat">
+    <Key>
+      <PropertyRef Name="AchatID" />
+    </Key>
+    <Property Name="AchatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cout" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="AlbumID" Type="Int32" />
+    <Property Name="VersionID" Type="Int32" />
+    <NavigationProperty Name="Album" Relationship="Self.FK_Achat_Album_FK" FromRole="Achat" ToRole="Album" />
+    <NavigationProperty Name="Version" Relationship="Self.FK_Achat_Version_FK" FromRole="Achat" ToRole="Version" />
+    <Property Name="CartID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReleveTransactionID" Type="Int32" />
+    <NavigationProperty Name="ReleveTransaction" Relationship="V2_bdModels.FK_Achat_ReleveTransaction_FK" FromRole="Achat" ToRole="ReleveTransaction" />
+  </EntityType>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="AlbumID" />
+    </Key>
+    <Property Name="AlbumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreation" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Nom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Achat" Relationship="Self.FK_Achat_Album_FK" FromRole="Album" ToRole="Achat" />
+    <NavigationProperty Name="Version" Relationship="Self.FK_Version_Album_FK" FromRole="Album" ToRole="Version" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Artiste">
+    <Key>
+      <PropertyRef Name="ArtisteID" />
+    </Key>
+    <Property Name="ArtisteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Jouer" Relationship="Self.FK_Jouer_Artiste_FK" FromRole="Artiste" ToRole="Jouer" />
+    <Property Name="BiographieID" Type="Int32" Nullable="true" />
+    <NavigationProperty Name="Biographie1" Relationship="V2_bdModels.FK_Biographie_Artiste" FromRole="Artiste" ToRole="Biographie" />
+    <NavigationProperty Name="Biographie" Relationship="V2_bdModels.FK_Artiste_Biographie_FK" FromRole="Artiste" ToRole="Biographie" />
+  </EntityType>
+  <EntityType Name="Biographie">
+    <Key>
+      <PropertyRef Name="BiographieID" />
+    </Key>
+    <Property Name="BiographieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Biographie1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateDernierChangement" Type="DateTime" Precision="3" />
+    <Property Name="ArtisteID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Artiste1" Relationship="V2_bdModels.FK_Biographie_Artiste" FromRole="Biographie" ToRole="Artiste" />
+    <NavigationProperty Name="Artiste" Relationship="V2_bdModels.FK_Artiste_Biographie_FK" FromRole="Biographie" ToRole="Artiste" />
+  </EntityType>
+  <EntityType Name="Chanson">
+    <Key>
+      <PropertyRef Name="ChansonID" />
+    </Key>
+    <Property Name="ChansonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreation" Type="DateTime" Precision="3" />
+    <Property Name="Titre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GenreID" Type="Int32" />
+    <NavigationProperty Name="Genre" Relationship="Self.FK_Chanson_Genre_FK" FromRole="Chanson" ToRole="Genre" />
+    <NavigationProperty Name="Version" Relationship="Self.FK_Version_Chanson_FK" FromRole="Chanson" ToRole="Version" />
+    <NavigationProperty Name="Compositeur" Relationship="Self.ChansonCompositeur" FromRole="Chanson" ToRole="Compositeur" />
+  </EntityType>
+  <EntityType Name="Compositeur">
+    <Key>
+      <PropertyRef Name="CompositeurID" />
+    </Key>
+    <Property Name="CompositeurID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Chanson" Relationship="Self.ChansonCompositeur" FromRole="Compositeur" ToRole="Chanson" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="GenreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Chanson" Relationship="Self.FK_Chanson_Genre_FK" FromRole="Genre" ToRole="Chanson" />
+  </EntityType>
+  <EntityType Name="Instrument">
+    <Key>
+      <PropertyRef Name="InstrumentID" />
+    </Key>
+    <Property Name="InstrumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Jouer" Relationship="Self.FK_Jouer_Instrument_FK" FromRole="Instrument" ToRole="Jouer" />
+  </EntityType>
+  <EntityType Name="Jouer">
+    <Key>
+      <PropertyRef Name="JouerID" />
+    </Key>
+    <Property Name="JouerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ArtisteID" Type="Int32" />
+    <Property Name="InstrumentID" Type="Int32" />
+    <Property Name="VersionID" Type="Int32" />
+    <NavigationProperty Name="Artiste" Relationship="Self.FK_Jouer_Artiste_FK" FromRole="Jouer" ToRole="Artiste" />
+    <NavigationProperty Name="Instrument" Relationship="Self.FK_Jouer_Instrument_FK" FromRole="Jouer" ToRole="Instrument" />
+    <NavigationProperty Name="Version" Relationship="Self.FK_Jouer_Version_FK" FromRole="Jouer" ToRole="Version" />
+  </EntityType>
+  <EntityType Name="ReleveTransaction">
+    <Key>
+      <PropertyRef Name="ReleveTransactionID" />
+    </Key>
+    <Property Name="ReleveTransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Acheteur" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CoutTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Achat" Relationship="V2_bdModels.FK_Achat_ReleveTransaction_FK" FromRole="ReleveTransaction" ToRole="Achat" />
+    <Property Name="Envoyer" Type="Boolean" />
+    <Property Name="Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Version">
+    <Key>
+      <PropertyRef Name="VersionID" />
+    </Key>
+    <Property Name="VersionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChansonID" Type="Int32" Nullable="false" />
+    <Property Name="AlbumID" Type="Int32" Nullable="false" />
+    <Property Name="Commentaire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreation" Type="DateTime" Precision="3" />
+    <Property Name="Demo" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" ConcurrencyMode="None" />
+    <Property Name="Duree" Type="Int32" />
+    <Property Name="NbEcoutes" Type="Int32" />
+    <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Visible" Type="Boolean" />
+    <NavigationProperty Name="Achat" Relationship="Self.FK_Achat_Version_FK" FromRole="Version" ToRole="Achat" />
+    <NavigationProperty Name="Album" Relationship="Self.FK_Version_Album_FK" FromRole="Version" ToRole="Album" />
+    <NavigationProperty Name="Chanson" Relationship="Self.FK_Version_Chanson_FK" FromRole="Version" ToRole="Chanson" />
+    <NavigationProperty Name="Jouer" Relationship="Self.FK_Jouer_Version_FK" FromRole="Version" ToRole="Jouer" />
+    <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Achat_Album_FK">
+    <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumID" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="AlbumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Achat_Version_FK">
+    <End Role="Version" Type="Self.Version" Multiplicity="0..1" />
+    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Version">
+        <PropertyRef Name="VersionID" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Version_Album_FK">
+    <End Role="Album" Type="Self.Album" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Version" Type="Self.Version" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumID" />
+      </Principal>
+      <Dependent Role="Version">
+        <PropertyRef Name="AlbumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jouer_Artiste_FK">
+    <End Role="Artiste" Type="Self.Artiste" Multiplicity="0..1" />
+    <End Role="Jouer" Type="Self.Jouer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artiste">
+        <PropertyRef Name="ArtisteID" />
+      </Principal>
+      <Dependent Role="Jouer">
+        <PropertyRef Name="ArtisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chanson_Genre_FK">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+    <End Role="Chanson" Type="Self.Chanson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="GenreID" />
+      </Principal>
+      <Dependent Role="Chanson">
+        <PropertyRef Name="GenreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Version_Chanson_FK">
+    <End Role="Chanson" Type="Self.Chanson" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Version" Type="Self.Version" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chanson">
+        <PropertyRef Name="ChansonID" />
+      </Principal>
+      <Dependent Role="Version">
+        <PropertyRef Name="ChansonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jouer_Instrument_FK">
+    <End Role="Instrument" Type="Self.Instrument" Multiplicity="0..1" />
+    <End Role="Jouer" Type="Self.Jouer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instrument">
+        <PropertyRef Name="InstrumentID" />
+      </Principal>
+      <Dependent Role="Jouer">
+        <PropertyRef Name="InstrumentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jouer_Version_FK">
+    <End Role="Version" Type="Self.Version" Multiplicity="0..1" />
+    <End Role="Jouer" Type="Self.Jouer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Version">
+        <PropertyRef Name="VersionID" />
+      </Principal>
+      <Dependent Role="Jouer">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChansonCompositeur">
+    <End Role="Chanson" Type="Self.Chanson" Multiplicity="*" />
+    <End Role="Compositeur" Type="Self.Compositeur" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="V2_bdEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Achat" EntityType="Self.Achat" />
+    <EntitySet Name="Album" EntityType="Self.Album" />
+    <EntitySet Name="Artiste" EntityType="Self.Artiste" />
+    <EntitySet Name="Biographie" EntityType="Self.Biographie" />
+    <EntitySet Name="Chanson" EntityType="Self.Chanson" />
+    <EntitySet Name="Compositeur" EntityType="Self.Compositeur" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" />
+    <EntitySet Name="Instrument" EntityType="Self.Instrument" />
+    <EntitySet Name="Jouer" EntityType="Self.Jouer" />
+    <EntitySet Name="ReleveTransaction" EntityType="Self.ReleveTransaction" />
+    <EntitySet Name="Version" EntityType="Self.Version" />
+    <AssociationSet Name="FK_Achat_Album_FK" Association="Self.FK_Achat_Album_FK">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="Achat" EntitySet="Achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Achat_Version_FK" Association="Self.FK_Achat_Version_FK">
+      <End Role="Version" EntitySet="Version" />
+      <End Role="Achat" EntitySet="Achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Version_Album_FK" Association="Self.FK_Version_Album_FK">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="Version" EntitySet="Version" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jouer_Artiste_FK" Association="Self.FK_Jouer_Artiste_FK">
+      <End Role="Artiste" EntitySet="Artiste" />
+      <End Role="Jouer" EntitySet="Jouer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chanson_Genre_FK" Association="Self.FK_Chanson_Genre_FK">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="Chanson" EntitySet="Chanson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Version_Chanson_FK" Association="Self.FK_Version_Chanson_FK">
+      <End Role="Chanson" EntitySet="Chanson" />
+      <End Role="Version" EntitySet="Version" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jouer_Instrument_FK" Association="Self.FK_Jouer_Instrument_FK">
+      <End Role="Instrument" EntitySet="Instrument" />
+      <End Role="Jouer" EntitySet="Jouer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jouer_Version_FK" Association="Self.FK_Jouer_Version_FK">
+      <End Role="Version" EntitySet="Version" />
+      <End Role="Jouer" EntitySet="Jouer" />
+    </AssociationSet>
+    <AssociationSet Name="ChansonCompositeur" Association="Self.ChansonCompositeur">
+      <End Role="Chanson" EntitySet="Chanson" />
+      <End Role="Compositeur" EntitySet="Compositeur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Biographie_Artiste" Association="V2_bdModels.FK_Biographie_Artiste">
+      <End Role="Biographie" EntitySet="Biographie" />
+      <End Role="Artiste" EntitySet="Artiste" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Artiste_Biographie_FK" Association="V2_bdModels.FK_Artiste_Biographie_FK">
+      <End Role="Artiste" EntitySet="Artiste" />
+      <End Role="Biographie" EntitySet="Biographie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Achat_ReleveTransaction_FK" Association="V2_bdModels.FK_Achat_ReleveTransaction_FK">
+      <End Role="ReleveTransaction" EntitySet="ReleveTransaction" />
+      <End Role="Achat" EntitySet="Achat" />
+    </AssociationSet>
+    <EntitySet Name="Stanley" EntityType="V2_bdModels.Stanley" />
+  </EntityContainer>
+  <Association Name="FK_Biographie_Artiste">
+    <End Type="V2_bdModels.Biographie" Role="Biographie" Multiplicity="0..1" />
+    <End Type="V2_bdModels.Artiste" Role="Artiste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Biographie">
+        <PropertyRef Name="BiographieID" />
+      </Principal>
+      <Dependent Role="Artiste">
+        <PropertyRef Name="BiographieID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Artiste_Biographie_FK">
+    <End Type="V2_bdModels.Artiste" Role="Artiste" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="V2_bdModels.Biographie" Role="Biographie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artiste">
+        <PropertyRef Name="ArtisteID" />
+      </Principal>
+      <Dependent Role="Biographie">
+        <PropertyRef Name="ArtisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Achat_ReleveTransaction_FK">
+    <End Type="V2_bdModels.ReleveTransaction" Role="ReleveTransaction" Multiplicity="0..1" />
+    <End Type="V2_bdModels.Achat" Role="Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReleveTransaction">
+        <PropertyRef Name="ReleveTransactionID" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="ReleveTransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Stanley">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="biographie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

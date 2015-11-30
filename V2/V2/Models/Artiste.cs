@@ -14,10 +14,11 @@ namespace V2.Models
     
     public partial class Artiste
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Artiste()
         {
-            this.Jouer = new HashSet<Jouer>();
             this.Biographie = new HashSet<Biographie>();
+            this.Jouer = new HashSet<Jouer>();
         }
     
         public int ArtisteID { get; set; }
@@ -25,8 +26,10 @@ namespace V2.Models
         public string Role { get; set; }
         public Nullable<int> BiographieID { get; set; }
     
-        public virtual ICollection<Jouer> Jouer { get; set; }
-        public virtual Biographie Biographie1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Biographie> Biographie { get; set; }
+        public virtual Biographie Biographie1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Jouer> Jouer { get; set; }
     }
 }

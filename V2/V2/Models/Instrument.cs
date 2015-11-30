@@ -14,6 +14,7 @@ namespace V2.Models
     
     public partial class Instrument
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Instrument()
         {
             this.Jouer = new HashSet<Jouer>();
@@ -23,6 +24,7 @@ namespace V2.Models
         public string Nom { get; set; }
         public string Type { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Jouer> Jouer { get; set; }
     }
 }

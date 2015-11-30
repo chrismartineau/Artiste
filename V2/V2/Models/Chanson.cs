@@ -14,6 +14,7 @@ namespace V2.Models
     
     public partial class Chanson
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Chanson()
         {
             this.Version = new HashSet<Version>();
@@ -26,7 +27,9 @@ namespace V2.Models
         public Nullable<int> GenreID { get; set; }
     
         public virtual Genre Genre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Version> Version { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Compositeur> Compositeur { get; set; }
     }
 }

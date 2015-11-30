@@ -14,6 +14,7 @@ namespace V2.Models
     
     public partial class ReleveTransaction
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ReleveTransaction()
         {
             this.Achat = new HashSet<Achat>();
@@ -26,7 +27,10 @@ namespace V2.Models
         public Nullable<bool> Envoyer { get; set; }
         public string Adresse { get; set; }
         public string Zip { get; set; }
+        public string Ville { get; set; }
+        public string Province { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Achat> Achat { get; set; }
     }
 }

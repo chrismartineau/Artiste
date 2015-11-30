@@ -1,9 +1,11 @@
-﻿using System;
+﻿using V2.Controllers.Purolator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using V2.Models;
+using Microsoft.AspNet.Identity;
 
 namespace V2.Controllers
 {
@@ -144,6 +146,36 @@ namespace V2.Controllers
                 StoreDB.SaveChanges();
             }
             return RedirectToAction("Commandes", "Account");
+        }
+
+        [HttpGet]
+        public ActionResult SetAdresse()
+        {
+            bool balbum = false;
+            ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+            foreach (var ca in cart.GetCartItems())
+            {
+                if (ca.AlbumID != null)
+                    balbum = true;
+            }
+            if (!balbum)
+                return RedirectToAction("Checkout", "Paypal", new { livraison = 0});
+            return View();
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult ChooseShipping(string adresse, string ville, string province, string pays, string codepostal)
+        {
+          
+            string id = User.Identity.GetUserName();
+            var c = storeDB.ReleveTransaction.Where(a => a.Acheteur == id);
+            List<DictionaryCollection> lstdc = new List<DictionaryCollection>();
+            TestClient client = new TestClient();
+            foreach (var cd in client.GetList(ville, pays, province, codepostal))
+                lstdc.Add(cd);
+            return View(lstdc.ToList());
         }
     }
 }

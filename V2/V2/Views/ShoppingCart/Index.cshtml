@@ -49,7 +49,7 @@
 <p class="button">
 
 
-    @using (Html.BeginForm("Checkout", "Paypal", FormMethod.Post))
+    @using (Html.BeginForm("SetAdresse", "ShoppingCart", FormMethod.Get))
     {
         <input type='submit' name="payment_amt" value="Acheter" />
     }

@@ -65,7 +65,7 @@ namespace V2.Controllers
         /// <param name="returnURL"></param>
         /// <param name="cancelURL"></param>
         /// <returns></returns>
-        public bool ShortcutExpressCheckout(string amt, ref string token, ref string retMsg, List<Achat> cartItems, string returnURL, string cancelURL)
+        public bool ShortcutExpressCheckout(string amt, ref string token, ref string retMsg, List<Achat> cartItems, string returnURL, string cancelURL, decimal? livraison)
         {
             string host = "www.paypal.com";
             if (bSandbox)
@@ -101,6 +101,12 @@ namespace V2.Controllers
                 }
                 i++;
 
+            }
+            if (livraison != null)
+            {
+                encoder["L_PAYMENTREQUEST_0_NAME" + i] = "livraison";
+                encoder["L_PAYMENTREQUEST_0_AMT" + i] = ((decimal)livraison).ToString("N2", CultureInfo.InvariantCulture);
+                encoder["L_PAYMENTREQUEST_0_QTY" + i] = 1.ToString();
             }
 
             string pStrrequestforNvp = encoder.Encode();
@@ -226,10 +232,10 @@ namespace V2.Controllers
             string strAck = decoder["ACK"].ToLower();
             if (strAck != null && (strAck == "success" || strAck == "successwithwarning"))
             {
-                ShippingAddress += "Street: " + decoder["PAYMENTREQUEST_0_SHIPTOSTREET"];
-                ShippingAddress += " \nCity: " + decoder["PAYMENTREQUEST_0_SHIPTOCITY"];
-                ShippingAddress += " \nState: " + decoder["PAYMENTREQUEST_0_SHIPTOSTATE"];
-                ShippingAddress +=  " \nAdress Zip: " + decoder["PAYMENTREQUEST_0_SHIPTOZIP"];
+                ShippingAddress += decoder["PAYMENTREQUEST_0_SHIPTOSTREET"];
+                ShippingAddress += ";" + decoder["PAYMENTREQUEST_0_SHIPTOCITY"];
+                ShippingAddress += ";" + decoder["PAYMENTREQUEST_0_SHIPTOSTATE"];
+                ShippingAddress +=  ";" + decoder["PAYMENTREQUEST_0_SHIPTOZIP"];
                 return true;
             }
             else

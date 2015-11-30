@@ -1,0 +1,24 @@
+﻿@model IList<V2.Models.DictionaryCollection>
+@{
+    ViewBag.Title = "Veuillez choisir votre option de livraison";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    @foreach (var c in Model)
+    {
+
+        <div class="col-lg-5" style="border:2px double black;margin-bottom:20px;margin-right:20px;padding-bottom:10px">
+            <h3>@c.ServiceNom</h3>
+            @if (c.Prix < 15)
+            {
+                <b style="color:green">@c.Prix$</b>
+            }
+            @if (c.Prix >= 15)
+            {
+                <b style="color:yellow">@c.Prix$</b>
+            } <b> | </b>
+            @c.DateDepart - @c.DateArrivee <span style="position:absolute;right:30px"> @Html.ActionLink("Choisir", "CheckOut", "Paypal", new { livraison = c.Prix }, "")</span>
+        </div>
+    }
+</div>

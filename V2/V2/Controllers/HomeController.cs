@@ -12,7 +12,9 @@ namespace V2.Controllers
         chansons db = new chansons();
         public ActionResult Index()
         {
-            return View(db.Stanley.FirstOrDefault());
+                return View(db.Stanley.FirstOrDefault());
+            
+
         }
 
         public ActionResult About()

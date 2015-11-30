@@ -17,13 +17,17 @@ namespace V2.Controllers
         /// Permet d'exécuter un Express Checkout avec les items dans le panier
         /// </summary>
         /// <returns></returns>
-        public ActionResult Checkout()
+        public ActionResult Checkout(decimal? livraison)
         {
             NVPAPICaller test = new NVPAPICaller();
             string retMsg = "";
             string token = "";
             ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+            if (livraison == null)
+                livraison = 0;
             decimal damt = cart.GetTotal();
+            if (livraison != null)
+                damt += (decimal)livraison;
 
             if (damt > 0)
             {
@@ -33,7 +37,7 @@ namespace V2.Controllers
                 string cancelURL = "http://" + baseURL + Url.Action("Cancel");
 
 
-                bool ret = test.ShortcutExpressCheckout(amt, ref token, ref retMsg, cart.GetCartItems(), retunURL, cancelURL);
+                bool ret = test.ShortcutExpressCheckout(amt, ref token, ref retMsg, cart.GetCartItems(), retunURL, cancelURL, livraison);
                 if (ret)
                 {
                     HttpContext.Session["token"] = token;
@@ -151,7 +155,11 @@ namespace V2.Controllers
                 ret = test.GetShippingDetails(token, ref payerId, ref shippingAddress, ref retMsg);
 
                 ReleveTransaction releve = new ReleveTransaction();
-                releve.Adresse = shippingAddress;
+                string[] split = shippingAddress.Split(';');
+                releve.Adresse = split[0];
+                releve.Province = split[2];
+                releve.Ville = split[1];
+                releve.Zip = split[3];
                 releve.Acheteur = User.Identity.GetUserName();
                 releve.CoutTotal = cart.GetTotal();
                 releve.Date = DateTime.Now;

@@ -14,6 +14,7 @@ namespace V2.Models
     
     public partial class Biographie
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Biographie()
         {
             this.Artiste1 = new HashSet<Artiste>();
@@ -24,7 +25,8 @@ namespace V2.Models
         public Nullable<System.DateTime> DateDernierChangement { get; set; }
         public int ArtisteID { get; set; }
     
-        public virtual ICollection<Artiste> Artiste1 { get; set; }
         public virtual Artiste Artiste { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Artiste> Artiste1 { get; set; }
     }
 }

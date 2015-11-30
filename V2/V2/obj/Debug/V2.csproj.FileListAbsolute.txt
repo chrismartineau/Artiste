@@ -291,6 +291,6 @@ C:\Users\Christophe\Desktop\École\Troisième Année\Première Session\Projet de
 C:\Users\Christophe\Desktop\École\Troisième Année\Première Session\Projet de fin d'études\Artiste\V2\V2\bin\fr\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\Christophe\Desktop\École\Troisième Année\Première Session\Projet de fin d'études\Artiste\V2\V2\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\Christophe\Desktop\École\Troisième Année\Première Session\Projet de fin d'études\Artiste\V2\V2\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\Christophe\Desktop\École\Troisième Année\Première Session\Projet de fin d'études\Artiste\V2\V2\obj\Debug\V2.csprojResolveAssemblyReference.cache
 C:\Users\Christophe\Desktop\École\Troisième Année\Première Session\Projet de fin d'études\Artiste\V2\V2\obj\Debug\V2.dll
 C:\Users\Christophe\Desktop\École\Troisième Année\Première Session\Projet de fin d'études\Artiste\V2\V2\obj\Debug\V2.pdb
+C:\Users\Christophe\Desktop\École\Troisième Année\Première Session\Projet de fin d'études\Artiste\V2\V2\obj\Debug\V2.csprojResolveAssemblyReference.cache

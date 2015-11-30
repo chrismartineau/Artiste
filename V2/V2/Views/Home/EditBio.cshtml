@@ -8,7 +8,7 @@
 
 @using (Html.BeginForm("EditBio", "Home", FormMethod.Post, null))
 {
-    @Html.TextArea("bio",Model.biographie, 10, 70, htmlAttributes: new { @name = "bio" })
+    @Html.TextArea("bio",Model.biographie, 100, 170, htmlAttributes: new { @name = "bio" })
     <input type="submit" value="Enregistrer" />
 }
 

@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="chansonsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Achat">
+    <Key>
+      <PropertyRef Name="AchatID" />
+    </Key>
+    <Property Name="AchatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cout" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="AlbumID" Type="int" />
+    <Property Name="VersionID" Type="int" />
+    <Property Name="CartID" Type="nvarchar(max)" />
+    <Property Name="ReleveTransactionID" Type="int" />
+  </EntityType>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="AlbumID" />
+    </Key>
+    <Property Name="AlbumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreation" Type="datetime" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Prix" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Artiste">
+    <Key>
+      <PropertyRef Name="ArtisteID" />
+    </Key>
+    <Property Name="ArtisteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="40" />
+    <Property Name="Role" Type="nvarchar" MaxLength="40" />
+    <Property Name="BiographieID" Type="int" />
+  </EntityType>
+  <EntityType Name="Biographie">
+    <Key>
+      <PropertyRef Name="BiographieID" />
+    </Key>
+    <Property Name="BiographieID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Biographie1" Type="nvarchar(max)" />
+    <Property Name="DateDernierChangement" Type="datetime" />
+    <Property Name="ArtisteID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chanson">
+    <Key>
+      <PropertyRef Name="ChansonID" />
+    </Key>
+    <Property Name="ChansonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreation" Type="datetime" />
+    <Property Name="Titre" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="GenreID" Type="int" />
+  </EntityType>
+  <EntityType Name="ChansonCompositeur">
+    <Key>
+      <PropertyRef Name="Chanson_ChansonID" />
+      <PropertyRef Name="Compositeur_CompositeurID" />
+    </Key>
+    <Property Name="Chanson_ChansonID" Type="int" Nullable="false" />
+    <Property Name="Compositeur_CompositeurID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Compositeur">
+    <Key>
+      <PropertyRef Name="CompositeurID" />
+    </Key>
+    <Property Name="CompositeurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="GenreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Instrument">
+    <Key>
+      <PropertyRef Name="InstrumentID" />
+    </Key>
+    <Property Name="InstrumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jouer">
+    <Key>
+      <PropertyRef Name="JouerID" />
+    </Key>
+    <Property Name="JouerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArtisteID" Type="int" />
+    <Property Name="InstrumentID" Type="int" />
+    <Property Name="VersionID" Type="int" />
+  </EntityType>
+  <EntityType Name="ReleveTransaction">
+    <Key>
+      <PropertyRef Name="ReleveTransactionID" />
+    </Key>
+    <Property Name="ReleveTransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Acheteur" Type="nvarchar" MaxLength="30" />
+    <Property Name="CoutTotal" Type="money" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Envoyer" Type="bit" />
+    <Property Name="Adresse" Type="nvarchar(max)" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+    <Property Name="Province" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Stanley">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="biographie" Type="nvarchar(max)" />
+    <Property Name="image" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Version">
+    <Key>
+      <PropertyRef Name="VersionID" />
+    </Key>
+    <Property Name="VersionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChansonID" Type="int" Nullable="false" />
+    <Property Name="AlbumID" Type="int" Nullable="false" />
+    <Property Name="Commentaire" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateCreation" Type="datetime" />
+    <Property Name="Demo" Type="nvarchar(max)" />
+    <Property Name="Duree" Type="int" />
+    <Property Name="NbEcoutes" Type="int" />
+    <Property Name="Prix" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="Visible" Type="bit" />
+    <Property Name="Path" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Achat_Album_FK">
+    <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumID" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="AlbumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Achat_ReleveTransaction_FK">
+    <End Role="ReleveTransaction" Type="Self.ReleveTransaction" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReleveTransaction">
+        <PropertyRef Name="ReleveTransactionID" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="ReleveTransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Achat_Version_FK">
+    <End Role="Version" Type="Self.Version" Multiplicity="0..1" />
+    <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Version">
+        <PropertyRef Name="VersionID" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Artiste_Biographie_FK">
+    <End Role="Artiste" Type="Self.Artiste" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Biographie" Type="Self.Biographie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artiste">
+        <PropertyRef Name="ArtisteID" />
+      </Principal>
+      <Dependent Role="Biographie">
+        <PropertyRef Name="ArtisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Biographie_Artiste">
+    <End Role="Biographie" Type="Self.Biographie" Multiplicity="0..1" />
+    <End Role="Artiste" Type="Self.Artiste" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Biographie">
+        <PropertyRef Name="BiographieID" />
+      </Principal>
+      <Dependent Role="Artiste">
+        <PropertyRef Name="BiographieID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chanson_Genre_FK">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+    <End Role="Chanson" Type="Self.Chanson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="GenreID" />
+      </Principal>
+      <Dependent Role="Chanson">
+        <PropertyRef Name="GenreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChansonCompositeur_Chanson">
+    <End Role="Chanson" Type="Self.Chanson" Multiplicity="1" />
+    <End Role="ChansonCompositeur" Type="Self.ChansonCompositeur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chanson">
+        <PropertyRef Name="ChansonID" />
+      </Principal>
+      <Dependent Role="ChansonCompositeur">
+        <PropertyRef Name="Chanson_ChansonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChansonCompositeur_Compositeur">
+    <End Role="Compositeur" Type="Self.Compositeur" Multiplicity="1" />
+    <End Role="ChansonCompositeur" Type="Self.ChansonCompositeur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compositeur">
+        <PropertyRef Name="CompositeurID" />
+      </Principal>
+      <Dependent Role="ChansonCompositeur">
+        <PropertyRef Name="Compositeur_CompositeurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jouer_Artiste_FK">
+    <End Role="Artiste" Type="Self.Artiste" Multiplicity="0..1" />
+    <End Role="Jouer" Type="Self.Jouer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artiste">
+        <PropertyRef Name="ArtisteID" />
+      </Principal>
+      <Dependent Role="Jouer">
+        <PropertyRef Name="ArtisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jouer_Instrument_FK">
+    <End Role="Instrument" Type="Self.Instrument" Multiplicity="0..1" />
+    <End Role="Jouer" Type="Self.Jouer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instrument">
+        <PropertyRef Name="InstrumentID" />
+      </Principal>
+      <Dependent Role="Jouer">
+        <PropertyRef Name="InstrumentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jouer_Version_FK">
+    <End Role="Version" Type="Self.Version" Multiplicity="0..1" />
+    <End Role="Jouer" Type="Self.Jouer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Version">
+        <PropertyRef Name="VersionID" />
+      </Principal>
+      <Dependent Role="Jouer">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Version_Album_FK">
+    <End Role="Album" Type="Self.Album" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Version" Type="Self.Version" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumID" />
+      </Principal>
+      <Dependent Role="Version">
+        <PropertyRef Name="AlbumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Version_Chanson_FK">
+    <End Role="Chanson" Type="Self.Chanson" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Version" Type="Self.Version" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chanson">
+        <PropertyRef Name="ChansonID" />
+      </Principal>
+      <Dependent Role="Version">
+        <PropertyRef Name="ChansonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="chansonsModelStoreContainer">
+    <EntitySet Name="Achat" EntityType="Self.Achat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Artiste" EntityType="Self.Artiste" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Biographie" EntityType="Self.Biographie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Chanson" EntityType="Self.Chanson" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChansonCompositeur" EntityType="Self.ChansonCompositeur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Compositeur" EntityType="Self.Compositeur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instrument" EntityType="Self.Instrument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jouer" EntityType="Self.Jouer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReleveTransaction" EntityType="Self.ReleveTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stanley" EntityType="Self.Stanley" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Version" EntityType="Self.Version" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Achat_Album_FK" Association="Self.FK_Achat_Album_FK">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="Achat" EntitySet="Achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Achat_ReleveTransaction_FK" Association="Self.FK_Achat_ReleveTransaction_FK">
+      <End Role="ReleveTransaction" EntitySet="ReleveTransaction" />
+      <End Role="Achat" EntitySet="Achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Achat_Version_FK" Association="Self.FK_Achat_Version_FK">
+      <End Role="Version" EntitySet="Version" />
+      <End Role="Achat" EntitySet="Achat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Artiste_Biographie_FK" Association="Self.FK_Artiste_Biographie_FK">
+      <End Role="Artiste" EntitySet="Artiste" />
+      <End Role="Biographie" EntitySet="Biographie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Biographie_Artiste" Association="Self.FK_Biographie_Artiste">
+      <End Role="Biographie" EntitySet="Biographie" />
+      <End Role="Artiste" EntitySet="Artiste" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chanson_Genre_FK" Association="Self.FK_Chanson_Genre_FK">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="Chanson" EntitySet="Chanson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChansonCompositeur_Chanson" Association="Self.FK_ChansonCompositeur_Chanson">
+      <End Role="Chanson" EntitySet="Chanson" />
+      <End Role="ChansonCompositeur" EntitySet="ChansonCompositeur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChansonCompositeur_Compositeur" Association="Self.FK_ChansonCompositeur_Compositeur">
+      <End Role="Compositeur" EntitySet="Compositeur" />
+      <End Role="ChansonCompositeur" EntitySet="ChansonCompositeur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jouer_Artiste_FK" Association="Self.FK_Jouer_Artiste_FK">
+      <End Role="Artiste" EntitySet="Artiste" />
+      <End Role="Jouer" EntitySet="Jouer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jouer_Instrument_FK" Association="Self.FK_Jouer_Instrument_FK">
+      <End Role="Instrument" EntitySet="Instrument" />
+      <End Role="Jouer" EntitySet="Jouer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jouer_Version_FK" Association="Self.FK_Jouer_Version_FK">
+      <End Role="Version" EntitySet="Version" />
+      <End Role="Jouer" EntitySet="Jouer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Version_Album_FK" Association="Self.FK_Version_Album_FK">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="Version" EntitySet="Version" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Version_Chanson_FK" Association="Self.FK_Version_Chanson_FK">
+      <End Role="Chanson" EntitySet="Chanson" />
+      <End Role="Version" EntitySet="Version" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -31,8 +31,11 @@
             </table>
 
         <div>@Html.DisplayFor(modelItem => releve.Adresse)</div>
-        <br />
-        if (releve.Envoyer == true)
+    <div>@Html.DisplayFor(modelItem => releve.Ville)</div>
+    <div>@Html.DisplayFor(modelItem => releve.Province)</div>
+    <div>@Html.DisplayFor(modelItem => releve.Zip)</div>
+    <br />
+                if (releve.Envoyer == true)
         {
             <div>
                 La commande est envoyée

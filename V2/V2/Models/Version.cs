@@ -15,6 +15,7 @@ namespace V2.Models
     
     public partial class Version
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Version()
         {
             this.Achat = new HashSet<Achat>();
@@ -34,9 +35,11 @@ namespace V2.Models
         public Nullable<bool> Visible { get; set; }
         public string Path { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Achat> Achat { get; set; }
         public virtual Album Album { get; set; }
         public virtual Chanson Chanson { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Jouer> Jouer { get; set; }
     }
 }

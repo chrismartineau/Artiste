@@ -14,6 +14,7 @@ namespace V2.Models
     
     public partial class Compositeur
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Compositeur()
         {
             this.Chanson = new HashSet<Chanson>();
@@ -22,6 +23,7 @@ namespace V2.Models
         public int CompositeurID { get; set; }
         public string Nom { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chanson> Chanson { get; set; }
     }
 }

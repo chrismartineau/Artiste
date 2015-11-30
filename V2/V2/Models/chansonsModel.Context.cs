@@ -35,7 +35,7 @@ namespace V2.Models
         public virtual DbSet<Instrument> Instrument { get; set; }
         public virtual DbSet<Jouer> Jouer { get; set; }
         public virtual DbSet<ReleveTransaction> ReleveTransaction { get; set; }
-        public virtual DbSet<Version> Version { get; set; }
         public virtual DbSet<Stanley> Stanley { get; set; }
+        public virtual DbSet<Version> Version { get; set; }
     }
 }

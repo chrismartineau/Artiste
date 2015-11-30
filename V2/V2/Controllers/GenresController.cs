@@ -49,7 +49,7 @@ namespace V2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "GenreID,Nom")] Genre genre)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && genre.Nom != null)
             {
                 db.Genre.Add(genre);
                 db.SaveChanges();
